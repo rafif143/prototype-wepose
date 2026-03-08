@@ -5,15 +5,14 @@
 @custom-variant dark (&:is(.dark *));
 
 :root {
-
   /* Primary Colors */
-  --wepose-orange: #f97316;
+  --orange: #f97316;
   --orange-dark: #ea6b0a;
-  --orange-light: #ffedd5;
-  --orange-bg: #fff7ed;
+  --orange-100: #ffedd5;
+  --orange-50: #fff7ed;
 
   /* Secondary Colors */
-  --navy-deep: #0f1f3d;
+  --navy: #0f1f3d;
   --navy-mid: #1e3a5f;
   --navy-light: #e8edf5;
 
@@ -63,11 +62,11 @@
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --color-wepose-orange: var(--wepose-orange);
+  --color-orange: var(--orange);
   --color-orange-dark: var(--orange-dark);
-  --color-orange-light: var(--orange-light);
-  --color-orange-bg: var(--orange-bg);
-  --color-navy-deep: var(--navy-deep);
+  --color-orange-100: var(--orange-100);
+  --color-orange-50: var(--orange-50);
+  --color-navy: var(--navy);
   --color-navy-mid: var(--navy-mid);
   --color-navy-light: var(--navy-light);
   --color-gray-800: var(--gray-800);
@@ -78,7 +77,7 @@
   --color-warning-amber: var(--warning-amber);
   --color-error-red: var(--error-red);
   --color-info-purple: var(--info-purple);
-  --font-sans: var(--font-sans);
+  --font-sans: var(--font-dm-sans);
   --font-dm-sans: var(--font-dm-sans);
   --font-poppins: var(--font-poppins);
   --color-sidebar-ring: var(--sidebar-ring);
@@ -117,6 +116,16 @@
   --radius-2xl: calc(var(--radius) * 1.8);
   --radius-3xl: calc(var(--radius) * 2.2);
   --radius-4xl: calc(var(--radius) * 2.6);
+  --radius-button: 9999px;
+  --radius-card: 16px;
+  --radius-input: 10px;
+  --radius-modal: 20px;
+  --radius-badge: 9999px;
+  --radius-dropdown: 12px;
+  
+  --shadow-card: 0 4px 12px rgba(0,0,0,0.10);
+  --shadow-card-hover: 0 8px 24px rgba(0,0,0,0.12);
+  --shadow-cta-hover: 0 4px 16px rgba(249,115,22,0.25);
 }
 
 @utility text-display {
@@ -161,6 +170,12 @@
   font-weight: 400;
 }
 
+@utility text-caption {
+  font-family: var(--font-dm-sans);
+  font-size: 0.8125rem;
+  font-weight: 400;
+}
+
 .dark {
   --background: oklch(0.145 0 0);
   --foreground: oklch(0.985 0 0);
@@ -199,10 +214,13 @@
   * {
     @apply border-border outline-ring/50;
   }
-  body {
-    @apply bg-background text-foreground;
-  }
+
   html {
     @apply font-sans;
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-background text-foreground;
   }
 }
