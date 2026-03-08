@@ -3,11 +3,50 @@ import BlogDetailClient from "@/components/blog/BlogDetailClient"
 
 // Sample blog data
 const blogPosts = {
+  "jasa-visa-australia": {
+    title: "Jasa Visa Australia",
+    excerpt: "Mengurus visa Australia bisa menjadi proses yang cukup kompleks karena banyaknya persyaratan dan dokumen yang harus dipenuhi.",
+    image: "https://images.unsplash.com/photo-1506973035872-a4ec16b8e8d9?q=80&w=1200&auto=format&fit=crop",
+    date: "5 Maret 2025",
+    author: "Tim WePose",
+    category: "Visa Australia",
+    readTime: "5 menit",
+    content: (
+      <>
+        <h1 className="font-poppins font-bold text-[28px] md:text-[32px] text-navy mb-4 mt-8">
+          Jasa Visa Australia: Panduan Lengkap
+        </h1>
+        
+        <p className="font-dm-sans text-[15px] md:text-[16px] text-gray-700 leading-relaxed mb-4">
+          Mengurus visa Australia bisa menjadi proses yang cukup kompleks karena banyaknya persyaratan dan dokumen yang harus dipenuhi. Menggunakan jasa visa dapat membantu mempercepat proses pengurusan serta meminimalkan risiko penolakan.
+        </p>
+
+        <h2 className="font-poppins font-bold text-[24px] md:text-[28px] text-navy mb-4 mt-8">
+          Jenis Visa Australia untuk WNI
+        </h2>
+
+        <ul className="list-disc list-inside space-y-2 mb-6 font-dm-sans text-gray-700">
+          <li>Visa Turis (Subclass 600)</li>
+          <li>Visa Pelajar (Subclass 500)</li>
+          <li>Visa Kerja (Subclass 482)</li>
+          <li>Visa Bisnis (Subclass 188)</li>
+        </ul>
+
+        <h2 className="font-poppins font-bold text-[24px] md:text-[28px] text-navy mb-4 mt-8">
+          Mengapa Menggunakan Jasa Visa?
+        </h2>
+
+        <p className="font-dm-sans text-[15px] md:text-[16px] text-gray-700 leading-relaxed mb-4">
+          Dengan menggunakan jasa profesional, Anda dapat memastikan semua dokumen lengkap dan sesuai persyaratan, sehingga meminimalkan risiko penolakan visa.
+        </p>
+      </>
+    )
+  },
   "visa-schengen-jerman-kunjungan": {
     title: "Visa Schengen Jerman Kunjungan Keluarga dan Teman",
     excerpt: "Visa Schengen Jerman Visit Family or Friends adalah visa kunjungan singkat yang memungkinkan WNI mengunjungi keluarga atau teman di Jerman hingga 90 hari dalam periode 180 hari.",
     image: "https://images.unsplash.com/photo-1467269204594-9661b134dd2b?w=1200&q=80",
-    date: "15 Januari 2024",
+    date: "5 Maret 2025",
     author: "Tim WePose",
     category: "Visa Schengen",
     readTime: "8 menit",
@@ -19,14 +58,6 @@ const blogPosts = {
         
         <p className="font-dm-sans text-[15px] md:text-[16px] text-gray-700 leading-relaxed mb-4">
           Mengunjungi keluarga atau teman di Jerman adalah salah satu alasan paling umum bagi warga negara Indonesia untuk mengajukan visa Schengen.
-        </p>
-
-        <p className="font-dm-sans text-[15px] md:text-[16px] text-gray-700 leading-relaxed mb-4">
-          Dengan visa ini, Anda dapat melakukan kunjungan singkat ke Jerman untuk bertemu keluarga, pasangan, atau teman yang tinggal di sana.
-        </p>
-
-        <p className="font-dm-sans text-[15px] md:text-[16px] text-gray-700 leading-relaxed mb-4">
-          Visa Schengen untuk kunjungan keluarga atau teman memungkinkan Anda tinggal di kawasan Schengen Area hingga 90 hari dalam periode 180 hari.
         </p>
 
         <h2 className="font-poppins font-bold text-[24px] md:text-[28px] text-navy mb-4 mt-8">
@@ -59,41 +90,21 @@ const blogPosts = {
           <li>Menghadiri acara keluarga</li>
         </ul>
 
-        <p className="font-dm-sans text-[15px] md:text-[16px] text-gray-700 leading-relaxed mb-4">
-          Visa ini berlaku untuk perjalanan singkat dan tidak dapat digunakan untuk bekerja atau tinggal jangka panjang.
-        </p>
-
         <h2 className="font-poppins font-bold text-[24px] md:text-[28px] text-navy mb-4 mt-8">
           Durasi Tinggal Visa Schengen Jerman
         </h2>
 
-        <p className="font-dm-sans text-[15px] md:text-[16px] text-gray-700 leading-relaxed mb-4">
-          Visa kunjungan ini memiliki aturan durasi tertentu.
-        </p>
-
         <p className="font-dm-sans text-[15px] md:text-[16px] text-navy font-semibold leading-relaxed mb-4">
           Durasi tinggal maksimal: 90 hari dalam periode 180 hari
-        </p>
-
-        <p className="font-dm-sans text-[15px] md:text-[16px] text-gray-700 leading-relaxed mb-4">
-          Artinya dalam jangka waktu 6 bulan, Anda hanya diperbolehkan tinggal maksimal 90 hari di kawasan Schengen.
         </p>
 
         <h2 className="font-poppins font-bold text-[24px] md:text-[28px] text-navy mb-4 mt-8">
           Dokumen Penting untuk Visa Kunjungan Jerman
         </h2>
 
-        <p className="font-dm-sans text-[15px] md:text-[16px] text-gray-700 leading-relaxed mb-4">
-          Pengajuan visa Schengen memerlukan berbagai dokumen yang harus disiapkan dengan lengkap.
-        </p>
-
         <h3 className="font-poppins font-semibold text-[20px] md:text-[24px] text-navy mb-3 mt-6">
           1. Paspor
         </h3>
-
-        <p className="font-dm-sans text-[15px] md:text-[16px] text-gray-700 leading-relaxed mb-2">
-          Paspor harus memenuhi beberapa syarat berikut:
-        </p>
 
         <ul className="list-disc list-inside space-y-2 mb-6 font-dm-sans text-gray-700">
           <li>Masa berlaku minimal 6 bulan sebelum keberangkatan</li>
@@ -105,80 +116,106 @@ const blogPosts = {
           2. Foto Visa
         </h3>
 
-        <p className="font-dm-sans text-[15px] md:text-[16px] text-gray-700 leading-relaxed mb-2">
-          Diperlukan dua lembar foto terbaru dengan ketentuan:
-        </p>
-
         <ul className="list-disc list-inside space-y-2 mb-6 font-dm-sans text-gray-700">
           <li>Ukuran 3.5 x 4.5 cm</li>
           <li>Latar belakang putih</li>
           <li>Wajah terlihat jelas 70–80%</li>
         </ul>
 
-        <h3 className="font-poppins font-semibold text-[20px] md:text-[24px] text-navy mb-3 mt-6">
-          3. Bukti Keuangan
-        </h3>
-
-        <p className="font-dm-sans text-[15px] md:text-[16px] text-gray-700 leading-relaxed mb-2">
-          Pemohon harus menunjukkan kemampuan finansial selama perjalanan:
-        </p>
-
-        <ul className="list-disc list-inside space-y-2 mb-6 font-dm-sans text-gray-700">
-          <li>Referensi bank</li>
-          <li>Rekening koran 3 bulan terakhir</li>
-          <li>Dokumen harus asli dan memiliki cap bank</li>
-        </ul>
-
         <h2 className="font-poppins font-bold text-[24px] md:text-[28px] text-navy mb-4 mt-8">
           Estimasi Waktu Proses Visa
         </h2>
 
-        <p className="font-dm-sans text-[15px] md:text-[16px] text-gray-700 leading-relaxed mb-4">
-          Proses visa biasanya dilakukan melalui VFS Global yang bekerja sama dengan Kedutaan Jerman.
-        </p>
-
         <p className="font-dm-sans text-[15px] md:text-[16px] text-navy font-semibold leading-relaxed mb-4">
           Estimasi waktu pemrosesan: 5 hingga 20 hari kerja
-        </p>
-
-        <p className="font-dm-sans text-[15px] md:text-[16px] text-gray-700 leading-relaxed mb-4">
-          Disarankan untuk mengajukan visa minimal 2 hingga 3 bulan sebelum perjalanan agar memiliki cukup waktu jika terjadi keterlambatan proses.
-        </p>
-
-        <h2 className="font-poppins font-bold text-[24px] md:text-[28px] text-navy mb-4 mt-8">
-          Mengapa Menggunakan Jasa Wepose Travel?
-        </h2>
-
-        <p className="font-dm-sans text-[15px] md:text-[16px] text-gray-700 leading-relaxed mb-4">
-          Pengajuan visa Schengen dikenal cukup kompleks karena membutuhkan banyak dokumen dan prosedur.
-        </p>
-
-        <p className="font-dm-sans text-[15px] md:text-[16px] text-gray-700 leading-relaxed mb-4">
-          Wepose Travel membantu memastikan semua proses visa Anda berjalan lancar.
-        </p>
-
-        <h3 className="font-poppins font-semibold text-[20px] md:text-[24px] text-navy mb-3 mt-6">
-          Layanan kami meliputi:
-        </h3>
-
-        <ul className="list-disc list-inside space-y-2 mb-6 font-dm-sans text-gray-700">
-          <li>Konsultasi visa Schengen</li>
-          <li>Pengecekan dokumen lengkap</li>
-          <li>Bantuan pengisian formulir</li>
-          <li>Pendampingan proses pengajuan visa</li>
-        </ul>
-
-        <p className="font-dm-sans text-[15px] md:text-[16px] text-gray-700 leading-relaxed mb-4">
-          Dengan bantuan profesional, Anda dapat fokus mempersiapkan perjalanan tanpa stres mengurus administrasi visa.
         </p>
       </>
     )
   },
-  "visa-jepang-wisata": {
-    title: "Panduan Lengkap Visa Jepang untuk Wisata",
-    excerpt: "Pelajari cara mengajukan visa turis Jepang dengan mudah. Panduan lengkap dokumen, biaya, dan tips agar visa disetujui.",
+  "proses-visa-jerman-berapa-lama": {
+    title: "Proses Visa Jerman Berapa Lama?",
+    excerpt: "Berapa lama proses visa Jerman Schengen? Waktu pemrosesan visa biasanya berkisar 10-15 hari kerja untuk visa kunjungan singkat.",
+    image: "https://images.unsplash.com/photo-1564501049412-61c2a3083791?q=80&w=1200&auto=format&fit=crop",
+    date: "5 Maret 2025",
+    author: "Tim WePose",
+    category: "Visa Jerman",
+    readTime: "6 menit",
+    content: (
+      <>
+        <h1 className="font-poppins font-bold text-[28px] md:text-[32px] text-navy mb-4 mt-8">
+          Proses Visa Jerman Berapa Lama?
+        </h1>
+        
+        <p className="font-dm-sans text-[15px] md:text-[16px] text-gray-700 leading-relaxed mb-4">
+          Waktu pemrosesan visa Jerman biasanya berkisar 10-15 hari kerja untuk visa kunjungan singkat, namun bisa lebih lama tergantung jenis visa, kelengkapan dokumen, dan volume aplikasi.
+        </p>
+
+        <h2 className="font-poppins font-bold text-[24px] md:text-[28px] text-navy mb-4 mt-8">
+          Faktor yang Mempengaruhi Waktu Proses
+        </h2>
+
+        <ul className="list-disc list-inside space-y-2 mb-6 font-dm-sans text-gray-700">
+          <li>Kelengkapan dokumen</li>
+          <li>Jenis visa yang diajukan</li>
+          <li>Volume aplikasi di kedutaan</li>
+          <li>Verifikasi tambahan yang diperlukan</li>
+        </ul>
+
+        <h2 className="font-poppins font-bold text-[24px] md:text-[28px] text-navy mb-4 mt-8">
+          Tips Mempercepat Proses
+        </h2>
+
+        <p className="font-dm-sans text-[15px] md:text-[16px] text-gray-700 leading-relaxed mb-4">
+          Pastikan semua dokumen lengkap dan sesuai persyaratan sebelum mengajukan visa. Ajukan visa minimal 2-3 bulan sebelum keberangkatan.
+        </p>
+      </>
+    )
+  },
+  "tips-visa-korea-selatan": {
+    title: "Tips Visa Korea Selatan",
+    excerpt: "Mengajukan visa Korea Selatan memerlukan persiapan dokumen yang lengkap dan akurat.",
+    image: "https://images.unsplash.com/photo-1517154421773-0529f29ea451?q=80&w=1200&auto=format&fit=crop",
+    date: "4 Maret 2025",
+    author: "Tim WePose",
+    category: "Visa Korea",
+    readTime: "8 menit",
+    content: (
+      <>
+        <h1 className="font-poppins font-bold text-[28px] md:text-[32px] text-navy mb-4 mt-8">
+          Tips Visa Korea Selatan
+        </h1>
+        
+        <p className="font-dm-sans text-[15px] md:text-[16px] text-gray-700 leading-relaxed mb-4">
+          Mengajukan visa Korea Selatan memerlukan persiapan dokumen yang lengkap dan akurat. Artikel ini memberikan tips praktis untuk meningkatkan peluang approval visa Korea.
+        </p>
+
+        <h2 className="font-poppins font-bold text-[24px] md:text-[28px] text-navy mb-4 mt-8">
+          Persyaratan Dokumen
+        </h2>
+
+        <ul className="list-disc list-inside space-y-2 mb-6 font-dm-sans text-gray-700">
+          <li>Paspor dengan masa berlaku minimal 6 bulan</li>
+          <li>Formulir aplikasi visa</li>
+          <li>Foto 3.5 x 4.5 cm</li>
+          <li>Rekening koran 3 bulan terakhir</li>
+          <li>Surat sponsor dari perusahaan</li>
+        </ul>
+
+        <h2 className="font-poppins font-bold text-[24px] md:text-[28px] text-navy mb-4 mt-8">
+          Tips Agar Visa Disetujui
+        </h2>
+
+        <p className="font-dm-sans text-[15px] md:text-[16px] text-gray-700 leading-relaxed mb-4">
+          Pastikan semua dokumen asli dan lengkap. Tunjukkan bukti keuangan yang kuat dan itinerary perjalanan yang jelas.
+        </p>
+      </>
+    )
+  },
+  "panduan-visa-jepang-tourist": {
+    title: "Panduan Visa Jepang Tourist",
+    excerpt: "Visa turis Jepang adalah salah satu visa yang paling banyak diajukan oleh WNI.",
     image: "https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?w=1200&q=80",
-    date: "10 Januari 2024",
+    date: "3 Maret 2025",
     author: "Tim WePose",
     category: "Visa Jepang",
     readTime: "6 menit",
@@ -195,10 +232,6 @@ const blogPosts = {
         <h2 className="font-poppins font-bold text-[24px] md:text-[28px] text-navy mb-4 mt-8">
           Syarat Dokumen Visa Jepang
         </h2>
-
-        <p className="font-dm-sans text-[15px] md:text-[16px] text-gray-700 leading-relaxed mb-2">
-          Untuk mengajukan visa turis Jepang, Anda perlu menyiapkan dokumen berikut:
-        </p>
 
         <ul className="list-disc list-inside space-y-2 mb-6 font-dm-sans text-gray-700">
           <li>Paspor dengan masa berlaku minimal 6 bulan</li>
@@ -219,6 +252,46 @@ const blogPosts = {
         </p>
       </>
     )
+  },
+  "cara-apply-visa-schengen": {
+    title: "Cara Apply Visa Schengen",
+    excerpt: "Visa Schengen memungkinkan Anda mengunjungi 27 negara Eropa dengan satu visa.",
+    image: "https://images.unsplash.com/photo-1502602898657-3e91760cbb34?q=80&w=1200&auto=format&fit=crop",
+    date: "2 Maret 2025",
+    author: "Tim WePose",
+    category: "Visa Schengen",
+    readTime: "10 menit",
+    content: (
+      <>
+        <h1 className="font-poppins font-bold text-[28px] md:text-[32px] text-navy mb-4 mt-8">
+          Cara Apply Visa Schengen
+        </h1>
+        
+        <p className="font-dm-sans text-[15px] md:text-[16px] text-gray-700 leading-relaxed mb-4">
+          Visa Schengen memungkinkan Anda mengunjungi 27 negara Eropa dengan satu visa. Proses aplikasinya memerlukan persiapan yang matang dan dokumen yang lengkap.
+        </p>
+
+        <h2 className="font-poppins font-bold text-[24px] md:text-[28px] text-navy mb-4 mt-8">
+          Langkah-langkah Apply Visa Schengen
+        </h2>
+
+        <ul className="list-disc list-inside space-y-2 mb-6 font-dm-sans text-gray-700">
+          <li>Tentukan negara tujuan utama</li>
+          <li>Siapkan dokumen lengkap</li>
+          <li>Booking appointment di VFS Global</li>
+          <li>Hadiri interview di kedutaan</li>
+          <li>Tunggu proses verifikasi</li>
+        </ul>
+
+        <h2 className="font-poppins font-bold text-[24px] md:text-[28px] text-navy mb-4 mt-8">
+          Dokumen yang Diperlukan
+        </h2>
+
+        <p className="font-dm-sans text-[15px] md:text-[16px] text-gray-700 leading-relaxed mb-4">
+          Paspor, foto, rekening koran, asuransi perjalanan, booking hotel, tiket pesawat, dan surat sponsor.
+        </p>
+      </>
+    )
   }
 }
 
@@ -228,8 +301,9 @@ export async function generateStaticParams() {
   }))
 }
 
-export default function BlogDetailPage({ params }: { params: { slug: string } }) {
-  const post = blogPosts[params.slug as keyof typeof blogPosts]
+export default async function BlogDetailPage({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params
+  const post = blogPosts[slug as keyof typeof blogPosts]
 
   if (!post) {
     notFound()

@@ -5,6 +5,7 @@ import { motion } from "framer-motion"
 import Link from "next/link"
 import Image from "next/image"
 import { CalendarIcon, ClockIcon, UserIcon, ArrowLeftIcon, ShareIcon } from "@heroicons/react/24/outline"
+import Navbar from "@/components/layout/Navbar"
 
 interface BlogPost {
   title: string
@@ -19,52 +20,54 @@ interface BlogPost {
 
 export default function BlogDetailClient({ post }: { post: BlogPost }) {
   return (
-    <main className="min-h-screen bg-white">
-      {/* Hero Section */}
-      <section className="relative pt-24 pb-12 bg-gradient-to-b from-navy to-navy-mid">
-        <div className="container mx-auto px-4 max-w-[1280px]">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-          >
-            {/* Back Button */}
-            <Link 
-              href="/#blog"
-              className="inline-flex items-center gap-2 text-orange hover:text-orange-dark transition-colors mb-6 font-dm-sans text-sm"
+    <>
+      <Navbar />
+      <main className="min-h-screen bg-white pt-16">
+        {/* Hero Section */}
+        <section className="relative pt-12 pb-8 bg-gradient-to-b from-navy to-navy-mid">
+          <div className="container mx-auto px-4 max-w-[1280px]">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
             >
-              <ArrowLeftIcon className="w-4 h-4" />
-              Kembali ke Blog
-            </Link>
+              {/* Back Button */}
+              <Link 
+                href="/#blog"
+                className="inline-flex items-center gap-2 text-orange hover:text-orange-dark transition-colors mb-6 font-dm-sans text-sm"
+              >
+                <ArrowLeftIcon className="w-4 h-4" />
+                Kembali ke Blog
+              </Link>
 
-            {/* Category Badge */}
-            <div className="inline-block px-4 py-1.5 rounded-full bg-orange/20 border border-orange/30 text-orange font-poppins font-semibold text-xs mb-4">
-              {post.category}
-            </div>
+              {/* Category Badge */}
+              <div className="inline-block px-4 py-1.5 rounded-full bg-orange/20 border border-orange/30 text-orange font-poppins font-semibold text-xs mb-4">
+                {post.category}
+              </div>
 
-            {/* Title */}
-            <h1 className="font-poppins font-bold text-[32px] md:text-[48px] text-white leading-tight mb-6 max-w-4xl">
-              {post.title}
-            </h1>
+              {/* Title */}
+              <h1 className="font-poppins font-bold text-[32px] md:text-[48px] text-white leading-tight mb-6 max-w-4xl">
+                {post.title}
+              </h1>
 
-            {/* Meta Info */}
-            <div className="flex flex-wrap items-center gap-6 text-gray-300 text-sm">
-              <div className="flex items-center gap-2">
-                <UserIcon className="w-4 h-4" />
-                <span className="font-dm-sans">{post.author}</span>
+              {/* Meta Info */}
+              <div className="flex flex-wrap items-center gap-6 text-gray-300 text-sm">
+                <div className="flex items-center gap-2">
+                  <UserIcon className="w-4 h-4" />
+                  <span className="font-dm-sans">{post.author}</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <CalendarIcon className="w-4 h-4" />
+                  <span className="font-dm-sans">{post.date}</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <ClockIcon className="w-4 h-4" />
+                  <span className="font-dm-sans">{post.readTime} baca</span>
+                </div>
               </div>
-              <div className="flex items-center gap-2">
-                <CalendarIcon className="w-4 h-4" />
-                <span className="font-dm-sans">{post.date}</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <ClockIcon className="w-4 h-4" />
-                <span className="font-dm-sans">{post.readTime} baca</span>
-              </div>
-            </div>
-          </motion.div>
-        </div>
-      </section>
+            </motion.div>
+          </div>
+        </section>
 
       {/* Featured Image */}
       <section className="relative -mt-8">
@@ -187,6 +190,7 @@ export default function BlogDetailClient({ post }: { post: BlogPost }) {
           </div>
         </div>
       </section>
-    </main>
+      </main>
+    </>
   )
 }

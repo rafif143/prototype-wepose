@@ -135,7 +135,7 @@ export default function HeroSection() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 0.8, duration: 0.5 }}
-        className="absolute bottom-0 left-0 right-0 bg-[#FF6B00] py-6 z-20"
+        className="absolute bottom-0 left-0 right-0 bg-orange py-6 z-20"
       >
         <div className="container mx-auto px-4 max-w-[1280px]">
           <div className="flex flex-wrap justify-center items-center gap-x-8 gap-y-4 md:gap-x-12">

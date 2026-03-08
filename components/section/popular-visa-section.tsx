@@ -367,10 +367,10 @@ export default function PopularVisaSection() {
           viewport={{ once: true, margin: "-50px" }}
           className="mt-12 text-center"
         >
-          <button className="inline-flex items-center gap-2 bg-orange text-white px-8 py-3 rounded-full font-poppins font-semibold text-[15px] hover:bg-orange-dark hover:shadow-cta-hover transition-all duration-200">
+          <Link href="/visa" className="inline-flex items-center gap-2 bg-orange text-white px-8 py-3 rounded-full font-poppins font-semibold text-[15px] hover:bg-orange-dark hover:shadow-cta-hover transition-all duration-200">
             Lihat Semua 100+ Visa
             <ArrowRightIcon className="w-4 h-4 stroke-[2.5]" />
-          </button>
+          </Link>
         </motion.div>
 
         {/* Compare Selection Modal */}

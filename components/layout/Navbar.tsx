@@ -26,15 +26,23 @@ export default function Navbar() {
   // Smooth scroll handler for anchor links
   const handleSmoothScroll = (e: React.MouseEvent<HTMLAnchorElement>, targetId: string) => {
     e.preventDefault()
-    const target = document.querySelector(targetId)
-    if (target) {
-      const navHeight = 64 // navbar height
-      const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - navHeight
-      
-      window.scrollTo({
-        top: targetPosition,
-        behavior: 'smooth'
-      })
+    
+    // Check if we're on the home page
+    if (window.location.pathname === '/') {
+      // We're on home page, just scroll
+      const target = document.querySelector(targetId)
+      if (target) {
+        const navHeight = 64 // navbar height
+        const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - navHeight
+        
+        window.scrollTo({
+          top: targetPosition,
+          behavior: 'smooth'
+        })
+      }
+    } else {
+      // We're on another page, navigate to home with hash
+      window.location.href = `/${targetId}`
     }
   }
 
@@ -289,14 +297,13 @@ export default function Navbar() {
               Promo
               <span className="absolute left-0 right-0 -bottom-[21px] h-[2px] bg-orange scale-x-0 group-hover:scale-x-100 transition-transform origin-left"></span>
             </a>
-            <a 
-              href="#blog" 
-              onClick={(e) => handleSmoothScroll(e, '#blog')}
+            <Link 
+              href="/blog"
               className="font-dm-sans font-medium text-[15px] text-gray-500 hover:text-orange transition-colors duration-150 relative group cursor-pointer"
             >
               Blog
               <span className="absolute left-0 right-0 -bottom-[21px] h-[2px] bg-orange scale-x-0 group-hover:scale-x-100 transition-transform origin-left"></span>
-            </a>
+            </Link>
             <a 
               href="#contact" 
               onClick={(e) => handleSmoothScroll(e, '#contact')}
