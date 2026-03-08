@@ -29,12 +29,14 @@ export function SponsorForm({ template, formData, onUpdateField }: SponsorFormPr
     return errors.find((error) => error.field === field)?.message;
   };
 
-  const inputClass = (field: keyof SponsorFormData) =>
+  const getInputClass = (field: keyof SponsorFormData) =>
     `w-full px-4 py-2.5 rounded-input border text-[15px] font-dm-sans transition-all duration-200 focus:outline-none ${
       getFieldError(field)
         ? 'border-error-red focus:border-error-red focus:ring-2 focus:ring-error-red/20'
         : 'border-gray-200 focus:border-orange focus:ring-2 focus:ring-orange/20'
     }`;
+
+  const inputClass = 'w-full px-4 py-2.5 rounded-input border text-[15px] font-dm-sans transition-all duration-200 focus:outline-none border-gray-200 focus:border-orange focus:ring-2 focus:ring-orange/20';
 
   const labelClass = 'block text-[14px] font-dm-sans font-medium text-navy mb-1.5';
 
@@ -63,7 +65,7 @@ export function SponsorForm({ template, formData, onUpdateField }: SponsorFormPr
               onChange={(e) => onUpdateField('applicantName', e.target.value)}
               onBlur={() => handleBlur('applicantName')}
               placeholder="Contoh: Budi Santoso"
-              className={inputClass('applicantName')}
+              className={getInputClass('applicantName')}
               aria-invalid={!!getFieldError('applicantName')}
               aria-describedby={getFieldError('applicantName') ? 'applicantName-error' : undefined}
             />

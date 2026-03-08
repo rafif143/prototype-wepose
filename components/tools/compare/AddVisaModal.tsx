@@ -36,8 +36,7 @@ export function AddVisaModal({
   const filteredVisas = availableVisas.filter(
     (visa) =>
       !excludeIds.includes(visa.id) &&
-      (visa.name.toLowerCase().includes(debouncedSearchQuery.toLowerCase()) ||
-        visa.country?.toLowerCase().includes(debouncedSearchQuery.toLowerCase()))
+      visa.name.toLowerCase().includes(debouncedSearchQuery.toLowerCase())
   );
 
   const handleSelect = (visaId: string) => {

@@ -18,8 +18,10 @@ export function SponsorLetterPaywall({
       isOpen={isOpen}
       onClose={onClose}
       title="Unlock Generator Surat Sponsor"
-      subtitle="Buat surat sponsor profesional dalam hitungan menit"
+      description="Buat surat sponsor profesional dalam hitungan menit"
       price="Rp 15.000"
+      priceUnit="sekali pakai"
+      primaryButtonText="Beli Sekarang"
       features={[
         '3 template surat sponsor (Keluarga, Perusahaan, Pribadi)',
         'Bahasa Indonesia & English',
