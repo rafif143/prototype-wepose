@@ -31,9 +31,9 @@ export function SponsorForm({ template, formData, onUpdateField }: SponsorFormPr
     setTouchedFields((prev) => new Set(prev).add(field));
   };
 
-  const getFieldError = (field: keyof SponsorFormData) => {
+  const getFieldError = (field: keyof SponsorFormData): string | null => {
     if (!touchedFields.has(field)) return null;
-    return errors.find((error) => error.field === field)?.message;
+    return errors.find((error) => error.field === field)?.message || null;
   };
 
   return (
