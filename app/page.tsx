@@ -4,6 +4,7 @@ import AboutSection from "@/components/section/about-section";
 import HowItWorksSection from "@/components/section/how-it-works-section";
 import PopularVisaSection from "@/components/section/popular-visa-section";
 import ExtraServicesSection from "@/components/section/extra-services-section";
+import SupportedCountriesSection from "@/components/section/supported-countries-section";
 import TestimonialsSection from "@/components/section/testimonials-section";
 import BlogSection from "@/components/section/blog-section";
 import ContactSection from "@/components/section/contact-section";
@@ -23,6 +24,7 @@ export default function Home() {
       <HowItWorksSection />
       <PopularVisaSection />
       <ExtraServicesSection />
+      <SupportedCountriesSection />
       <TestimonialsSection />
       <BlogSection />
       <ContactSection />
