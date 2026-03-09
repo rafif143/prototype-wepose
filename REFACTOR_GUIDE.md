@@ -1,20 +1,3 @@
-# 🔧 Automated Large-Scale Refactoring Guide
-
-## Kapan Pake Metode Ini?
-
-Pake metode ini kalo project lu:
-- ❌ Struktur folder acakadut/berantakan
-- ❌ Import paths ga konsisten
-- ❌ File placement ga jelas (mana shared, mana feature-specific)
-- ❌ Hard to scale/maintain
-- ❌ Banyak duplicate code
-- ❌ Naming convention ga konsisten
-
-## Prompt Template untuk AI
-
-Copy paste prompt ini ke AI assistant (Kiro/Claude/ChatGPT):
-
-```
 Gw mau refactor total project ini dari struktur acakadut jadi feature-based architecture yang rapi dan maintainable.
 
 **Current Problems:**
@@ -312,18 +295,4 @@ Refactor berhasil kalo:
 
 ---
 
-## Quick Start Command
 
-Kalo lu mau refactor project lain, tinggal:
-
-1. Open project di Kiro/AI assistant
-2. Copy paste prompt template di atas
-3. Follow AI instructions
-4. Review & approve each phase
-5. Done! 🎉
-
-**Estimated Time:** 30-60 menit untuk project dengan 50-100 files
-
-**Risk Level:** Low (karena pake git, bisa rollback kapan aja)
-
-**Effort:** Minimal (AI yang ngerjain, lu cuma review)

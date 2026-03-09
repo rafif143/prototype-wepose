@@ -3,6 +3,7 @@
 import { useCallback, useEffect, useRef, useState } from "react"
 import createGlobe, { COBEOptions } from "cobe"
 import { cn } from "@/shared/lib/utils"
+import { GLOBE_CONFIG as GLOBE_UI_CONFIG } from "@/shared/constants/ui"
 
 interface Marker {
   location: [number, number]
@@ -288,19 +289,19 @@ export function GlobeWithCountries({
   }, [])
 
   // Check if two labels overlap
-  const checkOverlap = (pos1: { x: number; y: number }, pos2: { x: number; y: number }, minDistance: number = 45) => {
+  const checkOverlap = (pos1: { x: number; y: number }, pos2: { x: number; y: number }) => {
     const dx = pos1.x - pos2.x
     const dy = pos1.y - pos2.y
     const distance = Math.sqrt(dx * dx + dy * dy)
-    return distance < minDistance
+    return distance < GLOBE_UI_CONFIG.LABEL_MIN_DISTANCE;
   }
 
   const onRender = useCallback(
     (state: Record<string, any>) => {
-      if (pointerInteracting.current === null) phiRef.current += 0.003
-      state.phi = phiRef.current + r
-      state.width = widthRef.current * 2
-      state.height = widthRef.current * 2
+      if (pointerInteracting.current === null) phiRef.current += GLOBE_UI_CONFIG.ROTATION_SPEED;
+      state.phi = phiRef.current + r;
+      state.width = widthRef.current * 2;
+      state.height = widthRef.current * 2;
 
       // Update label positions for supported countries
       const allPositions = SUPPORTED_COUNTRIES.map((country, idx) => {

@@ -1,104 +1,109 @@
 import { SponsorFormData, TemplateType } from './types';
+import { VALIDATION_RULES, VALIDATION_MESSAGES } from '@/shared/constants/validation';
 
 export interface ValidationError {
   field: keyof SponsorFormData;
   message: string;
 }
 
+// Validation helper functions
+const validateRequired = (value: string | undefined, field: string): string | null => {
+  if (!value?.trim()) {
+    return VALIDATION_MESSAGES.REQUIRED(field);
+  }
+  return null;
+};
+
+const validatePassport = (value: string): string | null => {
+  if (!value.trim()) {
+    return VALIDATION_MESSAGES.REQUIRED('No. paspor');
+  }
+  if (!VALIDATION_RULES.PASSPORT.PATTERN.test(value)) {
+    return VALIDATION_MESSAGES.PASSPORT_INVALID;
+  }
+  return null;
+};
+
+const validateIdNumber = (value: string | undefined): string | null => {
+  if (!value?.trim()) {
+    return VALIDATION_MESSAGES.REQUIRED('No. KTP');
+  }
+  if (!VALIDATION_RULES.ID_NUMBER.PATTERN.test(value)) {
+    return VALIDATION_MESSAGES.ID_NUMBER_INVALID;
+  }
+  return null;
+};
+
+const validatePhone = (value: string | undefined): string | null => {
+  if (!value?.trim()) {
+    return VALIDATION_MESSAGES.REQUIRED('No. telepon');
+  }
+  const cleanPhone = value.replace(/[\s-]/g, '');
+  if (!VALIDATION_RULES.PHONE.PATTERN.test(cleanPhone)) {
+    return VALIDATION_MESSAGES.PHONE_INVALID;
+  }
+  return null;
+};
+
+const validateDateRange = (departureDate: string, returnDate: string): string | null => {
+  if (!departureDate || !returnDate) return null;
+  
+  const departure = new Date(departureDate);
+  const returnD = new Date(returnDate);
+  
+  if (returnD <= departure) {
+    return VALIDATION_MESSAGES.DATE_RANGE_INVALID;
+  }
+  return null;
+};
+
+// Main validation function
 export function validateSponsorForm(
   formData: SponsorFormData,
   template: TemplateType
 ): ValidationError[] {
   const errors: ValidationError[] = [];
 
+  // Helper to add error
+  const addError = (field: keyof SponsorFormData, message: string | null) => {
+    if (message) {
+      errors.push({ field, message });
+    }
+  };
+
   // Common fields validation
-  if (!formData.applicantName.trim()) {
-    errors.push({ field: 'applicantName', message: 'Nama lengkap wajib diisi' });
-  }
-
-  if (!formData.passportNumber.trim()) {
-    errors.push({ field: 'passportNumber', message: 'No. paspor wajib diisi' });
-  } else if (!/^[A-Z0-9]{6,9}$/i.test(formData.passportNumber)) {
-    errors.push({ field: 'passportNumber', message: 'Format no. paspor tidak valid' });
-  }
-
-  if (!formData.birthDate) {
-    errors.push({ field: 'birthDate', message: 'Tanggal lahir wajib diisi' });
-  }
-
-  if (!formData.destinationCountry.trim()) {
-    errors.push({ field: 'destinationCountry', message: 'Negara tujuan wajib diisi' });
-  }
-
-  if (!formData.destinationCity.trim()) {
-    errors.push({ field: 'destinationCity', message: 'Kota tujuan wajib diisi' });
-  }
-
-  if (!formData.departureDate) {
-    errors.push({ field: 'departureDate', message: 'Tanggal berangkat wajib diisi' });
-  }
-
-  if (!formData.returnDate) {
-    errors.push({ field: 'returnDate', message: 'Tanggal kembali wajib diisi' });
-  }
+  addError('applicantName', validateRequired(formData.applicantName, 'Nama lengkap'));
+  addError('passportNumber', validatePassport(formData.passportNumber));
+  addError('birthDate', validateRequired(formData.birthDate, 'Tanggal lahir'));
+  addError('destinationCountry', validateRequired(formData.destinationCountry, 'Negara tujuan'));
+  addError('destinationCity', validateRequired(formData.destinationCity, 'Kota tujuan'));
+  addError('departureDate', validateRequired(formData.departureDate, 'Tanggal berangkat'));
+  addError('returnDate', validateRequired(formData.returnDate, 'Tanggal kembali'));
 
   // Validate date range
-  if (formData.departureDate && formData.returnDate) {
-    const departure = new Date(formData.departureDate);
-    const returnDate = new Date(formData.returnDate);
-    if (returnDate <= departure) {
-      errors.push({ field: 'returnDate', message: 'Tanggal kembali harus setelah tanggal berangkat' });
-    }
-  }
+  const dateRangeError = validateDateRange(formData.departureDate, formData.returnDate);
+  addError('returnDate', dateRangeError);
 
   // Template-specific validation
   if (template === 'keluarga') {
-    if (!formData.sponsorName?.trim()) {
-      errors.push({ field: 'sponsorName', message: 'Nama sponsor wajib diisi' });
-    }
-    if (!formData.sponsorIdNumber?.trim()) {
-      errors.push({ field: 'sponsorIdNumber', message: 'No. KTP sponsor wajib diisi' });
-    } else if (!/^\d{16}$/.test(formData.sponsorIdNumber)) {
-      errors.push({ field: 'sponsorIdNumber', message: 'No. KTP harus 16 digit' });
-    }
-    if (!formData.sponsorAddress?.trim()) {
-      errors.push({ field: 'sponsorAddress', message: 'Alamat sponsor wajib diisi' });
-    }
-    if (!formData.sponsorPhone?.trim()) {
-      errors.push({ field: 'sponsorPhone', message: 'No. telepon sponsor wajib diisi' });
-    } else if (!/^(\+62|62|0)[0-9]{9,12}$/.test(formData.sponsorPhone.replace(/[\s-]/g, ''))) {
-      errors.push({ field: 'sponsorPhone', message: 'Format no. telepon tidak valid' });
-    }
-    if (!formData.relationship) {
-      errors.push({ field: 'relationship', message: 'Hubungan wajib dipilih' });
-    }
+    addError('sponsorName', validateRequired(formData.sponsorName, 'Nama sponsor'));
+    addError('sponsorIdNumber', validateIdNumber(formData.sponsorIdNumber));
+    addError('sponsorAddress', validateRequired(formData.sponsorAddress, 'Alamat sponsor'));
+    addError('sponsorPhone', validatePhone(formData.sponsorPhone));
+    addError('relationship', validateRequired(formData.relationship, 'Hubungan'));
   }
 
   if (template === 'perusahaan') {
-    if (!formData.companyName?.trim()) {
-      errors.push({ field: 'companyName', message: 'Nama perusahaan wajib diisi' });
-    }
-    if (!formData.position?.trim()) {
-      errors.push({ field: 'position', message: 'Jabatan karyawan wajib diisi' });
-    }
-    if (!formData.letterNumber?.trim()) {
-      errors.push({ field: 'letterNumber', message: 'No. surat wajib diisi' });
-    }
-    if (!formData.signerName?.trim()) {
-      errors.push({ field: 'signerName', message: 'Nama penandatangan wajib diisi' });
-    }
-    if (!formData.signerPosition?.trim()) {
-      errors.push({ field: 'signerPosition', message: 'Jabatan penandatangan wajib diisi' });
-    }
+    addError('companyName', validateRequired(formData.companyName, 'Nama perusahaan'));
+    addError('position', validateRequired(formData.position, 'Jabatan karyawan'));
+    addError('letterNumber', validateRequired(formData.letterNumber, 'No. surat'));
+    addError('signerName', validateRequired(formData.signerName, 'Nama penandatangan'));
+    addError('signerPosition', validateRequired(formData.signerPosition, 'Jabatan penandatangan'));
   }
 
   if (template === 'pribadi') {
-    if (!formData.occupation?.trim()) {
-      errors.push({ field: 'occupation', message: 'Pekerjaan wajib diisi' });
-    }
-    if (!formData.monthlyIncome?.trim()) {
-      errors.push({ field: 'monthlyIncome', message: 'Penghasilan per bulan wajib diisi' });
-    }
+    addError('occupation', validateRequired(formData.occupation, 'Pekerjaan'));
+    addError('monthlyIncome', validateRequired(formData.monthlyIncome, 'Penghasilan per bulan'));
   }
 
   return errors;
