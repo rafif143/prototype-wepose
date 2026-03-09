@@ -238,9 +238,9 @@ export default function Navbar() {
                         <h4 className="font-poppins font-semibold text-[11px] uppercase text-gray-400 mb-2">Featured</h4>
                         <ul className="flex flex-col gap-1">
                           <li>
-                            <Link href="#" className="flex items-center gap-2 px-3 py-2 rounded-lg font-dm-sans text-sm text-gray-800 hover:bg-orange-50 hover:text-orange transition-colors duration-100">
+                            <Link href="/tools/sponsor-letter" className="flex items-center gap-2 px-3 py-2 rounded-lg font-dm-sans text-sm text-gray-800 hover:bg-orange-50 hover:text-orange transition-colors duration-100">
                               <FireIcon className="w-4 h-4" />
-                              Trending Visa
+                              Sponsor Letter
                             </Link>
                           </li>
                           <li>
@@ -250,9 +250,9 @@ export default function Navbar() {
                             </Link>
                           </li>
                           <li>
-                            <Link href="#" className="flex items-center gap-2 px-3 py-2 rounded-lg font-dm-sans text-sm text-gray-800 hover:bg-orange-50 hover:text-orange transition-colors duration-100">
+                            <Link href="/tools/sponsor-letter" className="flex items-center gap-2 px-3 py-2 rounded-lg font-dm-sans text-sm text-gray-800 hover:bg-orange-50 hover:text-orange transition-colors duration-100">
                               <TagIcon className="w-4 h-4" />
-                              Promo Aktif
+                              Sponsor Letter
                             </Link>
                           </li>
                           <li>
@@ -262,7 +262,7 @@ export default function Navbar() {
                             </Link>
                           </li>
                           <li>
-                            <Link href="#" className="flex items-center gap-2 px-3 py-2 rounded-lg font-dm-sans text-sm text-gray-800 hover:bg-orange-50 hover:text-orange transition-colors duration-100">
+                            <Link href="/tools/quiz" className="flex items-center gap-2 px-3 py-2 rounded-lg font-dm-sans text-sm text-gray-800 hover:bg-orange-50 hover:text-orange transition-colors duration-100">
                               <LightBulbIcon className="w-4 h-4" />
                               Quiz Kelayakan
                             </Link>
@@ -287,14 +287,6 @@ export default function Navbar() {
               className="font-dm-sans font-medium text-[15px] text-gray-500 hover:text-orange transition-colors duration-150 relative group cursor-pointer"
             >
               Services
-              <span className="absolute left-0 right-0 -bottom-[21px] h-[2px] bg-orange scale-x-0 group-hover:scale-x-100 transition-transform origin-left"></span>
-            </a>
-            <a 
-              href="#promo" 
-              onClick={(e) => handleSmoothScroll(e, '#promo')}
-              className="font-dm-sans font-medium text-[15px] text-gray-500 hover:text-orange transition-colors duration-150 relative group cursor-pointer"
-            >
-              Promo
               <span className="absolute left-0 right-0 -bottom-[21px] h-[2px] bg-orange scale-x-0 group-hover:scale-x-100 transition-transform origin-left"></span>
             </a>
             <Link 
@@ -364,7 +356,6 @@ export default function Navbar() {
             <div className="flex flex-col gap-6 text-white text-lg font-dm-sans">
               <Link href="#">Visa</Link>
               <Link href="#">Tools</Link>
-              <Link href="#">Promo</Link>
               <Link href="#">Blog</Link>
               <Link href="#">Tentang Kami</Link>
             </div>

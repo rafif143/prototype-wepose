@@ -9,7 +9,6 @@ import TestimonialsSection from "@/components/section/testimonials-section";
 import BlogSection from "@/components/section/blog-section";
 import ContactSection from "@/components/section/contact-section";
 import CtaDualSection from "@/components/section/cta-dual-section";
-import StatsSection from "@/components/section/stats-section";
 import FaqSection from "@/components/section/faq-section";
 import CtaSection from "@/components/section/cta-section";
 import Footer from "@/components/layout/Footer";
@@ -29,7 +28,6 @@ export default function Home() {
       <BlogSection />
       <ContactSection />
       <CtaDualSection />
-      <StatsSection />
       <FaqSection />
       <CtaSection />
       <Footer />
