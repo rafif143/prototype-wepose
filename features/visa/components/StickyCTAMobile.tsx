@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence, useScroll, useMotionValueEvent } from "framer-motion";
 import { ArrowRightIcon } from "@heroicons/react/24/outline";
-import type { VisaData } from "@/lib/visa-data";
+import type { VisaData } from "@/features/visa/lib/data";
 
 interface StickyCTAMobileProps {
   visa: VisaData;

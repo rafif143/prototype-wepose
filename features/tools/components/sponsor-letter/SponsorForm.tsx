@@ -2,8 +2,8 @@
 
 import { useState, useEffect } from 'react';
 import { UserIcon } from '@heroicons/react/24/outline';
-import { TemplateType, SponsorFormData } from '@/lib/tools/sponsor-letter/types';
-import { validateSponsorForm, ValidationError } from '@/lib/tools/sponsor-letter/validation';
+import { TemplateType, SponsorFormData } from '@/features/tools/lib/sponsor-letter/types';
+import { validateSponsorForm, ValidationError } from '@/features/tools/lib/sponsor-letter/validation';
 
 interface SponsorFormProps {
   template: TemplateType;

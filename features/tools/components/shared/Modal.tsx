@@ -3,7 +3,7 @@
 import { useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { XMarkIcon } from '@heroicons/react/24/outline';
-import { scaleIn } from '@/utils/animations';
+import { scaleIn } from '@/shared/utils/animations';
 
 interface ModalProps {
   isOpen: boolean;

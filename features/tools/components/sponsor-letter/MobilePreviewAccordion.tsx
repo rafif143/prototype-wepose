@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronDownIcon } from '@heroicons/react/24/outline';
-import { TemplateType, Language, SponsorFormData } from '@/lib/tools/sponsor-letter/types';
+import { TemplateType, Language, SponsorFormData } from '@/features/tools/lib/sponsor-letter/types';
 import { LetterPreview } from './LetterPreview';
 
 interface MobilePreviewAccordionProps {

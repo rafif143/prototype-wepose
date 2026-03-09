@@ -2,13 +2,13 @@
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { ProgressBar } from '@/components/tools/quiz/ProgressBar';
-import { QuizScreen } from '@/components/tools/quiz/QuizScreen';
-import { QuizPaywall } from '@/components/tools/quiz/QuizPaywall';
-import { QuizResult } from '@/components/tools/quiz/QuizResult';
-import { quizQuestions } from '@/lib/tools/quiz/questions';
-import { calculateRecommendation } from '@/lib/tools/quiz/recommendation';
-import { useQuizState } from '@/hooks/useQuizState';
+import { ProgressBar } from '@/features/tools/components/quiz/ProgressBar';
+import { QuizScreen } from '@/features/tools/components/quiz/QuizScreen';
+import { QuizPaywall } from '@/features/tools/components/quiz/QuizPaywall';
+import { QuizResult } from '@/features/tools/components/quiz/QuizResult';
+import { quizQuestions } from '@/features/tools/lib/quiz/questions';
+import { calculateRecommendation } from '@/features/tools/lib/quiz/recommendation';
+import { useQuizState } from '@/features/visa/hooks/useQuizState';
 
 export default function QuizPage() {
   const router = useRouter();

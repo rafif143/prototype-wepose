@@ -1,5 +1,5 @@
-import Navbar from "@/components/layout/Navbar"
-import VisaListClient from "@/components/visa/VisaListClient"
+import Navbar from "@/shared/layout/Navbar"
+import VisaListClient from "@/features/visa/components/VisaListClient"
 
 export default function VisaListPage() {
   return (

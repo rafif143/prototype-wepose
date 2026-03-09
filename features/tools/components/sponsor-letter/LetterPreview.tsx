@@ -2,8 +2,8 @@
 
 import { memo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { TemplateType, Language, SponsorFormData } from '@/lib/tools/sponsor-letter/types';
-import { getLetterBody } from '@/lib/tools/sponsor-letter/content';
+import { TemplateType, Language, SponsorFormData } from '@/features/tools/lib/sponsor-letter/types';
+import { getLetterBody } from '@/features/tools/lib/sponsor-letter/content';
 import { useEffect, useState } from 'react';
 
 interface LetterPreviewProps {

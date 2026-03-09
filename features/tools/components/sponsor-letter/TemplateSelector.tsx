@@ -1,8 +1,8 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { templates, TemplateType } from '@/lib/tools/sponsor-letter/types';
-import { staggerContainer, fadeInUp } from '@/utils/animations';
+import { templates, TemplateType } from '@/features/tools/lib/sponsor-letter/types';
+import { staggerContainer, fadeInUp } from '@/shared/utils/animations';
 
 interface TemplateSelectorProps {
   selectedTemplate: TemplateType | null;

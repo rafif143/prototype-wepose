@@ -1,5 +1,5 @@
 import { notFound } from "next/navigation"
-import BlogDetailClient from "@/components/blog/BlogDetailClient"
+import BlogDetailClient from "@/features/blog/components/BlogDetailClient"
 
 // Sample blog data
 const blogPosts = {

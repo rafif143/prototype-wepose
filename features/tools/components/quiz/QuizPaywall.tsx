@@ -1,6 +1,6 @@
 'use client';
 
-import { Paywall } from '@/components/tools/shared/Paywall';
+import { Paywall } from '@/features/tools/components/shared/Paywall';
 
 interface QuizPaywallProps {
   isOpen: boolean;

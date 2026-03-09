@@ -11,7 +11,7 @@ import {
   PlusCircleIcon,
   WrenchScrewdriverIcon,
 } from "@heroicons/react/24/outline"
-import { GlobeWithCountries } from "../ui/globe"
+import { GlobeWithCountries } from "@/shared/ui/globe"
 import CountriesModal from "./CountriesModal"
 
 export default function SupportedCountriesSection() {

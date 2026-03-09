@@ -1,13 +1,13 @@
 'use client';
 
-import { useSponsorLetterState } from '@/hooks/useSponsorLetterState';
-import { StepIndicator } from '@/components/tools/sponsor-letter/StepIndicator';
-import { TemplateSelector } from '@/components/tools/sponsor-letter/TemplateSelector';
-import { SponsorForm } from '@/components/tools/sponsor-letter/SponsorForm';
-import { LetterPreview } from '@/components/tools/sponsor-letter/LetterPreview';
-import { MobilePreviewAccordion } from '@/components/tools/sponsor-letter/MobilePreviewAccordion';
-import { LanguageToggle } from '@/components/tools/sponsor-letter/LanguageToggle';
-import { GenerateStep } from '@/components/tools/sponsor-letter/GenerateStep';
+import { useSponsorLetterState } from '@/features/visa/hooks/useSponsorLetterState';
+import { StepIndicator } from '@/features/tools/components/sponsor-letter/StepIndicator';
+import { TemplateSelector } from '@/features/tools/components/sponsor-letter/TemplateSelector';
+import { SponsorForm } from '@/features/tools/components/sponsor-letter/SponsorForm';
+import { LetterPreview } from '@/features/tools/components/sponsor-letter/LetterPreview';
+import { MobilePreviewAccordion } from '@/features/tools/components/sponsor-letter/MobilePreviewAccordion';
+import { LanguageToggle } from '@/features/tools/components/sponsor-letter/LanguageToggle';
+import { GenerateStep } from '@/features/tools/components/sponsor-letter/GenerateStep';
 import { motion, AnimatePresence } from 'framer-motion';
 
 export default function SponsorLetterPage() {

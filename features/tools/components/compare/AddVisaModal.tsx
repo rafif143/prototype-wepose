@@ -2,9 +2,9 @@
 
 import { useState, useEffect, useRef } from 'react';
 import { MagnifyingGlassIcon, DocumentMagnifyingGlassIcon } from '@heroicons/react/24/outline';
-import { Modal } from '@/components/tools/shared/Modal';
-import { VisaData } from '@/lib/tools/compare/types';
-import { useDebounce } from '@/hooks/useDebounce';
+import { Modal } from '@/features/tools/components/shared/Modal';
+import { VisaData } from '@/features/tools/lib/compare/types';
+import { useDebounce } from '@/shared/hooks/useDebounce';
 
 interface AddVisaModalProps {
   isOpen: boolean;

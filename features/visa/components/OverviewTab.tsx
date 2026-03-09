@@ -3,7 +3,7 @@
 import { motion } from "framer-motion";
 import { ClockIcon, CalendarDaysIcon, GlobeAltIcon, ArrowPathIcon, PaperAirplaneIcon, ChatBubbleLeftRightIcon } from "@heroicons/react/24/outline";
 import { CheckCircleIcon } from "@heroicons/react/24/solid";
-import type { VisaData } from "@/lib/visa-data";
+import type { VisaData } from "@/features/visa/lib/data";
 import Link from "next/link";
 
 interface OverviewTabProps {

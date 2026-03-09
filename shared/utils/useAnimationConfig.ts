@@ -1,6 +1,6 @@
 'use client';
 
-import { useReducedMotion } from '@/hooks/useReducedMotion';
+import { useReducedMotion } from '@/shared/hooks/useReducedMotion';
 
 export function useAnimationConfig() {
   const prefersReducedMotion = useReducedMotion();

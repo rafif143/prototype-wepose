@@ -1,6 +1,6 @@
 'use client';
 
-import { SponsorFormData } from '@/lib/tools/sponsor-letter/types';
+import { SponsorFormData } from '@/features/tools/lib/sponsor-letter/types';
 
 interface FormInputProps {
   id: keyof SponsorFormData;

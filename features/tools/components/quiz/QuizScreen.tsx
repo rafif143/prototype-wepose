@@ -2,8 +2,8 @@
 
 import { motion, AnimatePresence } from 'framer-motion';
 import { ArrowLeftIcon, XMarkIcon } from '@heroicons/react/24/outline';
-import { QuizQuestion } from '@/lib/tools/quiz/questions';
-import { slideHorizontal } from '@/utils/animations';
+import { QuizQuestion } from '@/features/tools/lib/quiz/questions';
+import { slideHorizontal } from '@/shared/utils/animations';
 
 interface QuizScreenProps {
   question: QuizQuestion;

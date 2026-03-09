@@ -4,7 +4,7 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { DocumentTextIcon, BuildingOffice2Icon, StarIcon, ShieldCheckIcon } from "@heroicons/react/24/outline";
 import { CheckCircleIcon } from "@heroicons/react/24/solid";
-import type { VisaData } from "@/lib/visa-data";
+import type { VisaData } from "@/features/visa/lib/data";
 
 interface AddonsTabProps {
   visa: VisaData;

@@ -4,7 +4,7 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ChevronDownIcon, ExclamationTriangleIcon, FolderIcon, UserIcon, BriefcaseIcon, AcademicCapIcon } from "@heroicons/react/24/outline";
 import { CheckCircleIcon, XCircleIcon } from "@heroicons/react/24/solid";
-import type { VisaData } from "@/lib/visa-data";
+import type { VisaData } from "@/features/visa/lib/data";
 
 interface RequirementsTabProps {
   visa: VisaData;

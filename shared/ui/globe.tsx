@@ -2,7 +2,7 @@
 
 import { useCallback, useEffect, useRef, useState } from "react"
 import createGlobe, { COBEOptions } from "cobe"
-import { cn } from "@/lib/utils"
+import { cn } from "@/shared/lib/utils"
 
 interface Marker {
   location: [number, number]

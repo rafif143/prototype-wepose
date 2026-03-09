@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { ArrowRightIcon, ClockIcon, CalendarDaysIcon, LockClosedIcon } from "@heroicons/react/24/outline";
-import type { VisaData } from "@/lib/visa-data";
+import type { VisaData } from "@/features/visa/lib/data";
 
 interface OrderSummaryProps {
   visa: VisaData;

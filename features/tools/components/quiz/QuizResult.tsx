@@ -8,8 +8,8 @@ import {
   ArrowPathIcon,
   ChevronRightIcon,
 } from '@heroicons/react/24/outline';
-import { VisaRecommendation } from '@/lib/tools/quiz/recommendation';
-import { staggerChildren, staggerItem } from '@/utils/animations';
+import { VisaRecommendation } from '@/features/tools/lib/quiz/recommendation';
+import { staggerChildren, staggerItem } from '@/shared/utils/animations';
 
 interface QuizResultProps {
   recommendation: VisaRecommendation;

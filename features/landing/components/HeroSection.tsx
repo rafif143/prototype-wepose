@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import { MagnifyingGlassIcon, GlobeAltIcon, BuildingOfficeIcon, MapPinIcon, PlusIcon, SparklesIcon } from "@heroicons/react/24/outline";
-import { WorldMap } from "../ui/WorldMap";
+import { WorldMap } from "@/shared/ui/WorldMap";
 
 const mapDots = [
   { start: { lat: -6.2, lng: 106.8, label: "Jakarta" }, end: { lat: 48.8, lng: 2.3, label: "Paris" } },

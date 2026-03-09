@@ -2,18 +2,18 @@
 
 import { useState, useEffect } from "react";
 import { useParams } from "next/navigation";
-import Navbar from "@/components/layout/Navbar";
-import Footer from "@/components/layout/Footer";
-import { HeroHeader } from "@/components/visa-detail/HeroHeader";
-import { StickyTabBar } from "@/components/visa-detail/StickyTabBar";
-import { OverviewTab } from "@/components/visa-detail/OverviewTab";
-import { RequirementsTab } from "@/components/visa-detail/RequirementsTab";
-import { PricingTab } from "@/components/visa-detail/PricingTab";
-import { FaqTab } from "@/components/visa-detail/FaqTab";
-import { AddonsTab } from "@/components/visa-detail/AddonsTab";
-import { OrderSummary } from "@/components/visa-detail/OrderSummary";
-import { StickyCTAMobile } from "@/components/visa-detail/StickyCTAMobile";
-import { visaDatabase } from "@/lib/visa-data";
+import Navbar from "@/shared/layout/Navbar";
+import Footer from "@/shared/layout/Footer";
+import { HeroHeader } from "@/features/visa/components/HeroHeader";
+import { StickyTabBar } from "@/features/visa/components/StickyTabBar";
+import { OverviewTab } from "@/features/visa/components/OverviewTab";
+import { RequirementsTab } from "@/features/visa/components/RequirementsTab";
+import { PricingTab } from "@/features/visa/components/PricingTab";
+import { FaqTab } from "@/features/visa/components/FaqTab";
+import { AddonsTab } from "@/features/visa/components/AddonsTab";
+import { OrderSummary } from "@/features/visa/components/OrderSummary";
+import { StickyCTAMobile } from "@/features/visa/components/StickyCTAMobile";
+import { visaDatabase } from "@/features/visa/lib/data";
 
 type TabType = 'overview' | 'requirements' | 'pricing' | 'faq' | 'addons';
 

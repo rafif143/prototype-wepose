@@ -1,7 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { Language } from '@/lib/tools/sponsor-letter/types';
+import { Language } from '@/features/tools/lib/sponsor-letter/types';
 
 interface LanguageToggleProps {
   language: Language;

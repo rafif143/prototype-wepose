@@ -3,11 +3,11 @@
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { PlusCircleIcon } from '@heroicons/react/24/outline';
-import { CompareTable } from '@/components/tools/compare/CompareTable';
-import { AddVisaModal } from '@/components/tools/compare/AddVisaModal';
-import { RecommendBanner } from '@/components/tools/compare/RecommendBanner';
-import { useCompareState } from '@/hooks/useCompareState';
-import { sampleVisaData, VisaData } from '@/lib/tools/compare/types';
+import { CompareTable } from '@/features/tools/components/compare/CompareTable';
+import { AddVisaModal } from '@/features/tools/components/compare/AddVisaModal';
+import { RecommendBanner } from '@/features/tools/components/compare/RecommendBanner';
+import { useCompareState } from '@/features/tools/hooks/useCompareState';
+import { sampleVisaData, VisaData } from '@/features/tools/lib/compare/types';
 
 export default function ComparePage() {
   const router = useRouter();

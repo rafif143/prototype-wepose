@@ -2,7 +2,7 @@
 
 import { motion, AnimatePresence } from 'framer-motion';
 import { XMarkIcon } from '@heroicons/react/24/outline';
-import { slideUp } from '@/utils/animations';
+import { slideUp } from '@/shared/utils/animations';
 
 interface VisaThumbnail {
   id: string;

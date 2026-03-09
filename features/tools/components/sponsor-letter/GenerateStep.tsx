@@ -10,9 +10,9 @@ import {
   CheckCircleIcon,
   XMarkIcon,
 } from '@heroicons/react/24/outline';
-import { TemplateType, Language, SponsorFormData } from '@/lib/tools/sponsor-letter/types';
-import { templates } from '@/lib/tools/sponsor-letter/types';
-import { downloadPDF } from '@/lib/tools/sponsor-letter/pdf-generator';
+import { TemplateType, Language, SponsorFormData } from '@/features/tools/lib/sponsor-letter/types';
+import { templates } from '@/features/tools/lib/sponsor-letter/types';
+import { downloadPDF } from '@/features/tools/lib/sponsor-letter/pdf-generator';
 
 interface GenerateStepProps {
   template: TemplateType;

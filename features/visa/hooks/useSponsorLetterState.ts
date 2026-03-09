@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { TemplateType, Language, SponsorFormData } from '@/lib/tools/sponsor-letter/types';
+import { TemplateType, Language, SponsorFormData } from '@/features/tools/lib/sponsor-letter/types';
 
 export function useSponsorLetterState() {
   const [step, setStep] = useState<1 | 2 | 3>(1);
@@ -42,7 +42,7 @@ export function useSponsorLetterState() {
     setIsGenerating(true);
     setError(null);
     try {
-      const { generateSponsorLetterPDF } = await import('@/lib/tools/sponsor-letter/pdf-generator');
+      const { generateSponsorLetterPDF } = await import('@/features/tools/lib/sponsor-letter/pdf-generator');
       const url = await generateSponsorLetterPDF(selectedTemplate, language, formData);
       setPdfUrl(url);
     } catch (err) {

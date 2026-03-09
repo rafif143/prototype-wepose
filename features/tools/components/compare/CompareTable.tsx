@@ -14,8 +14,8 @@ import {
   XMarkIcon,
   StarIcon,
 } from '@heroicons/react/24/outline';
-import { VisaData, comparisonCriteria } from '@/lib/tools/compare/types';
-import { calculateHighlights } from '@/lib/tools/compare/highlighting';
+import { VisaData, comparisonCriteria } from '@/features/tools/lib/compare/types';
+import { calculateHighlights } from '@/features/tools/lib/compare/highlighting';
 
 interface CompareTableProps {
   visas: VisaData[];
