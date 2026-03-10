@@ -228,35 +228,25 @@ export default function SupportedCountriesSection() {
               </p>
               <div className="flex flex-wrap gap-2">
                 {displayedCountries.map((country, idx) => (
-                  <motion.div
+                  <div
                     key={idx}
-                    initial={{ opacity: 0, scale: 0.85 }}
-                    whileInView={{ opacity: 1, scale: 1 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: 0.008 * idx, duration: 0.25 }}
-                    whileHover={{ scale: 1.06, y: -1 }}
-                    className="flex cursor-pointer items-center gap-1.5 rounded-full border border-gray-100 bg-white px-3 py-1.5 shadow-sm transition-all duration-200 hover:border-orange-300 hover:shadow-md"
+                    className="flex cursor-pointer items-center gap-1.5 rounded-full border border-gray-100 bg-white px-3 py-1.5 shadow-sm transition-all duration-200 hover:border-orange-300 hover:shadow-md hover:scale-105"
                   >
                     <span className="text-[13px]">{country.flag}</span>
                     <span className="font-dm-sans text-[11.5px] text-gray-700">
                       {country.name}
                     </span>
-                  </motion.div>
+                  </div>
                 ))}
 
                 {/* View all inline chip */}
-                <motion.button
-                  initial={{ opacity: 0, scale: 0.85 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: 0.18 }}
-                  whileHover={{ scale: 1.06, y: -1 }}
+                <button
                   onClick={() => setIsModalOpen(true)}
-                  className="flex items-center gap-1.5 rounded-full bg-navy px-3 py-1.5 font-dm-sans text-[11.5px] font-semibold text-white shadow-sm transition-all duration-200 hover:bg-orange hover:shadow-md"
+                  className="flex items-center gap-1.5 rounded-full bg-navy px-3 py-1.5 font-dm-sans text-[11.5px] font-semibold text-white shadow-sm transition-all duration-200 hover:bg-orange hover:shadow-md hover:scale-105"
                 >
                   +{allCountries.length - displayedCountries.length} lainnya
                   <ArrowRightIcon className="h-3 w-3" />
-                </motion.button>
+                </button>
               </div>
             </motion.div>
 
@@ -313,10 +303,10 @@ export default function SupportedCountriesSection() {
 
             {/* Globe — 135% size, offset top-left so it centers visually */}
             <motion.div
-              initial={{ opacity: 0, scale: 0.88 }}
+              initial={{ opacity: 0, scale: 0.95 }}
               whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 1.1, ease: [0.16, 1, 0.3, 1] }}
+              viewport={{ once: true, margin: "100px" }}
+              transition={{ duration: 0.6, ease: "easeOut" }}
               className="absolute"
               style={{
                 top: "-17.5%",
@@ -325,7 +315,7 @@ export default function SupportedCountriesSection() {
                 height: "135%",
               }}
             >
-              <GlobeWithCountries className="h-full w-full" />
+              <GlobeWithCountries className="h-full w-full" interactive={false} />
             </motion.div>
           </div>
 

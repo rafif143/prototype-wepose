@@ -7,21 +7,35 @@ import { WorldMap } from "@/shared/ui/WorldMap"
 
 const StatCounter = ({ end, duration = 1.2 }: { end: number, duration?: number }) => {
   const [count, setCount] = useState(0)
+  const [hasAnimated, setHasAnimated] = useState(false)
 
   useEffect(() => {
+    if (hasAnimated) return; // Only animate once
+    
+    let animationFrame: number;
     let startTimestamp: number | null = null;
+    
     const step = (timestamp: number) => {
       if (!startTimestamp) startTimestamp = timestamp;
       const progress = Math.min((timestamp - startTimestamp) / (duration * 1000), 1);
-      // easeOut function
       const easeOut = 1 - Math.pow(1 - progress, 3);
       setCount(Math.floor(easeOut * end));
+      
       if (progress < 1) {
-        window.requestAnimationFrame(step);
+        animationFrame = window.requestAnimationFrame(step);
+      } else {
+        setHasAnimated(true);
       }
     };
-    window.requestAnimationFrame(step);
-  }, [end, duration]);
+    
+    animationFrame = window.requestAnimationFrame(step);
+    
+    return () => {
+      if (animationFrame) {
+        window.cancelAnimationFrame(animationFrame);
+      }
+    };
+  }, [end, duration, hasAnimated]);
 
   return <>{count}</>
 }
@@ -38,8 +52,10 @@ export default function HeroSection() {
 
   return (
     <section className="relative min-h-screen bg-navy flex items-center justify-center pt-24 pb-16 overflow-hidden">
-      {/* Background Map */}
-      <WorldMap dots={mapDots} lineColor="#F97316" />
+      {/* Background Map - Lazy loaded */}
+      <div className="absolute inset-0 opacity-30">
+        <WorldMap dots={mapDots} lineColor="#F97316" loop={false} />
+      </div>
 
       {/* Content */}
       <div className="container mx-auto px-4 max-w-[1280px] z-10 relative flex flex-col items-center text-center">
