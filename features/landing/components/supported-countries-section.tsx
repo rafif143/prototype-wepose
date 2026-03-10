@@ -9,20 +9,28 @@ import {
   BriefcaseIcon,
   AcademicCapIcon,
   PlusCircleIcon,
-  WrenchScrewdriverIcon,
 } from "@heroicons/react/24/outline"
-import { GlobeWithCountries } from "@/shared/ui/globe"
 import CountriesModal from "./CountriesModal"
 
 export default function SupportedCountriesSection() {
   const [isModalOpen, setIsModalOpen] = useState(false)
 
   const categories = [
-    { icon: MapIcon, label: "Visa Turis" },
-    { icon: BriefcaseIcon, label: "Visa Pekerja" },
-    { icon: AcademicCapIcon, label: "Visa Pelajar" },
-    { icon: PlusCircleIcon, label: "Add-ons visa" },
-    { icon: WrenchScrewdriverIcon, label: "Layanan lainnya" },
+    { icon: MapIcon, label: "Visa Turis", count: "120+" },
+    { icon: BriefcaseIcon, label: "Visa Pekerja", count: "85+" },
+    { icon: AcademicCapIcon, label: "Visa Pelajar", count: "65+" },
+    { icon: PlusCircleIcon, label: "Add-ons visa", count: "30+" },
+  ]
+
+  const topDestinations = [
+    { name: "Schengen", flag: "🇪🇺", count: "27 negara", popular: true },
+    { name: "Amerika", flag: "🇺🇸", count: "B1/B2", popular: true },
+    { name: "Jepang", flag: "🇯🇵", count: "Tourist", popular: true },
+    { name: "Australia", flag: "🇦🇺", count: "ETA", popular: false },
+    { name: "Inggris", flag: "🇬🇧", count: "Standard", popular: false },
+    { name: "Kanada", flag: "🇨🇦", count: "eTA", popular: false },
+    { name: "Korea", flag: "🇰🇷", count: "C-3", popular: false },
+    { name: "Singapura", flag: "🇸🇬", count: "Tourist", popular: false },
   ]
 
   const allCountries = [
@@ -107,219 +115,186 @@ export default function SupportedCountriesSection() {
     { name: "Zimbabwe", flag: "🇿🇼" },
   ]
 
-  const displayedCountries = allCountries.slice(0, 18)
-
   return (
-    <section className="relative w-full overflow-hidden bg-white px-6 py-24 md:px-12 md:py-32">
+    <section className="relative w-full overflow-hidden bg-gradient-to-br from-gray-50 to-white px-6 py-24 md:px-12 md:py-32">
 
-      {/* Subtle background grid texture */}
+      {/* Background Pattern */}
       <div
         aria-hidden
-        className="pointer-events-none absolute inset-0 opacity-[0.03]"
+        className="pointer-events-none absolute inset-0 opacity-[0.02]"
         style={{
           backgroundImage:
             "linear-gradient(#1a2b5e 1px, transparent 1px), linear-gradient(90deg, #1a2b5e 1px, transparent 1px)",
-          backgroundSize: "48px 48px",
+          backgroundSize: "60px 60px",
         }}
       />
 
-      {/* Soft gradient top-left glow */}
-      <div
-        aria-hidden
-        className="pointer-events-none absolute -top-40 -left-40 h-[600px] w-[600px] rounded-full opacity-10"
-        style={{
-          background: "radial-gradient(circle, #ff6b2b 0%, transparent 70%)",
-        }}
-      />
+      <div className="relative container mx-auto max-w-[1200px]">
+        
+        {/* Header Section */}
+        <div className="text-center mb-16">
+          <motion.div
+            initial={{ opacity: 0, y: 8 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="inline-flex items-center gap-2 rounded-full border border-orange-200 bg-orange-50 px-4 py-2 mb-6"
+          >
+            <span className="h-2 w-2 rounded-full bg-orange-500" />
+            <span className="font-dm-sans text-[13px] font-semibold uppercase tracking-widest text-orange-600">
+              Global Coverage
+            </span>
+          </motion.div>
 
-      <div className="relative container mx-auto max-w-[1360px]">
-        <div className="grid grid-cols-1 items-center gap-0 lg:grid-cols-2">
-
-          {/* ── LEFT CONTENT ── */}
-          <div className="z-10 flex flex-col gap-8 lg:pr-16">
-
-            {/* Badge */}
-            <motion.div
-              initial={{ opacity: 0, y: 8 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="inline-flex w-fit items-center gap-2 rounded-full border border-orange-200 bg-orange-50 px-3 py-1"
-            >
-              <span className="h-1.5 w-1.5 rounded-full bg-orange-500" />
-              <span className="font-dm-sans text-[12px] font-semibold uppercase tracking-widest text-orange-600">
-                Global Coverage
-              </span>
-            </motion.div>
-
-            {/* Heading */}
-            <motion.div
-              initial={{ opacity: 0, y: 12 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.05 }}
-            >
-              <h2 className="font-poppins font-bold leading-[1.15] text-[34px] md:text-[44px] text-navy">
-                Mendukung{" "}
-                <span
-                  className="relative inline-block text-orange"
-                  style={{ WebkitTextStroke: "0px" }}
-                >
-                  300+ tipe visa
-                  {/* Underline accent */}
-                  <svg
-                    aria-hidden
-                    className="absolute -bottom-2 left-0 w-full"
-                    height="6"
-                    viewBox="0 0 200 6"
-                    preserveAspectRatio="none"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      d="M0 5 Q50 0 100 4 Q150 8 200 3"
-                      stroke="#ff6b2b"
-                      strokeWidth="2.5"
-                      strokeLinecap="round"
-                    />
-                  </svg>
-                </span>
-              </h2>
-              <p className="mt-4 font-dm-sans text-[15px] leading-relaxed text-gray-500 max-w-lg">
-                Kami telah mendukung 300+ jenis visa ke{" "}
-                <strong className="text-gray-700 font-semibold">90+ negara</strong> di
-                seluruh dunia — SPUN adalah platform visa online{" "}
-                <strong className="text-gray-700 font-semibold">paling lengkap</strong>{" "}
-                di Asia Tenggara.
-              </p>
-            </motion.div>
-
-            {/* Category Chips */}
-            <motion.div
-              initial={{ opacity: 0, y: 10 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.1 }}
-              className="flex flex-wrap gap-2"
-            >
-              {categories.map((cat, idx) => {
-                const Icon = cat.icon
-                return (
-                  <button
-                    key={idx}
-                    className="group flex items-center gap-2 rounded-full border border-gray-200 bg-gray-50 px-4 py-2 font-dm-sans text-[12.5px] font-medium text-gray-600 transition-all duration-200 hover:border-orange-400 hover:bg-orange-50 hover:text-orange-600 hover:shadow-sm"
-                  >
-                    <Icon className="h-3.5 w-3.5 transition-transform duration-200 group-hover:scale-110" />
-                    {cat.label}
-                  </button>
-                )
-              })}
-            </motion.div>
-
-            {/* Country Chips */}
-            <motion.div
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.15 }}
-              className="space-y-3"
-            >
-              <p className="font-dm-sans text-[11px] font-semibold uppercase tracking-widest text-gray-400">
-                Negara Tersedia
-              </p>
-              <div className="flex flex-wrap gap-2">
-                {displayedCountries.map((country, idx) => (
-                  <div
-                    key={idx}
-                    className="flex cursor-pointer items-center gap-1.5 rounded-full border border-gray-100 bg-white px-3 py-1.5 shadow-sm transition-all duration-200 hover:border-orange-300 hover:shadow-md hover:scale-105"
-                  >
-                    <span className="text-[13px]">{country.flag}</span>
-                    <span className="font-dm-sans text-[11.5px] text-gray-700">
-                      {country.name}
-                    </span>
-                  </div>
-                ))}
-
-                {/* View all inline chip */}
-                <button
-                  onClick={() => setIsModalOpen(true)}
-                  className="flex items-center gap-1.5 rounded-full bg-navy px-3 py-1.5 font-dm-sans text-[11.5px] font-semibold text-white shadow-sm transition-all duration-200 hover:bg-orange hover:shadow-md hover:scale-105"
-                >
-                  +{allCountries.length - displayedCountries.length} lainnya
-                  <ArrowRightIcon className="h-3 w-3" />
-                </button>
-              </div>
-            </motion.div>
-
-            {/* Divider + CTA row */}
-            <motion.div
-              initial={{ opacity: 0, y: 8 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.2 }}
-              className="flex flex-col gap-4 border-t border-gray-100 pt-6 sm:flex-row sm:items-center sm:justify-between"
-            >
-              <div className="flex items-center gap-2.5">
-                <div className="flex h-9 w-9 items-center justify-center rounded-full bg-green-50">
-                  <CheckBadgeIcon className="h-5 w-5 text-green-600" />
-                </div>
-                <div>
-                  <p className="font-poppins text-[14px] font-bold text-navy">
-                    Approval rate 99%
-                  </p>
-                  <p className="font-dm-sans text-[11px] text-gray-400">
-                    Berhasil diproses & disetujui
-                  </p>
-                </div>
-              </div>
-
-              <button
-                onClick={() => setIsModalOpen(true)}
-                className="group inline-flex items-center gap-2 rounded-full bg-orange px-5 py-2.5 font-dm-sans text-[13px] font-semibold text-white shadow-md transition-all duration-200 hover:bg-orange-600 hover:shadow-lg"
+          <motion.h2
+            initial={{ opacity: 0, y: 12 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.05 }}
+            className="font-poppins font-bold leading-[1.15] text-[36px] md:text-[48px] text-navy mb-4"
+          >
+            Mendukung{" "}
+            <span className="relative inline-block text-orange">
+              300+ tipe visa
+              <svg
+                aria-hidden
+                className="absolute -bottom-2 left-0 w-full"
+                height="6"
+                viewBox="0 0 200 6"
+                preserveAspectRatio="none"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
               >
-                Lihat Semua Negara
-                <ArrowRightIcon className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-0.5" />
-              </button>
-            </motion.div>
-          </div>
+                <path
+                  d="M0 5 Q50 0 100 4 Q150 8 200 3"
+                  stroke="#ff6b2b"
+                  strokeWidth="2.5"
+                  strokeLinecap="round"
+                />
+              </svg>
+            </span>
+          </motion.h2>
 
-          {/* ── RIGHT — Globe zoomed-in, centered ── */}
-          <div className="relative hidden h-[640px] w-full overflow-hidden lg:block">
-
-            {/* Soft left fade to blend into text column */}
-            <div
-              aria-hidden
-              className="pointer-events-none absolute inset-0 z-10"
-              style={{ background: "linear-gradient(to right, white 0%, transparent 30%)" }}
-            />
-            {/* Soft top + bottom fade */}
-            <div
-              aria-hidden
-              className="pointer-events-none absolute inset-0 z-10"
-              style={{
-                background:
-                  "linear-gradient(to bottom, white 0%, transparent 18%), linear-gradient(to top, white 0%, transparent 18%)",
-              }}
-            />
-
-            {/* Globe — 135% size, offset top-left so it centers visually */}
-            <motion.div
-              initial={{ opacity: 0, scale: 0.95 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true, margin: "100px" }}
-              transition={{ duration: 0.6, ease: "easeOut" }}
-              className="absolute"
-              style={{
-                top: "-17.5%",
-                left: "-17.5%",
-                width: "135%",
-                height: "135%",
-              }}
-            >
-              <GlobeWithCountries className="h-full w-full" interactive={false} />
-            </motion.div>
-          </div>
-
+          <motion.p
+            initial={{ opacity: 0, y: 10 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.1 }}
+            className="font-dm-sans text-[16px] leading-relaxed text-gray-600 max-w-2xl mx-auto"
+          >
+            Platform visa online paling lengkap di Asia Tenggara dengan dukungan{" "}
+            <strong className="text-navy font-semibold">90+ negara</strong> dan approval rate{" "}
+            <strong className="text-green-600 font-semibold">99%</strong>
+          </motion.p>
         </div>
+
+        {/* Category Cards */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.15 }}
+          className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-16"
+        >
+          {categories.map((cat, idx) => {
+            const Icon = cat.icon
+            return (
+              <div
+                key={idx}
+                className="group bg-white rounded-2xl p-6 border border-gray-100 hover:border-orange-200 hover:shadow-lg transition-all duration-300 hover:-translate-y-1"
+              >
+                <div className="flex flex-col items-center text-center">
+                  <div className="w-12 h-12 bg-orange-50 rounded-xl flex items-center justify-center mb-4 group-hover:bg-orange-100 transition-colors">
+                    <Icon className="w-6 h-6 text-orange-600" />
+                  </div>
+                  <h3 className="font-poppins font-semibold text-navy text-sm mb-1">{cat.label}</h3>
+                  <p className="font-dm-sans text-2xl font-bold text-orange">{cat.count}</p>
+                </div>
+              </div>
+            )
+          })}
+        </motion.div>
+
+        {/* Top Destinations */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.2 }}
+          className="mb-12"
+        >
+          <h3 className="font-poppins font-bold text-2xl text-navy mb-6 text-center">
+            Destinasi Populer
+          </h3>
+          
+          {/* Scrolling Container */}
+          <div className="relative overflow-hidden">
+            <div className="flex animate-marquee gap-3 hover:pause-marquee">
+              {/* First set */}
+              {topDestinations.map((dest, idx) => (
+                <div
+                  key={`first-${idx}`}
+                  className="relative bg-white rounded-xl p-4 border border-gray-100 hover:border-orange-200 hover:shadow-md hover:-translate-y-0.5 cursor-pointer flex-shrink-0 w-48 transition-all duration-300"
+                >
+                  <div className="flex items-center gap-3">
+                    <span className="text-2xl">{dest.flag}</span>
+                    <div>
+                      <p className="font-dm-sans font-semibold text-navy text-sm">{dest.name}</p>
+                      <p className="font-dm-sans text-xs text-gray-500">{dest.count}</p>
+                    </div>
+                  </div>
+                </div>
+              ))}
+              
+              {/* Second set for seamless loop */}
+              {topDestinations.map((dest, idx) => (
+                <div
+                  key={`second-${idx}`}
+                  className="relative bg-white rounded-xl p-4 border border-gray-100 hover:border-orange-200 hover:shadow-md hover:-translate-y-0.5 cursor-pointer flex-shrink-0 w-48 transition-all duration-300"
+                >
+                  <div className="flex items-center gap-3">
+                    <span className="text-2xl">{dest.flag}</span>
+                    <div>
+                      <p className="font-dm-sans font-semibold text-navy text-sm">{dest.name}</p>
+                      <p className="font-dm-sans text-xs text-gray-500">{dest.count}</p>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </motion.div>
+
+        {/* CTA Section */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.25 }}
+          className="text-center bg-white rounded-2xl p-8 border border-gray-100 shadow-sm"
+        >
+          <div className="flex items-center justify-center gap-3 mb-4">
+            <div className="flex h-10 w-10 items-center justify-center rounded-full bg-green-50">
+              <CheckBadgeIcon className="h-6 w-6 text-green-600" />
+            </div>
+            <div className="text-left">
+              <p className="font-poppins text-lg font-bold text-navy">
+                Approval Rate 99%
+              </p>
+              <p className="font-dm-sans text-sm text-gray-500">
+                Berhasil diproses & disetujui
+              </p>
+            </div>
+          </div>
+
+          <button
+            onClick={() => setIsModalOpen(true)}
+            className="group inline-flex items-center gap-2 rounded-full bg-orange px-8 py-3 font-dm-sans text-sm font-semibold text-white shadow-lg transition-all duration-200 hover:bg-orange-600 hover:shadow-xl hover:-translate-y-0.5"
+          >
+            Lihat Semua {allCountries.length}+ Negara
+            <ArrowRightIcon className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-1" />
+          </button>
+        </motion.div>
+
       </div>
 
       {/* Countries Modal */}

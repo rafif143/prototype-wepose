@@ -4,10 +4,11 @@ import React, { useState, useRef, useEffect } from "react"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { motion, AnimatePresence, useScroll, useTransform } from "framer-motion"
-import { Bars3Icon, GlobeAltIcon, GlobeEuropeAfricaIcon, MapIcon, BuildingOffice2Icon, AcademicCapIcon, BriefcaseIcon, UserGroupIcon, HomeModernIcon, FireIcon, BoltIcon, TagIcon, SparklesIcon, LightBulbIcon, ScaleIcon } from "@heroicons/react/24/outline"
+import { Bars3Icon, GlobeAltIcon, GlobeEuropeAfricaIcon, MapIcon, BuildingOffice2Icon, AcademicCapIcon, BriefcaseIcon, UserGroupIcon, HomeModernIcon, FireIcon, BoltIcon, TagIcon, SparklesIcon, LightBulbIcon, ScaleIcon, PaperAirplaneIcon } from "@heroicons/react/24/outline"
 
 export default function Navbar() {
   const [isMegaMenuOpen, setIsMegaMenuOpen] = useState(false)
+  const [isVisaMegaMenuOpen, setIsVisaMegaMenuOpen] = useState(false)
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
   const [activeSection, setActiveSection] = useState("home")
   const pathname = usePathname()
@@ -31,9 +32,7 @@ export default function Navbar() {
     if (pathname !== '/') return; // Only track on home page
 
     const sections = [
-      { id: 'home', element: document.querySelector('main') },
-      { id: 'about', element: document.getElementById('about') },
-      { id: 'how-it-works', element: document.getElementById('how-it-works') },
+      { id: 'home', element: document.getElementById('home') },
       { id: 'popular-visa', element: document.getElementById('popular-visa') },
       { id: 'extra-services', element: document.getElementById('extra-services') },
       { id: 'contact', element: document.getElementById('contact') },
@@ -147,7 +146,11 @@ export default function Navbar() {
 
           {/* Desktop Links */}
           <div className="hidden md:flex items-center gap-8 h-full">
-            <Link href="/" className={getLinkClasses('home')}>
+            <a 
+              href="#home" 
+              onClick={(e) => handleSmoothScroll(e, '#home')}
+              className={getLinkClasses('home')}
+            >
               Home
               {isActive('home') && (
                 <motion.span 
@@ -159,60 +162,83 @@ export default function Navbar() {
               {!isActive('home') && (
                 <span className="absolute left-0 right-0 -bottom-[21px] h-[2px] bg-orange scale-x-0 group-hover:scale-x-100 transition-transform origin-left"></span>
               )}
-            </Link>
-            <a 
-              href="#about" 
-              onClick={(e) => handleSmoothScroll(e, '#about')}
-              className={getLinkClasses('about')}
-            >
-              About
-              {isActive('about') && (
-                <motion.span 
-                  layoutId="activeIndicator"
-                  className="absolute left-0 right-0 -bottom-[21px] h-[2px] bg-orange"
-                  transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
-                />
-              )}
-              {!isActive('about') && (
-                <span className="absolute left-0 right-0 -bottom-[21px] h-[2px] bg-orange scale-x-0 group-hover:scale-x-100 transition-transform origin-left"></span>
-              )}
-            </a>
-            <a 
-              href="#how-it-works" 
-              onClick={(e) => handleSmoothScroll(e, '#how-it-works')}
-              className={getLinkClasses('how-it-works')}
-            >
-              Cara Kerja
-              {isActive('how-it-works') && (
-                <motion.span 
-                  layoutId="activeIndicator"
-                  className="absolute left-0 right-0 -bottom-[21px] h-[2px] bg-orange"
-                  transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
-                />
-              )}
-              {!isActive('how-it-works') && (
-                <span className="absolute left-0 right-0 -bottom-[21px] h-[2px] bg-orange scale-x-0 group-hover:scale-x-100 transition-transform origin-left"></span>
-              )}
             </a>
             
-            {/* Visa Solutions - Simple Link */}
-            <a 
-              href="#popular-visa" 
-              onClick={(e) => handleSmoothScroll(e, '#popular-visa')}
-              className={getLinkClasses('popular-visa')}
+            {/* Visa Solutions with Mega Menu */}
+            <div 
+              className="relative h-full flex items-center"
+              onMouseEnter={() => setIsVisaMegaMenuOpen(true)}
+              onMouseLeave={() => setIsVisaMegaMenuOpen(false)}
             >
-              Visa Solutions
-              {isActive('popular-visa') && (
-                <motion.span 
-                  layoutId="activeIndicator"
-                  className="absolute left-0 right-0 -bottom-[21px] h-[2px] bg-orange"
-                  transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
-                />
-              )}
-              {!isActive('popular-visa') && (
-                <span className="absolute left-0 right-0 -bottom-[21px] h-[2px] bg-orange scale-x-0 group-hover:scale-x-100 transition-transform origin-left"></span>
-              )}
-            </a>
+              <Link 
+                href="/visa"
+                className={`font-dm-sans font-medium text-[15px] transition-colors duration-150 h-full flex items-center relative group
+                  ${isVisaMegaMenuOpen ? 'text-orange' : pathname.startsWith('/visa') ? 'text-orange' : 'text-gray-500 hover:text-orange'}
+                `}
+              >
+                Visa Solutions
+                {pathname.startsWith('/visa') && (
+                  <span className="absolute left-0 right-0 bottom-0 h-[2px] bg-orange"></span>
+                )}
+                {!pathname.startsWith('/visa') && (
+                  <span className="absolute left-0 right-0 bottom-0 h-[2px] bg-orange scale-x-0 group-hover:scale-x-100 transition-transform origin-left"></span>
+                )}
+              </Link>
+
+              {/* Mega Menu Desktop - Visa Types */}
+              <AnimatePresence>
+                {isVisaMegaMenuOpen && (
+                  <motion.div
+                    initial={{ opacity: 0, y: -8 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -8 }}
+                    transition={{ duration: 0.15, ease: "easeOut" }}
+                    className="absolute top-[64px] left-1/2 -translate-x-1/2 w-[300px] bg-white rounded-b-[12px] shadow-lg overflow-hidden border border-gray-100"
+                  >
+                    <div className="p-6">
+                      <h4 className="font-poppins font-semibold text-[11px] uppercase text-gray-400 mb-2">Jenis Visa</h4>
+                      <ul className="flex flex-col gap-1">
+                        <li>
+                          <Link href="/visa/france-schengen-tourist" className="flex items-center gap-2 px-3 py-2 rounded-lg font-dm-sans text-sm text-gray-800 hover:bg-orange-50 hover:text-orange transition-colors duration-100">
+                            <PaperAirplaneIcon className="w-4 h-4" />
+                            Visa Tourist
+                          </Link>
+                        </li>
+                        <li>
+                          <Link href="/visa/usa-b1-b2" className="flex items-center gap-2 px-3 py-2 rounded-lg font-dm-sans text-sm text-gray-800 hover:bg-orange-50 hover:text-orange transition-colors duration-100">
+                            <BriefcaseIcon className="w-4 h-4" />
+                            Visa Bisnis
+                          </Link>
+                        </li>
+                        <li>
+                          <Link href="/visa/japan-tourist" className="flex items-center gap-2 px-3 py-2 rounded-lg font-dm-sans text-sm text-gray-800 hover:bg-orange-50 hover:text-orange transition-colors duration-100">
+                            <AcademicCapIcon className="w-4 h-4" />
+                            Visa Jepang
+                          </Link>
+                        </li>
+                        <li>
+                          <Link href="/visa/australia-tourist" className="flex items-center gap-2 px-3 py-2 rounded-lg font-dm-sans text-sm text-gray-800 hover:bg-orange-50 hover:text-orange transition-colors duration-100">
+                            <BuildingOffice2Icon className="w-4 h-4" />
+                            Visa Australia
+                          </Link>
+                        </li>
+                        <li>
+                          <Link href="/visa/uk-standard" className="flex items-center gap-2 px-3 py-2 rounded-lg font-dm-sans text-sm text-gray-800 hover:bg-orange-50 hover:text-orange transition-colors duration-100">
+                            <MapIcon className="w-4 h-4" />
+                            Visa UK
+                          </Link>
+                        </li>
+                      </ul>
+                      <div className="mt-4 pt-4 border-t border-gray-100">
+                        <Link href="/visa" className="text-orange text-sm font-medium hover:text-orange-dark transition-colors">
+                          Lihat semua visa →
+                        </Link>
+                      </div>
+                    </div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </div>
             
             {/* Tools with Mega Menu - 3 Columns */}
             <div 
@@ -238,121 +264,17 @@ export default function Navbar() {
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: -8 }}
                     transition={{ duration: 0.15, ease: "easeOut" }}
-                    className="absolute top-[64px] left-1/2 -translate-x-1/2 w-[720px] bg-white rounded-b-[12px] shadow-lg overflow-hidden border border-gray-100"
+                    className="absolute top-[64px] left-1/2 -translate-x-1/2 w-[300px] bg-white rounded-b-[12px] shadow-lg overflow-hidden border border-gray-100"
                   >
-                    <div className="p-6 grid grid-cols-3 gap-8">
-                      {/* Col 1 - Berdasarkan Region */}
+                    <div className="p-6">
+                      {/* Featured Tools Only */}
                       <div>
-                        <h4 className="font-poppins font-semibold text-[11px] uppercase text-gray-400 mb-2">Berdasarkan Region</h4>
-                        <ul className="flex flex-col gap-1">
-                          <li>
-                            <Link href="#" className="flex items-center gap-2 px-3 py-2 rounded-lg font-dm-sans text-sm text-gray-800 hover:bg-orange-50 hover:text-orange transition-colors duration-100">
-                              <GlobeEuropeAfricaIcon className="w-4 h-4" />
-                              Schengen / Eropa
-                            </Link>
-                          </li>
-                          <li>
-                            <Link href="#" className="flex items-center gap-2 px-3 py-2 rounded-lg font-dm-sans text-sm text-gray-800 hover:bg-orange-50 hover:text-orange transition-colors duration-100">
-                              <MapIcon className="w-4 h-4" />
-                              Asia Timur
-                            </Link>
-                          </li>
-                          <li>
-                            <Link href="#" className="flex items-center gap-2 px-3 py-2 rounded-lg font-dm-sans text-sm text-gray-800 hover:bg-orange-50 hover:text-orange transition-colors duration-100">
-                              <MapIcon className="w-4 h-4" />
-                              Asia Tenggara
-                            </Link>
-                          </li>
-                          <li>
-                            <Link href="#" className="flex items-center gap-2 px-3 py-2 rounded-lg font-dm-sans text-sm text-gray-800 hover:bg-orange-50 hover:text-orange transition-colors duration-100">
-                              <GlobeAltIcon className="w-4 h-4" />
-                              Amerika
-                            </Link>
-                          </li>
-                          <li>
-                            <Link href="#" className="flex items-center gap-2 px-3 py-2 rounded-lg font-dm-sans text-sm text-gray-800 hover:bg-orange-50 hover:text-orange transition-colors duration-100">
-                              <BuildingOffice2Icon className="w-4 h-4" />
-                              Timur Tengah
-                            </Link>
-                          </li>
-                          <li>
-                            <Link href="#" className="flex items-center gap-2 px-3 py-2 rounded-lg font-dm-sans text-sm text-gray-800 hover:bg-orange-50 hover:text-orange transition-colors duration-100">
-                              <MapIcon className="w-4 h-4" />
-                              Australia & Pasifik
-                            </Link>
-                          </li>
-                        </ul>
-                      </div>
-                      
-                      {/* Col 2 - Berdasarkan Tujuan */}
-                      <div>
-                        <h4 className="font-poppins font-semibold text-[11px] uppercase text-gray-400 mb-2">Berdasarkan Tujuan</h4>
-                        <ul className="flex flex-col gap-1">
-                          <li>
-                            <Link href="#" className="flex items-center gap-2 px-3 py-2 rounded-lg font-dm-sans text-sm text-gray-800 hover:bg-orange-50 hover:text-orange transition-colors duration-100">
-                              <GlobeAltIcon className="w-4 h-4" />
-                              Wisata
-                            </Link>
-                          </li>
-                          <li>
-                            <Link href="#" className="flex items-center gap-2 px-3 py-2 rounded-lg font-dm-sans text-sm text-gray-800 hover:bg-orange-50 hover:text-orange transition-colors duration-100">
-                              <BriefcaseIcon className="w-4 h-4" />
-                              Bisnis
-                            </Link>
-                          </li>
-                          <li>
-                            <Link href="#" className="flex items-center gap-2 px-3 py-2 rounded-lg font-dm-sans text-sm text-gray-800 hover:bg-orange-50 hover:text-orange transition-colors duration-100">
-                              <AcademicCapIcon className="w-4 h-4" />
-                              Studi
-                            </Link>
-                          </li>
-                          <li>
-                            <Link href="#" className="flex items-center gap-2 px-3 py-2 rounded-lg font-dm-sans text-sm text-gray-800 hover:bg-orange-50 hover:text-orange transition-colors duration-100">
-                              <BriefcaseIcon className="w-4 h-4" />
-                              Kerja
-                            </Link>
-                          </li>
-                          <li>
-                            <Link href="#" className="flex items-center gap-2 px-3 py-2 rounded-lg font-dm-sans text-sm text-gray-800 hover:bg-orange-50 hover:text-orange transition-colors duration-100">
-                              <UserGroupIcon className="w-4 h-4" />
-                              Keluarga
-                            </Link>
-                          </li>
-                          <li>
-                            <Link href="#" className="flex items-center gap-2 px-3 py-2 rounded-lg font-dm-sans text-sm text-gray-800 hover:bg-orange-50 hover:text-orange transition-colors duration-100">
-                              <HomeModernIcon className="w-4 h-4" />
-                              Tinggal
-                            </Link>
-                          </li>
-                        </ul>
-                      </div>
-
-                      {/* Col 3 - Featured */}
-                      <div>
-                        <h4 className="font-poppins font-semibold text-[11px] uppercase text-gray-400 mb-2">Featured</h4>
+                        <h4 className="font-poppins font-semibold text-[11px] uppercase text-gray-400 mb-2">Featured Tools</h4>
                         <ul className="flex flex-col gap-1">
                           <li>
                             <Link href="/tools/sponsor-letter" className="flex items-center gap-2 px-3 py-2 rounded-lg font-dm-sans text-sm text-gray-800 hover:bg-orange-50 hover:text-orange transition-colors duration-100">
                               <FireIcon className="w-4 h-4" />
                               Sponsor Letter
-                            </Link>
-                          </li>
-                          <li>
-                            <Link href="#" className="flex items-center gap-2 px-3 py-2 rounded-lg font-dm-sans text-sm text-gray-800 hover:bg-orange-50 hover:text-orange transition-colors duration-100">
-                              <BoltIcon className="w-4 h-4" />
-                              Proses Tercepat
-                            </Link>
-                          </li>
-                          <li>
-                            <Link href="/tools/sponsor-letter" className="flex items-center gap-2 px-3 py-2 rounded-lg font-dm-sans text-sm text-gray-800 hover:bg-orange-50 hover:text-orange transition-colors duration-100">
-                              <TagIcon className="w-4 h-4" />
-                              Sponsor Letter
-                            </Link>
-                          </li>
-                          <li>
-                            <Link href="#" className="flex items-center gap-2 px-3 py-2 rounded-lg font-dm-sans text-sm text-gray-800 hover:bg-orange-50 hover:text-orange transition-colors duration-100">
-                              <SparklesIcon className="w-4 h-4" />
-                              Visa Terbaru
                             </Link>
                           </li>
                           <li>
@@ -362,9 +284,21 @@ export default function Navbar() {
                             </Link>
                           </li>
                           <li>
-                            <Link href="#" className="flex items-center gap-2 px-3 py-2 rounded-lg font-dm-sans text-sm text-gray-800 hover:bg-orange-50 hover:text-orange transition-colors duration-100">
+                            <Link href="/tools/compare" className="flex items-center gap-2 px-3 py-2 rounded-lg font-dm-sans text-sm text-gray-800 hover:bg-orange-50 hover:text-orange transition-colors duration-100">
                               <ScaleIcon className="w-4 h-4" />
                               Bandingkan Visa
+                            </Link>
+                          </li>
+                          <li>
+                            <Link href="#" className="flex items-center gap-2 px-3 py-2 rounded-lg font-dm-sans text-sm text-gray-800 hover:bg-orange-50 hover:text-orange transition-colors duration-100">
+                              <BoltIcon className="w-4 h-4" />
+                              Proses Tercepat
+                            </Link>
+                          </li>
+                          <li>
+                            <Link href="#" className="flex items-center gap-2 px-3 py-2 rounded-lg font-dm-sans text-sm text-gray-800 hover:bg-orange-50 hover:text-orange transition-colors duration-100">
+                              <SparklesIcon className="w-4 h-4" />
+                              Visa Terbaru
                             </Link>
                           </li>
                         </ul>

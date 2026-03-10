@@ -9,16 +9,20 @@ import { QuizResult } from '@/features/tools/components/quiz/QuizResult';
 import { quizQuestions } from '@/features/tools/lib/quiz/questions';
 import { calculateRecommendation } from '@/features/tools/lib/quiz/recommendation';
 import { useQuizState } from '@/features/visa/hooks/useQuizState';
+import { QuizIntro } from '@/features/tools/components/quiz/QuizIntro';
+import Navbar from '@/shared/layout/Navbar';
 
 export default function QuizPage() {
   const router = useRouter();
   const {
+    hasStarted,
     currentQuestion,
     answers,
     showPaywall,
     showResult,
     canGoBack,
     hasAnswered,
+    startQuiz,
     answerQuestion,
     goToNext,
     goToPrevious,
@@ -33,8 +37,8 @@ export default function QuizPage() {
   const selectedAnswer = answers[currentQuestion];
 
   const handleClose = () => {
-    // In a real app, show confirmation modal
-    router.push('/');
+    // Go back to quiz intro instead of closing completely
+    restart();
   };
 
   const handlePurchase = () => {
@@ -69,50 +73,68 @@ export default function QuizPage() {
     ? calculateRecommendation(answers)
     : null;
 
+  // Show intro screen if quiz hasn't started
+  if (!hasStarted) {
+    return (
+      <>
+        <Navbar />
+        <QuizIntro onStart={startQuiz} />
+      </>
+    );
+  }
+
   if (showResult && recommendation) {
     return (
-      <QuizResult
-        recommendation={recommendation}
-        onRestart={handleRestart}
-        onApply={handleApply}
-        onSave={handleSave}
-      />
+      <>
+        <Navbar />
+        <QuizResult
+          recommendation={recommendation}
+          onRestart={handleRestart}
+          onApply={handleApply}
+          onSave={handleSave}
+        />
+      </>
     );
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-navy via-navy-mid to-navy relative">
-      {/* Noise texture overlay */}
-      <div
-        className="absolute inset-0 opacity-[0.03] pointer-events-none"
-        style={{
-          backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`,
-        }}
-      />
+    <>
+      <Navbar />
+      <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-orange-50/30 pt-16 relative">
+        {/* Background Pattern */}
+        <div
+          className="fixed inset-0 opacity-[0.02] pointer-events-none"
+          style={{
+            backgroundImage:
+              "linear-gradient(#1a2b5e 1px, transparent 1px), linear-gradient(90deg, #1a2b5e 1px, transparent 1px)",
+            backgroundSize: "60px 60px",
+          }}
+        />
 
-      {/* Progress Bar */}
-      <ProgressBar current={currentQuestion + 1} total={quizQuestions.length} />
+        {/* Progress Bar */}
+        <ProgressBar current={currentQuestion + 1} total={quizQuestions.length} />
 
-      {/* Quiz Screen */}
-      <QuizScreen
-        question={currentQuestionData}
-        selectedAnswer={selectedAnswer}
-        onSelectAnswer={answerQuestion}
-        onNext={goToNext}
-        onBack={goToPrevious}
-        onClose={handleClose}
-        canGoBack={canGoBack}
-        questionNumber={currentQuestion + 1}
-        totalQuestions={quizQuestions.length}
-      />
+        {/* Quiz Screen */}
+        <QuizScreen
+          question={currentQuestionData}
+          selectedAnswer={selectedAnswer}
+          onSelectAnswer={answerQuestion}
+          onNext={goToNext}
+          onBack={goToPrevious}
+          onClose={handleClose}
+          canGoBack={canGoBack}
+          questionNumber={currentQuestion + 1}
+          totalQuestions={quizQuestions.length}
+        />
 
-      {/* Paywall Modal */}
-      <QuizPaywall
-        isOpen={showPaywall}
-        onClose={closePaywall}
-        onPurchase={handlePurchase}
-        onBundleWithVisa={handleBundleWithVisa}
-      />
-    </div>
+        {/* Paywall Modal */}
+        <QuizPaywall
+          isOpen={showPaywall}
+          onClose={closePaywall}
+          onPurchase={handlePurchase}
+          onBundleWithVisa={handleBundleWithVisa}
+        />
+      </div>
+    </>
   );
 }

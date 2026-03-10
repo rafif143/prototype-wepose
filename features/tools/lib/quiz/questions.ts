@@ -1,7 +1,38 @@
 // Quiz data structure and questions for Visa Eligibility Quiz
+import React from 'react';
+import {
+  PaperAirplaneIcon,
+  BriefcaseIcon,
+  AcademicCapIcon,
+  UserGroupIcon,
+  GlobeEuropeAfricaIcon,
+  GlobeAsiaAustraliaIcon,
+  GlobeAmericasIcon,
+  GlobeAltIcon,
+  BuildingOfficeIcon,
+  HomeIcon,
+  CurrencyDollarIcon,
+  BanknotesIcon,
+  SparklesIcon as DiamondIcon,
+  BuildingLibraryIcon,
+  CheckCircleIcon,
+  ExclamationTriangleIcon,
+  XCircleIcon,
+  ArrowPathIcon,
+  DocumentCheckIcon,
+  ClipboardDocumentListIcon,
+  SparklesIcon,
+  BoltIcon,
+  CalendarDaysIcon,
+  CalendarIcon,
+  SunIcon,
+  RocketLaunchIcon,
+  MapIcon,
+  HomeModernIcon,
+} from '@heroicons/react/24/outline';
 
 export interface QuizOption {
-  icon: string;
+  icon: React.ComponentType<{ className?: string }>;
   label: string;
   value: string;
 }
@@ -19,10 +50,10 @@ export const quizQuestions: QuizQuestion[] = [
     category: 'TUJUAN PERJALANAN',
     question: 'Kamu mau pergi untuk apa?',
     options: [
-      { icon: '✈️', label: 'Wisata & Liburan', value: 'wisata' },
-      { icon: '💼', label: 'Bisnis & Konferensi', value: 'bisnis' },
-      { icon: '🎓', label: 'Studi & Pendidikan', value: 'studi' },
-      { icon: '👨‍👩‍👧', label: 'Kunjungan Keluarga', value: 'keluarga' },
+      { icon: PaperAirplaneIcon, label: 'Wisata & Liburan', value: 'wisata' },
+      { icon: BriefcaseIcon, label: 'Bisnis & Konferensi', value: 'bisnis' },
+      { icon: AcademicCapIcon, label: 'Studi & Pendidikan', value: 'studi' },
+      { icon: UserGroupIcon, label: 'Kunjungan Keluarga', value: 'keluarga' },
     ],
   },
   {
@@ -30,10 +61,10 @@ export const quizQuestions: QuizQuestion[] = [
     category: 'DESTINASI',
     question: 'Ke region mana kamu mau pergi?',
     options: [
-      { icon: '🌍', label: 'Eropa / Schengen', value: 'eropa' },
-      { icon: '🌏', label: 'Asia Timur', value: 'asia' },
-      { icon: '🌎', label: 'Amerika', value: 'amerika' },
-      { icon: '🌐', label: 'Lainnya', value: 'lainnya' },
+      { icon: GlobeEuropeAfricaIcon, label: 'Eropa / Schengen', value: 'eropa' },
+      { icon: GlobeAsiaAustraliaIcon, label: 'Asia Timur', value: 'asia' },
+      { icon: GlobeAmericasIcon, label: 'Amerika', value: 'amerika' },
+      { icon: GlobeAltIcon, label: 'Lainnya', value: 'lainnya' },
     ],
   },
   {
@@ -41,10 +72,10 @@ export const quizQuestions: QuizQuestion[] = [
     category: 'PROFIL PEMOHON',
     question: 'Apa pekerjaan kamu saat ini?',
     options: [
-      { icon: '👔', label: 'Karyawan Swasta / PNS', value: 'karyawan' },
-      { icon: '💼', label: 'Wiraswasta / Freelancer', value: 'wiraswasta' },
-      { icon: '🎓', label: 'Pelajar / Mahasiswa', value: 'pelajar' },
-      { icon: '🏠', label: 'Ibu Rumah Tangga / Lainnya', value: 'lainnya' },
+      { icon: BuildingOfficeIcon, label: 'Karyawan Swasta / PNS', value: 'karyawan' },
+      { icon: BriefcaseIcon, label: 'Wiraswasta / Freelancer', value: 'wiraswasta' },
+      { icon: AcademicCapIcon, label: 'Pelajar / Mahasiswa', value: 'pelajar' },
+      { icon: HomeIcon, label: 'Ibu Rumah Tangga / Lainnya', value: 'lainnya' },
     ],
   },
   {
@@ -52,10 +83,10 @@ export const quizQuestions: QuizQuestion[] = [
     category: 'KEUANGAN',
     question: 'Berapa estimasi saldo rekening kamu saat ini?',
     options: [
-      { icon: '💰', label: 'Di bawah Rp 10 juta', value: 'below_10m' },
-      { icon: '💵', label: 'Rp 10–30 juta', value: '10_30m' },
-      { icon: '💎', label: 'Rp 30–100 juta', value: '30_100m' },
-      { icon: '🏦', label: 'Di atas Rp 100 juta', value: 'above_100m' },
+      { icon: CurrencyDollarIcon, label: 'Di bawah Rp 10 juta', value: 'below_10m' },
+      { icon: BanknotesIcon, label: 'Rp 10–30 juta', value: '10_30m' },
+      { icon: DiamondIcon, label: 'Rp 30–100 juta', value: '30_100m' },
+      { icon: BuildingLibraryIcon, label: 'Di atas Rp 100 juta', value: 'above_100m' },
     ],
   },
   {
@@ -63,10 +94,10 @@ export const quizQuestions: QuizQuestion[] = [
     category: 'DOKUMEN',
     question: 'Sudah punya paspor yang masih berlaku?',
     options: [
-      { icon: '✅', label: 'Sudah, berlaku > 1 tahun', value: 'valid_1year' },
-      { icon: '⚠️', label: 'Sudah, tapi < 6 bulan lagi', value: 'valid_6months' },
-      { icon: '❌', label: 'Belum punya paspor', value: 'no_passport' },
-      { icon: '🔄', label: 'Sedang dalam proses', value: 'in_process' },
+      { icon: CheckCircleIcon, label: 'Sudah, berlaku > 1 tahun', value: 'valid_1year' },
+      { icon: ExclamationTriangleIcon, label: 'Sudah, tapi < 6 bulan lagi', value: 'valid_6months' },
+      { icon: XCircleIcon, label: 'Belum punya paspor', value: 'no_passport' },
+      { icon: ArrowPathIcon, label: 'Sedang dalam proses', value: 'in_process' },
     ],
   },
   {
@@ -74,9 +105,9 @@ export const quizQuestions: QuizQuestion[] = [
     category: 'RIWAYAT VISA',
     question: 'Pernah punya visa ke negara tujuan sebelumnya?',
     options: [
-      { icon: '✅', label: 'Pernah, masih aktif', value: 'active' },
-      { icon: '📋', label: 'Pernah, sudah expired', value: 'expired' },
-      { icon: '🆕', label: 'Belum pernah sama sekali', value: 'never' },
+      { icon: DocumentCheckIcon, label: 'Pernah, masih aktif', value: 'active' },
+      { icon: ClipboardDocumentListIcon, label: 'Pernah, sudah expired', value: 'expired' },
+      { icon: SparklesIcon, label: 'Belum pernah sama sekali', value: 'never' },
     ],
   },
   {
@@ -84,10 +115,10 @@ export const quizQuestions: QuizQuestion[] = [
     category: 'WAKTU KEBERANGKATAN',
     question: 'Kapan rencana keberangkatanmu?',
     options: [
-      { icon: '⚡', label: '< 2 minggu lagi', value: 'urgent' },
-      { icon: '📅', label: '1–3 bulan lagi', value: '1_3months' },
-      { icon: '🗓️', label: '3–6 bulan lagi', value: '3_6months' },
-      { icon: '🌅', label: 'Belum pasti / planning', value: 'planning' },
+      { icon: BoltIcon, label: '< 2 minggu lagi', value: 'urgent' },
+      { icon: CalendarDaysIcon, label: '1–3 bulan lagi', value: '1_3months' },
+      { icon: CalendarIcon, label: '3–6 bulan lagi', value: '3_6months' },
+      { icon: SunIcon, label: 'Belum pasti / planning', value: 'planning' },
     ],
   },
   {
@@ -95,10 +126,10 @@ export const quizQuestions: QuizQuestion[] = [
     category: 'DURASI PERJALANAN',
     question: 'Berapa lama kamu akan di sana?',
     options: [
-      { icon: '🚀', label: '1–2 minggu', value: '1_2weeks' },
-      { icon: '🗺️', label: '3–4 minggu', value: '3_4weeks' },
-      { icon: '📆', label: '1–3 bulan', value: '1_3months' },
-      { icon: '🏠', label: 'Lebih dari 3 bulan', value: 'over_3months' },
+      { icon: RocketLaunchIcon, label: '1–2 minggu', value: '1_2weeks' },
+      { icon: MapIcon, label: '3–4 minggu', value: '3_4weeks' },
+      { icon: CalendarDaysIcon, label: '1–3 bulan', value: '1_3months' },
+      { icon: HomeModernIcon, label: 'Lebih dari 3 bulan', value: 'over_3months' },
     ],
   },
 ];

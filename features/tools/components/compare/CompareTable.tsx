@@ -46,12 +46,12 @@ export function CompareTableComponent({ visas, onRemoveVisa, onApplyVisa }: Comp
     <div className="overflow-x-auto">
       <table className="w-full border-collapse">
         {/* Header Row */}
-        <thead className="sticky top-16 z-10">
+        <thead>
           <tr>
             {/* Criteria Column Header */}
-            <th className="bg-gray-50 w-[200px] md:w-[200px] sm:w-[140px] p-4 text-left">
-              <span className="text-[13px] font-dm-sans font-medium text-gray-500">
-                Kriteria
+            <th className="bg-gradient-to-r from-orange-50 to-orange-100/50 w-[200px] md:w-[200px] sm:w-[140px] p-6 text-left border-b border-gray-200">
+              <span className="text-sm font-poppins font-semibold text-navy">
+                Kriteria Perbandingan
               </span>
             </th>
 
@@ -59,25 +59,30 @@ export function CompareTableComponent({ visas, onRemoveVisa, onApplyVisa }: Comp
             {visas.map((visa) => (
               <th
                 key={visa.id}
-                className="bg-gradient-to-b from-navy-mid to-white p-4 min-w-[200px]"
+                className="bg-gradient-to-br from-white to-gray-50 p-6 min-w-[200px] border-b border-gray-200"
               >
-                <div className="flex flex-col items-center gap-3">
+                <div className="flex flex-col items-center gap-4">
                   <button
                     onClick={() => onRemoveVisa(visa.id)}
-                    className="self-end text-gray-400 hover:text-gray-600 transition-colors"
+                    className="self-end w-8 h-8 rounded-full bg-gray-100 hover:bg-red-100 text-gray-400 hover:text-red-500 transition-all duration-200 flex items-center justify-center"
                     aria-label={`Remove ${visa.name}`}
                   >
                     <XMarkIcon className="w-4 h-4" />
                   </button>
-                  <span className="text-[32px]">{visa.flag}</span>
-                  <span className="text-[15px] font-poppins font-semibold text-navy text-center">
-                    {visa.name}
-                  </span>
+                  <div className="w-16 h-16 bg-gradient-to-br from-orange-50 to-orange-100 rounded-2xl flex items-center justify-center text-3xl shadow-sm">
+                    {visa.flag}
+                  </div>
+                  <div className="text-center">
+                    <h3 className="text-lg font-poppins font-bold text-navy mb-1">
+                      {visa.name}
+                    </h3>
+                    <p className="text-sm text-gray-500 font-dm-sans">{visa.price}</p>
+                  </div>
                   <button
                     onClick={() => onApplyVisa(visa.id)}
-                    className="w-full bg-orange text-white font-poppins font-semibold text-[13px] py-2 px-4 rounded-full hover:shadow-[0_4px_16px_rgba(249,115,22,0.25)] active:scale-[0.97] transition-all duration-200"
+                    className="w-full bg-gradient-to-r from-orange to-orange-dark text-white font-poppins font-semibold text-sm py-3 px-4 rounded-xl hover:shadow-lg hover:-translate-y-0.5 transition-all duration-200"
                   >
-                    Apply Visa Ini →
+                    Apply Sekarang →
                   </button>
                 </div>
               </th>
@@ -98,12 +103,16 @@ export function CompareTableComponent({ visas, onRemoveVisa, onApplyVisa }: Comp
                 : { bestIndices: [], worstIndices: [] };
 
             return (
-              <tr key={criterion.key} className={isEvenRow ? 'bg-white' : 'bg-gray-50'}>
+              <tr key={criterion.key} className={isEvenRow ? 'bg-white' : 'bg-gray-50/50'}>
                 {/* Criteria Label */}
-                <td className="p-4">
-                  <div className="flex items-center gap-2">
-                    {Icon && <Icon className="w-4 h-4 text-gray-400" />}
-                    <span className="text-[13px] font-dm-sans text-gray-500">
+                <td className="p-6 border-b border-gray-100">
+                  <div className="flex items-center gap-3">
+                    {Icon && (
+                      <div className="w-8 h-8 bg-orange-50 rounded-lg flex items-center justify-center">
+                        <Icon className="w-4 h-4 text-orange" />
+                      </div>
+                    )}
+                    <span className="text-sm font-dm-sans font-medium text-navy">
                       {criterion.label}
                     </span>
                   </div>
@@ -121,17 +130,19 @@ export function CompareTableComponent({ visas, onRemoveVisa, onApplyVisa }: Comp
                       initial={{ opacity: 0 }}
                       animate={{ opacity: 1 }}
                       transition={{ delay: 0.3 }}
-                      className={`p-4 text-center relative ${
+                      className={`p-6 text-center relative border-b border-gray-100 ${
                         isBest
-                          ? 'bg-[#DCFCE7]'
+                          ? 'bg-success-green/10 border-success-green/20'
                           : isWorst
-                          ? 'bg-[#FEE2E2]'
+                          ? 'bg-error-red/10 border-error-red/20'
                           : ''
                       }`}
                     >
-                      <span className="text-[14px] font-dm-sans text-navy">{value}</span>
+                      <span className="text-sm font-dm-sans font-medium text-navy">{value}</span>
                       {isBest && (
-                        <StarIcon className="w-3 h-3 text-success-green absolute top-2 right-2" />
+                        <div className="absolute top-2 right-2 w-6 h-6 bg-success-green rounded-full flex items-center justify-center">
+                          <StarIcon className="w-3 h-3 text-white" />
+                        </div>
                       )}
                     </motion.td>
                   );

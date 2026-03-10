@@ -12,7 +12,7 @@ export function ProgressBar({ current, total }: ProgressBarProps) {
 
   return (
     <div 
-      className="fixed top-0 left-0 right-0 z-50 h-[3px] bg-white/10"
+      className="fixed top-16 left-0 right-0 z-40 h-1 bg-gray-200"
       role="progressbar"
       aria-valuenow={current}
       aria-valuemin={1}
@@ -20,7 +20,7 @@ export function ProgressBar({ current, total }: ProgressBarProps) {
       aria-label={`Question ${current} of ${total}`}
     >
       <motion.div
-        className="h-full bg-orange"
+        className="h-full bg-gradient-to-r from-orange to-orange-dark"
         initial={{ width: 0 }}
         animate={{ width: `${percentage}%` }}
         transition={{ duration: 0.3, ease: 'easeOut' }}

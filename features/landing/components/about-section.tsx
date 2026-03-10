@@ -12,22 +12,22 @@ export default function AboutSection() {
     {
       title: "Lacak pengajuan aplikasi visa Anda",
       description: "Upload dokumen & data diri online dengan formulir yang sudah dibuat simpel untuk Anda, kami akan membantu menyusun dokumen Anda. Gunakan kembali berkas yang sudah disetujui sebelumnya untuk menghemat lebih banyak waktu.",
-      image: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=800&q=80"
+      image: "/images/1.png"
     },
     {
       title: "Langkah terpandu untuk Anda",
       description: "Sistem kami akan memandu Anda step-by-step dalam proses pengajuan visa. Tidak perlu bingung lagi dengan persyaratan yang rumit.",
-      image: "https://images.unsplash.com/photo-1553877522-43269d4ea984?w=800&q=80"
+      image: "/images/2.png"
     },
     {
       title: "Smart upload & autofill",
       description: "Upload dokumen & data diri online dengan formulir yang sudah dibuat simpel untuk Anda, kami akan membantu menyusun dokumen Anda. Gunakan kembali berkas yang sudah disetujui sebelumnya untuk menghemat lebih banyak waktu.",
-      image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&q=80"
+      image: "/images/3.png"
     },
     {
       title: "Smart verification & remarks",
       description: "Tim ahli kami akan melakukan verifikasi otomatis dan memberikan catatan jika ada dokumen yang perlu diperbaiki atau dilengkapi.",
-      image: "https://images.unsplash.com/photo-1551836022-d5d88e9218df?w=800&q=80"
+      image: "/images/3.png"
     }
   ]
 

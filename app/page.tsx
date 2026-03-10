@@ -18,7 +18,9 @@ export default function Home() {
   return (
     <main className="min-h-screen flex flex-col font-sans">
       <Navbar />
-      <HeroSection />
+      <div id="home">
+        <HeroSection />
+      </div>
       <div id="about">
         <AboutSection />
       </div>
