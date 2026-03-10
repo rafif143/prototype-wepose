@@ -2,18 +2,21 @@
 
 import React, { useState, useRef, useEffect } from "react"
 import Link from "next/link"
+import { usePathname } from "next/navigation"
 import { motion, AnimatePresence, useScroll, useTransform } from "framer-motion"
 import { Bars3Icon, GlobeAltIcon, GlobeEuropeAfricaIcon, MapIcon, BuildingOffice2Icon, AcademicCapIcon, BriefcaseIcon, UserGroupIcon, HomeModernIcon, FireIcon, BoltIcon, TagIcon, SparklesIcon, LightBulbIcon, ScaleIcon } from "@heroicons/react/24/outline"
 
 export default function Navbar() {
   const [isMegaMenuOpen, setIsMegaMenuOpen] = useState(false)
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
+  const [activeSection, setActiveSection] = useState("home")
+  const pathname = usePathname()
   
   const { scrollY } = useScroll()
   const navBackground = useTransform(
     scrollY,
     [0, 80],
-    ["rgba(255, 255, 255, 1)", "rgba(255, 255, 255, 0.8)"] // white to transparent white
+    ["rgba(255, 255, 255, 1)", "rgba(255, 255, 255, 0.8)"]
   )
   const navShadow = useTransform(
     scrollY,
@@ -23,16 +26,59 @@ export default function Navbar() {
 
   const megaMenuRef = useRef<HTMLDivElement>(null)
 
+  // Track active section based on scroll position
+  useEffect(() => {
+    if (pathname !== '/') return; // Only track on home page
+
+    const sections = [
+      { id: 'home', element: document.querySelector('main') },
+      { id: 'about', element: document.getElementById('about') },
+      { id: 'how-it-works', element: document.getElementById('how-it-works') },
+      { id: 'popular-visa', element: document.getElementById('popular-visa') },
+      { id: 'extra-services', element: document.getElementById('extra-services') },
+      { id: 'contact', element: document.getElementById('contact') },
+    ].filter(section => section.element !== null);
+
+    const observerOptions = {
+      root: null,
+      rootMargin: '-20% 0px -70% 0px', // Trigger when section is 20% from top
+      threshold: 0,
+    };
+
+    const observerCallback = (entries: IntersectionObserverEntry[]) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          const sectionId = entry.target.id || 'home';
+          setActiveSection(sectionId);
+        }
+      });
+    };
+
+    const observer = new IntersectionObserver(observerCallback, observerOptions);
+
+    sections.forEach((section) => {
+      if (section.element) {
+        observer.observe(section.element);
+      }
+    });
+
+    return () => {
+      sections.forEach((section) => {
+        if (section.element) {
+          observer.unobserve(section.element);
+        }
+      });
+    };
+  }, [pathname]);
+
   // Smooth scroll handler for anchor links
   const handleSmoothScroll = (e: React.MouseEvent<HTMLAnchorElement>, targetId: string) => {
     e.preventDefault()
     
-    // Check if we're on the home page
-    if (window.location.pathname === '/') {
-      // We're on home page, just scroll
+    if (pathname === '/') {
       const target = document.querySelector(targetId)
       if (target) {
-        const navHeight = 64 // navbar height
+        const navHeight = 64
         const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - navHeight
         
         window.scrollTo({
@@ -41,7 +87,6 @@ export default function Navbar() {
         })
       }
     } else {
-      // We're on another page, navigate to home with hash
       window.location.href = `/${targetId}`
     }
   }
@@ -68,6 +113,19 @@ export default function Navbar() {
     }
   }, [])
 
+  // Helper to check if link is active
+  const isActive = (sectionId: string) => {
+    if (pathname !== '/') return false;
+    return activeSection === sectionId;
+  };
+
+  // Helper for link classes
+  const getLinkClasses = (sectionId: string) => {
+    const baseClasses = "font-dm-sans font-medium text-[15px] transition-colors duration-150 relative group cursor-pointer";
+    const activeClasses = isActive(sectionId) ? "text-orange" : "text-gray-500 hover:text-orange";
+    return `${baseClasses} ${activeClasses}`;
+  };
+
   return (
     <>
       <motion.nav
@@ -89,35 +147,71 @@ export default function Navbar() {
 
           {/* Desktop Links */}
           <div className="hidden md:flex items-center gap-8 h-full">
-            <Link href="/" className="font-dm-sans font-medium text-[15px] text-orange hover:text-orange-dark transition-colors duration-150 relative group">
+            <Link href="/" className={getLinkClasses('home')}>
               Home
-              <span className="absolute left-0 right-0 -bottom-[21px] h-[2px] bg-orange"></span>
+              {isActive('home') && (
+                <motion.span 
+                  layoutId="activeIndicator"
+                  className="absolute left-0 right-0 -bottom-[21px] h-[2px] bg-orange"
+                  transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
+                />
+              )}
+              {!isActive('home') && (
+                <span className="absolute left-0 right-0 -bottom-[21px] h-[2px] bg-orange scale-x-0 group-hover:scale-x-100 transition-transform origin-left"></span>
+              )}
             </Link>
             <a 
               href="#about" 
               onClick={(e) => handleSmoothScroll(e, '#about')}
-              className="font-dm-sans font-medium text-[15px] text-orange hover:text-orange-dark transition-colors duration-150 relative group cursor-pointer"
+              className={getLinkClasses('about')}
             >
               About
-              <span className="absolute left-0 right-0 -bottom-[21px] h-[2px] bg-orange"></span>
+              {isActive('about') && (
+                <motion.span 
+                  layoutId="activeIndicator"
+                  className="absolute left-0 right-0 -bottom-[21px] h-[2px] bg-orange"
+                  transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
+                />
+              )}
+              {!isActive('about') && (
+                <span className="absolute left-0 right-0 -bottom-[21px] h-[2px] bg-orange scale-x-0 group-hover:scale-x-100 transition-transform origin-left"></span>
+              )}
             </a>
             <a 
               href="#how-it-works" 
               onClick={(e) => handleSmoothScroll(e, '#how-it-works')}
-              className="font-dm-sans font-medium text-[15px] text-gray-500 hover:text-orange transition-colors duration-150 relative group cursor-pointer"
+              className={getLinkClasses('how-it-works')}
             >
               Cara Kerja
-              <span className="absolute left-0 right-0 -bottom-[21px] h-[2px] bg-orange scale-x-0 group-hover:scale-x-100 transition-transform origin-left"></span>
+              {isActive('how-it-works') && (
+                <motion.span 
+                  layoutId="activeIndicator"
+                  className="absolute left-0 right-0 -bottom-[21px] h-[2px] bg-orange"
+                  transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
+                />
+              )}
+              {!isActive('how-it-works') && (
+                <span className="absolute left-0 right-0 -bottom-[21px] h-[2px] bg-orange scale-x-0 group-hover:scale-x-100 transition-transform origin-left"></span>
+              )}
             </a>
             
             {/* Visa Solutions - Simple Link */}
             <a 
               href="#popular-visa" 
               onClick={(e) => handleSmoothScroll(e, '#popular-visa')}
-              className="font-dm-sans font-medium text-[15px] text-gray-500 hover:text-orange transition-colors duration-150 relative group cursor-pointer"
+              className={getLinkClasses('popular-visa')}
             >
               Visa Solutions
-              <span className="absolute left-0 right-0 -bottom-[21px] h-[2px] bg-orange scale-x-0 group-hover:scale-x-100 transition-transform origin-left"></span>
+              {isActive('popular-visa') && (
+                <motion.span 
+                  layoutId="activeIndicator"
+                  className="absolute left-0 right-0 -bottom-[21px] h-[2px] bg-orange"
+                  transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
+                />
+              )}
+              {!isActive('popular-visa') && (
+                <span className="absolute left-0 right-0 -bottom-[21px] h-[2px] bg-orange scale-x-0 group-hover:scale-x-100 transition-transform origin-left"></span>
+              )}
             </a>
             
             {/* Tools with Mega Menu - 3 Columns */}
@@ -284,25 +378,48 @@ export default function Navbar() {
             <a 
               href="#extra-services" 
               onClick={(e) => handleSmoothScroll(e, '#extra-services')}
-              className="font-dm-sans font-medium text-[15px] text-gray-500 hover:text-orange transition-colors duration-150 relative group cursor-pointer"
+              className={getLinkClasses('extra-services')}
             >
               Services
-              <span className="absolute left-0 right-0 -bottom-[21px] h-[2px] bg-orange scale-x-0 group-hover:scale-x-100 transition-transform origin-left"></span>
+              {isActive('extra-services') && (
+                <motion.span 
+                  layoutId="activeIndicator"
+                  className="absolute left-0 right-0 -bottom-[21px] h-[2px] bg-orange"
+                  transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
+                />
+              )}
+              {!isActive('extra-services') && (
+                <span className="absolute left-0 right-0 -bottom-[21px] h-[2px] bg-orange scale-x-0 group-hover:scale-x-100 transition-transform origin-left"></span>
+              )}
             </a>
             <Link 
               href="/blog"
-              className="font-dm-sans font-medium text-[15px] text-gray-500 hover:text-orange transition-colors duration-150 relative group cursor-pointer"
+              className={`font-dm-sans font-medium text-[15px] transition-colors duration-150 relative group cursor-pointer ${pathname === '/blog' ? 'text-orange' : 'text-gray-500 hover:text-orange'}`}
             >
               Blog
-              <span className="absolute left-0 right-0 -bottom-[21px] h-[2px] bg-orange scale-x-0 group-hover:scale-x-100 transition-transform origin-left"></span>
+              {pathname === '/blog' && (
+                <span className="absolute left-0 right-0 -bottom-[21px] h-[2px] bg-orange"></span>
+              )}
+              {pathname !== '/blog' && (
+                <span className="absolute left-0 right-0 -bottom-[21px] h-[2px] bg-orange scale-x-0 group-hover:scale-x-100 transition-transform origin-left"></span>
+              )}
             </Link>
             <a 
               href="#contact" 
               onClick={(e) => handleSmoothScroll(e, '#contact')}
-              className="font-dm-sans font-medium text-[15px] text-gray-500 hover:text-orange transition-colors duration-150 relative group cursor-pointer"
+              className={getLinkClasses('contact')}
             >
               Contact
-              <span className="absolute left-0 right-0 -bottom-[21px] h-[2px] bg-orange scale-x-0 group-hover:scale-x-100 transition-transform origin-left"></span>
+              {isActive('contact') && (
+                <motion.span 
+                  layoutId="activeIndicator"
+                  className="absolute left-0 right-0 -bottom-[21px] h-[2px] bg-orange"
+                  transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
+                />
+              )}
+              {!isActive('contact') && (
+                <span className="absolute left-0 right-0 -bottom-[21px] h-[2px] bg-orange scale-x-0 group-hover:scale-x-100 transition-transform origin-left"></span>
+              )}
             </a>
           </div>
 

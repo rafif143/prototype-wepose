@@ -19,14 +19,24 @@ export default function Home() {
     <main className="min-h-screen flex flex-col font-sans">
       <Navbar />
       <HeroSection />
-      <AboutSection />
-      <HowItWorksSection />
-      <PopularVisaSection />
-      <ExtraServicesSection />
+      <div id="about">
+        <AboutSection />
+      </div>
+      <div id="how-it-works">
+        <HowItWorksSection />
+      </div>
+      <div id="popular-visa">
+        <PopularVisaSection />
+      </div>
+      <div id="extra-services">
+        <ExtraServicesSection />
+      </div>
       <SupportedCountriesSection />
       <TestimonialsSection />
       <BlogSection />
-      <ContactSection />
+      <div id="contact">
+        <ContactSection />
+      </div>
       <CtaDualSection />
       <FaqSection />
       <CtaSection />
