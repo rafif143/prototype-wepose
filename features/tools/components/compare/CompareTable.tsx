@@ -21,6 +21,7 @@ interface CompareTableProps {
   visas: VisaData[];
   onRemoveVisa: (visaId: string) => void;
   onApplyVisa: (visaId: string) => void;
+  onAddMoreVisa?: () => void;
 }
 
 const iconMap: Record<string, React.ComponentType<{ className?: string }>> = {
@@ -34,7 +35,7 @@ const iconMap: Record<string, React.ComponentType<{ className?: string }>> = {
   UserGroupIcon,
 };
 
-export function CompareTableComponent({ visas, onRemoveVisa, onApplyVisa }: CompareTableProps) {
+export function CompareTableComponent({ visas, onRemoveVisa, onApplyVisa, onAddMoreVisa }: CompareTableProps) {
   const highlights = useMemo(() => {
     return {
       price: calculateHighlights(visas, 'price'),
@@ -49,8 +50,8 @@ export function CompareTableComponent({ visas, onRemoveVisa, onApplyVisa }: Comp
         <thead>
           <tr>
             {/* Criteria Column Header */}
-            <th className="bg-gradient-to-r from-orange-50 to-orange-100/50 w-[200px] md:w-[200px] sm:w-[140px] p-6 text-left border-b border-gray-200">
-              <span className="text-sm font-poppins font-semibold text-navy">
+            <th className="bg-gradient-to-r from-orange-50 to-orange-100/50 w-[200px] md:w-[200px] sm:w-[140px] p-6 text-center border-b border-gray-200">
+              <span className="text-base font-poppins font-bold text-navy">
                 Kriteria Perbandingan
               </span>
             </th>
@@ -63,7 +64,10 @@ export function CompareTableComponent({ visas, onRemoveVisa, onApplyVisa }: Comp
               >
                 <div className="flex flex-col items-center gap-4">
                   <button
-                    onClick={() => onRemoveVisa(visa.id)}
+                    onClick={() => {
+                      console.log('Remove button clicked for visa:', visa.id, visa.name);
+                      onRemoveVisa(visa.id);
+                    }}
                     className="self-end w-8 h-8 rounded-full bg-gray-100 hover:bg-red-100 text-gray-400 hover:text-red-500 transition-all duration-200 flex items-center justify-center"
                     aria-label={`Remove ${visa.name}`}
                   >
@@ -78,12 +82,22 @@ export function CompareTableComponent({ visas, onRemoveVisa, onApplyVisa }: Comp
                     </h3>
                     <p className="text-sm text-gray-500 font-dm-sans">{visa.price}</p>
                   </div>
-                  <button
-                    onClick={() => onApplyVisa(visa.id)}
-                    className="w-full bg-gradient-to-r from-orange to-orange-dark text-white font-poppins font-semibold text-sm py-3 px-4 rounded-xl hover:shadow-lg hover:-translate-y-0.5 transition-all duration-200"
-                  >
-                    Apply Sekarang →
-                  </button>
+                  <div className="flex gap-2">
+                    <button
+                      onClick={() => onApplyVisa(visa.id)}
+                      className="flex-1 bg-gradient-to-r from-orange to-orange-dark text-white font-poppins font-semibold text-sm py-3 px-4 rounded-xl hover:shadow-lg hover:-translate-y-0.5 transition-all duration-200"
+                    >
+                      Apply →
+                    </button>
+                    {onAddMoreVisa && (
+                      <button
+                        onClick={onAddMoreVisa}
+                        className="flex-1 bg-gradient-to-r from-blue-500 to-blue-600 text-white font-poppins font-semibold text-sm py-3 px-4 rounded-xl hover:shadow-lg hover:-translate-y-0.5 transition-all duration-200"
+                      >
+                        + Compare
+                      </button>
+                    )}
+                  </div>
                 </div>
               </th>
             ))}
@@ -140,7 +154,7 @@ export function CompareTableComponent({ visas, onRemoveVisa, onApplyVisa }: Comp
                     >
                       <span className="text-sm font-dm-sans font-medium text-navy">{value}</span>
                       {isBest && (
-                        <div className="absolute top-2 right-2 w-6 h-6 bg-success-green rounded-full flex items-center justify-center">
+                        <div className="absolute top-2 right-2 w-6 h-6 bg-orange rounded-full flex items-center justify-center">
                           <StarIcon className="w-3 h-3 text-white" />
                         </div>
                       )}

@@ -48,7 +48,7 @@ export function StepIndicator({ currentStep, completedSteps }: StepIndicatorProp
                     transition={{ delay: index * 0.1, duration: 0.3 }}
                     className={`relative w-12 h-12 rounded-full flex items-center justify-center transition-all duration-300 ${
                       isCompleted
-                        ? 'bg-gradient-to-r from-success-green to-success-green shadow-lg shadow-success-green/30'
+                        ? 'bg-gradient-to-r from-orange to-orange-dark shadow-lg shadow-orange/30'
                         : isActive
                         ? 'bg-gradient-to-r from-orange to-orange-dark shadow-lg shadow-orange/30'
                         : 'bg-white border-2 border-gray-200 shadow-sm'
@@ -95,7 +95,7 @@ export function StepIndicator({ currentStep, completedSteps }: StepIndicatorProp
                     <span
                       className={`text-xs font-dm-sans font-medium whitespace-nowrap ${
                         isCompleted
-                          ? 'text-success-green'
+                          ? 'text-orange'
                         : isActive
                           ? 'text-orange font-semibold'
                           : 'text-gray-400'

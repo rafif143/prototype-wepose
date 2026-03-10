@@ -14,6 +14,21 @@ import { TemplateType, Language, SponsorFormData } from '@/features/tools/lib/sp
 import { templates } from '@/features/tools/lib/sponsor-letter/types';
 import { downloadPDF } from '@/features/tools/lib/sponsor-letter/pdf-generator';
 
+const getLanguageName = (language: Language) => {
+  const languageNames = {
+    id: '🇮🇩 Indonesia',
+    en: '🇬🇧 English',
+    zh: '🇨🇳 中文',
+    ja: '🇯🇵 日本語',
+    th: '🇹🇭 ไทย',
+    ru: '🇷🇺 Русский',
+    de: '🇩🇪 Deutsch',
+    fr: '🇫🇷 Français',
+    ar: '🇸🇦 العربية',
+  };
+  return languageNames[language] || '🇬🇧 English';
+};
+
 interface GenerateStepProps {
   template: TemplateType;
   language: Language;
@@ -116,7 +131,7 @@ export function GenerateStep({
             <div className="flex justify-between text-[14px]">
               <span className="text-gray-500">Bahasa:</span>
               <span className="font-dm-sans font-medium text-navy">
-                {language === 'id' ? '🇮🇩 Indonesia' : '🇬🇧 English'}
+                {getLanguageName(language)}
               </span>
             </div>
             <div className="flex justify-between text-[14px]">
@@ -245,7 +260,7 @@ export function GenerateStep({
                 {templateConfig?.name}
               </p>
               <p className="text-[12px] text-white/80">
-                {language === 'id' ? 'Bahasa Indonesia' : 'English'}
+                {getLanguageName(language)}
               </p>
             </div>
           </div>

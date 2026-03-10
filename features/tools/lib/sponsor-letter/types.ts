@@ -1,7 +1,7 @@
 // Sponsor letter data structures
 
 export type TemplateType = 'keluarga' | 'perusahaan' | 'pribadi';
-export type Language = 'id' | 'en';
+export type Language = 'id' | 'en' | 'zh' | 'ja' | 'th' | 'ru' | 'de' | 'fr' | 'ar';
 
 export interface SponsorFormData {
   // Common fields
