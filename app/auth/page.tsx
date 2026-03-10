@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, Suspense } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { EyeIcon, EyeSlashIcon, CheckIcon } from '@heroicons/react/24/outline';
 import Link from 'next/link';
@@ -8,7 +8,7 @@ import { useSearchParams } from 'next/navigation';
 
 type AuthMode = 'login' | 'register';
 
-export default function AuthPage() {
+function AuthPageContent() {
   const searchParams = useSearchParams();
   const [mode, setMode] = useState<AuthMode>('login');
 
@@ -412,5 +412,18 @@ function NavyContent({
         </div>
       )}
     </div>
+  );
+}
+
+
+export default function AuthPage() {
+  return (
+    <Suspense fallback={
+      <div className="min-h-screen flex items-center justify-center bg-white">
+        <div className="w-8 h-8 border-4 border-orange/30 border-t-orange rounded-full animate-spin"></div>
+      </div>
+    }>
+      <AuthPageContent />
+    </Suspense>
   );
 }
