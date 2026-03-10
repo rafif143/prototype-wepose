@@ -4,7 +4,7 @@ import React, { useState, useRef, useEffect } from "react"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { motion, AnimatePresence, useScroll, useTransform } from "framer-motion"
-import { Bars3Icon, GlobeAltIcon, GlobeEuropeAfricaIcon, MapIcon, BuildingOffice2Icon, AcademicCapIcon, BriefcaseIcon, UserGroupIcon, HomeModernIcon, FireIcon, BoltIcon, TagIcon, SparklesIcon, LightBulbIcon, ScaleIcon, PaperAirplaneIcon } from "@heroicons/react/24/outline"
+import { Bars3Icon, GlobeAltIcon, MapIcon, BuildingOffice2Icon, AcademicCapIcon, BriefcaseIcon, FireIcon, BoltIcon, SparklesIcon, LightBulbIcon, ScaleIcon, PaperAirplaneIcon } from "@heroicons/react/24/outline"
 
 export default function Navbar() {
   const [isMegaMenuOpen, setIsMegaMenuOpen] = useState(false)
@@ -363,10 +363,10 @@ export default function Navbar() {
               <GlobeAltIcon className="w-4 h-4" />
               ID
             </button>
-            <Link href="#" className="px-5 py-2 rounded-full border border-navy text-navy font-dm-sans font-medium text-sm hover:bg-navy/5 transition-colors">
+            <Link href="/auth" className="px-5 py-2 rounded-full border border-navy text-navy font-dm-sans font-medium text-sm hover:bg-navy/5 transition-colors">
               Masuk
             </Link>
-            <Link href="#" className="px-5 py-2 rounded-full bg-orange text-white font-dm-sans font-medium text-sm hover:bg-orange-dark hover:shadow-cta-hover hover:-translate-y-[2px] transition-all duration-200">
+            <Link href="/auth?mode=register" className="px-5 py-2 rounded-full bg-orange text-white font-dm-sans font-medium text-sm hover:bg-orange-dark hover:shadow-cta-hover hover:-translate-y-[2px] transition-all duration-200">
               Daftar
             </Link>
           </div>
@@ -412,10 +412,10 @@ export default function Navbar() {
             </div>
 
             <div className="mt-auto flex flex-col gap-4">
-              <Link href="#" className="w-full text-center py-3 rounded-full border border-white text-white font-dm-sans font-medium">
+              <Link href="/auth" className="w-full text-center py-3 rounded-full border border-white text-white font-dm-sans font-medium">
                 Masuk
               </Link>
-              <Link href="#" className="w-full text-center py-3 rounded-full bg-orange text-white font-dm-sans font-medium hover:bg-orange-dark">
+              <Link href="/auth?mode=register" className="w-full text-center py-3 rounded-full bg-orange text-white font-dm-sans font-medium hover:bg-orange-dark">
                 Daftar
               </Link>
             </div>
