@@ -84,12 +84,12 @@ export default function BlogSection() {
     <section id="blog" className="py-20 bg-white overflow-hidden">
       <div className="container mx-auto px-4 max-w-[1280px]">
         {/* Header */}
-        <div className="mb-12">
+        <div className="mb-12 text-center">
           <motion.h2 
             initial={{ opacity: 0, y: 10 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-100px" }}
-            className="font-poppins font-semibold text-[28px] text-navy mb-2"
+            className="font-poppins font-semibold text-[28px] md:text-[36px] text-navy mb-2"
           >
             Tips & Panduan <span className="text-orange">Visa</span>
           </motion.h2>

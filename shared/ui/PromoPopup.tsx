@@ -36,7 +36,7 @@ export function PromoPopup() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={handleClose}
-            className="fixed inset-0 bg-black/60 backdrop-blur-sm z-50"
+            className="fixed inset-0 bg-black/60 backdrop-blur-sm z-40"
           />
 
           {/* Popup */}
@@ -49,22 +49,17 @@ export function PromoPopup() {
               className="relative w-full max-w-[480px] pointer-events-auto"
             >
               {/* Close Button */}
-              <button
-                onClick={handleClose}
-                className="absolute -top-4 -right-4 z-10 w-12 h-12 rounded-full bg-white shadow-lg flex items-center justify-center text-gray-600 hover:text-navy hover:scale-110 transition-all duration-200"
-              >
-                <XMarkIcon className="w-7 h-7" />
-              </button>
+          
 
               {/* Card */}
-              <div className="relative bg-gradient-to-br from-orange via-orange-dark to-[#c2410c] rounded-3xl overflow-hidden shadow-2xl">
+              <div className="relative bg-gradient-to-br from-orange via-orange-dark to-[#c2410c] rounded-3xl overflow-hidden shadow-2xl pointer-events-auto">
                 {/* Decorative Elements */}
-                <div className="absolute top-0 right-0 w-64 h-64 bg-white/10 rounded-full blur-3xl" />
-                <div className="absolute bottom-0 left-0 w-48 h-48 bg-navy/20 rounded-full blur-2xl" />
+                <div className="absolute top-0 right-0 w-64 h-64 bg-white/10 rounded-full blur-3xl pointer-events-none" />
+                <div className="absolute bottom-0 left-0 w-48 h-48 bg-navy/20 rounded-full blur-2xl pointer-events-none" />
                 
                 {/* Sparkle Icons */}
-                <SparklesIcon className="absolute top-6 right-6 w-8 h-8 text-yellow-300 animate-pulse" />
-                <SparklesIcon className="absolute bottom-8 left-8 w-6 h-6 text-yellow-300 animate-pulse" style={{ animationDelay: "0.5s" }} />
+                <SparklesIcon className="absolute top-6 right-6 w-8 h-8 text-yellow-300 animate-pulse pointer-events-none" />
+                <SparklesIcon className="absolute bottom-8 left-8 w-6 h-6 text-yellow-300 animate-pulse pointer-events-none" style={{ animationDelay: "0.5s" }} />
 
                 {/* Content */}
                 <div className="relative z-10 p-8 text-center">
@@ -73,7 +68,7 @@ export function PromoPopup() {
                     initial={{ scale: 0 }}
                     animate={{ scale: 1 }}
                     transition={{ delay: 0.3, type: "spring", stiffness: 200 }}
-                    className="inline-flex items-center gap-2 px-4 py-2 bg-yellow-400 text-navy rounded-full font-poppins font-bold text-sm mb-6 shadow-lg"
+                    className="inline-flex items-center gap-2 px-4 py-2 bg-yellow-400 text-navy rounded-full font-poppins font-bold text-sm mb-6 shadow-lg pointer-events-none"
                   >
                     <TagIcon className="w-4 h-4" />
                     PROMO SPESIAL
@@ -152,13 +147,6 @@ export function PromoPopup() {
                   <p className="font-dm-sans text-xs text-white/60 mt-4">
                     *Syarat & ketentuan berlaku
                   </p>
-                </div>
-
-                {/* Decorative Wave */}
-                <div className="absolute bottom-0 left-0 right-0 h-24 opacity-20">
-                  <svg viewBox="0 0 1200 120" preserveAspectRatio="none" className="w-full h-full">
-                    <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z" fill="currentColor" className="text-white"></path>
-                  </svg>
                 </div>
               </div>
             </motion.div>

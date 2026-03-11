@@ -83,58 +83,60 @@ export default function TestimonialsSection() {
   const allReviews = [...reviews, ...reviews]
 
   return (
-    <section className="relative py-20 bg-gray-50 overflow-hidden">
-      <div className="container mx-auto px-4 max-w-[1280px]">
-        {/* Header */}
-        <div className="text-center mb-12">
-          <motion.h2 
-            initial={{ opacity: 0, y: 10 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
-            className="font-poppins font-semibold text-[28px] text-navy mb-2"
-          >
-            Apa Kata Klien Kami
-          </motion.h2>
-          <motion.h3
-            initial={{ opacity: 0, y: 10 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ delay: 0.1 }}
-            className="font-poppins font-semibold text-[24px] mb-4"
-          >
-            Tentang <span className="text-orange">WEP🌐SE</span>
-          </motion.h3>
-          
-          {/* Google Rating */}
-          <motion.div
-            initial={{ opacity: 0, y: 10 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ delay: 0.2 }}
-            className="flex items-center justify-center gap-3 mb-8"
-          >
-            <Image 
-              src="https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_92x30dp.png"
-              alt="Google"
-              width={92}
-              height={30}
-              className="h-[30px] w-auto"
-            />
-            <div className="flex flex-col items-start">
-              <div className="flex gap-0.5">
-                {[...Array(5)].map((_, i) => (
-                  <StarIcon key={i} className="w-4 h-4 text-orange fill-orange" />
-                ))}
+    <section className="relative py-20 bg-gray-50">
+      <div className="w-full overflow-hidden">
+        <div className="container mx-auto px-4 max-w-[1280px]">
+          {/* Header */}
+          <div className="text-center mb-12">
+            <motion.h2 
+              initial={{ opacity: 0, y: 10 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-100px" }}
+              className="font-poppins font-semibold text-[28px] md:text-[36px] text-navy mb-2"
+            >
+              Apa Kata Klien Kami
+            </motion.h2>
+            <motion.h3
+              initial={{ opacity: 0, y: 10 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ delay: 0.1 }}
+              className="font-poppins font-semibold text-[24px] mb-4"
+            >
+              Tentang <span className="text-orange">WEP🌐SE</span>
+            </motion.h3>
+            
+            {/* Google Rating */}
+            <motion.div
+              initial={{ opacity: 0, y: 10 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ delay: 0.2 }}
+              className="flex items-center justify-center gap-3 mb-8"
+            >
+              <Image 
+                src="https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_92x30dp.png"
+                alt="Google"
+                width={92}
+                height={30}
+                className="h-[30px] w-auto"
+              />
+              <div className="flex flex-col items-start">
+                <div className="flex gap-0.5">
+                  {[...Array(5)].map((_, i) => (
+                    <StarIcon key={i} className="w-4 h-4 text-orange fill-orange" />
+                  ))}
+                </div>
+                <span className="font-dm-sans text-[13px] text-gray-600">5.0 Star Review</span>
               </div>
-              <span className="font-dm-sans text-[13px] text-gray-600">5.0 Star Review</span>
-            </div>
-          </motion.div>
+            </motion.div>
+          </div>
         </div>
 
         {/* Auto-scrolling Reviews - 2 Rows */}
         <div className="space-y-6">
           {/* First Row - Scroll Right */}
-          <div className="relative overflow-hidden">
+          <div className="w-full overflow-hidden">
             <motion.div
               animate={{
                 x: [0, -1920]
@@ -168,8 +170,8 @@ export default function TestimonialsSection() {
                           className="w-full h-full object-cover"
                         />
                       </div>
-                      <div>
-                        <h4 className="font-poppins font-semibold text-[14px] text-navy">
+                      <div className="min-w-0 flex-1">
+                        <h4 className="font-poppins font-semibold text-[14px] text-navy truncate">
                           {review.name}
                         </h4>
                         <div className="flex gap-0.5 mt-1">
@@ -181,7 +183,7 @@ export default function TestimonialsSection() {
                     </div>
                     <a 
                       href="#"
-                      className="text-[11px] text-blue-600 hover:underline font-dm-sans whitespace-nowrap"
+                      className="text-[11px] text-blue-600 hover:underline font-dm-sans whitespace-nowrap ml-2"
                     >
                       {review.source}
                     </a>
@@ -197,7 +199,7 @@ export default function TestimonialsSection() {
           </div>
 
           {/* Second Row - Scroll Left */}
-          <div className="relative overflow-hidden">
+          <div className="w-full overflow-hidden">
             <motion.div
               animate={{
                 x: [-1920, 0]
@@ -231,8 +233,8 @@ export default function TestimonialsSection() {
                           className="w-full h-full object-cover"
                         />
                       </div>
-                      <div>
-                        <h4 className="font-poppins font-semibold text-[14px] text-navy">
+                      <div className="min-w-0 flex-1">
+                        <h4 className="font-poppins font-semibold text-[14px] text-navy truncate">
                           {review.name}
                         </h4>
                         <div className="flex gap-0.5 mt-1">
@@ -244,7 +246,7 @@ export default function TestimonialsSection() {
                     </div>
                     <a 
                       href="#"
-                      className="text-[11px] text-blue-600 hover:underline font-dm-sans whitespace-nowrap"
+                      className="text-[11px] text-blue-600 hover:underline font-dm-sans whitespace-nowrap ml-2"
                     >
                       {review.source}
                     </a>

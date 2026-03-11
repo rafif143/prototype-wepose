@@ -133,45 +133,14 @@ export default function SupportedCountriesSection() {
         
         {/* Header Section */}
         <div className="text-center mb-16">
-          <motion.div
-            initial={{ opacity: 0, y: 8 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="inline-flex items-center gap-2 rounded-full border border-orange-200 bg-orange-50 px-4 py-2 mb-6"
-          >
-            <span className="h-2 w-2 rounded-full bg-orange-500" />
-            <span className="font-dm-sans text-[13px] font-semibold uppercase tracking-widest text-orange-600">
-              Global Coverage
-            </span>
-          </motion.div>
-
           <motion.h2
             initial={{ opacity: 0, y: 12 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.05 }}
-            className="font-poppins font-bold leading-[1.15] text-[36px] md:text-[48px] text-navy mb-4"
+            className="font-poppins font-bold leading-[1.15] text-[28px] md:text-[36px] text-navy mb-4"
           >
-            Mendukung{" "}
-            <span className="relative inline-block text-orange">
-              300+ tipe visa
-              <svg
-                aria-hidden
-                className="absolute -bottom-2 left-0 w-full"
-                height="6"
-                viewBox="0 0 200 6"
-                preserveAspectRatio="none"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M0 5 Q50 0 100 4 Q150 8 200 3"
-                  stroke="#ff6b2b"
-                  strokeWidth="2.5"
-                  strokeLinecap="round"
-                />
-              </svg>
-            </span>
+            Mendukung 300+ Tipe Visa
           </motion.h2>
 
           <motion.p
@@ -181,9 +150,7 @@ export default function SupportedCountriesSection() {
             transition={{ delay: 0.1 }}
             className="font-dm-sans text-[16px] leading-relaxed text-gray-600 max-w-2xl mx-auto"
           >
-            Platform visa online paling lengkap di Asia Tenggara dengan dukungan{" "}
-            <strong className="text-navy font-semibold">90+ negara</strong> dan approval rate{" "}
-            <strong className="text-green-600 font-semibold">99%</strong>
+            Platform visa online paling lengkap di Asia Tenggara dengan dukungan 90+ negara dan approval rate 99%
           </motion.p>
         </div>
 
@@ -226,10 +193,9 @@ export default function SupportedCountriesSection() {
             Destinasi Populer
           </h3>
           
-          {/* Scrolling Container */}
-          <div className="relative overflow-hidden">
+          {/* Scrolling Container - Row 1 (Left to Right) */}
+          <div className="relative overflow-hidden mb-4">
             <div className="flex animate-marquee gap-3 hover:pause-marquee">
-              {/* First set */}
               {topDestinations.map((dest, idx) => (
                 <div
                   key={`first-${idx}`}
@@ -244,11 +210,43 @@ export default function SupportedCountriesSection() {
                   </div>
                 </div>
               ))}
-              
-              {/* Second set for seamless loop */}
               {topDestinations.map((dest, idx) => (
                 <div
                   key={`second-${idx}`}
+                  className="relative bg-white rounded-xl p-4 border border-gray-100 hover:border-orange-200 hover:shadow-md hover:-translate-y-0.5 cursor-pointer flex-shrink-0 w-48 transition-all duration-300"
+                >
+                  <div className="flex items-center gap-3">
+                    <span className="text-2xl">{dest.flag}</span>
+                    <div>
+                      <p className="font-dm-sans font-semibold text-navy text-sm">{dest.name}</p>
+                      <p className="font-dm-sans text-xs text-gray-500">{dest.count}</p>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Scrolling Container - Row 2 (Right to Left) */}
+          <div className="relative overflow-hidden">
+            <div className="flex animate-marquee-reverse gap-3 hover:pause-marquee">
+              {[...topDestinations].reverse().map((dest, idx) => (
+                <div
+                  key={`third-${idx}`}
+                  className="relative bg-white rounded-xl p-4 border border-gray-100 hover:border-orange-200 hover:shadow-md hover:-translate-y-0.5 cursor-pointer flex-shrink-0 w-48 transition-all duration-300"
+                >
+                  <div className="flex items-center gap-3">
+                    <span className="text-2xl">{dest.flag}</span>
+                    <div>
+                      <p className="font-dm-sans font-semibold text-navy text-sm">{dest.name}</p>
+                      <p className="font-dm-sans text-xs text-gray-500">{dest.count}</p>
+                    </div>
+                  </div>
+                </div>
+              ))}
+              {[...topDestinations].reverse().map((dest, idx) => (
+                <div
+                  key={`fourth-${idx}`}
                   className="relative bg-white rounded-xl p-4 border border-gray-100 hover:border-orange-200 hover:shadow-md hover:-translate-y-0.5 cursor-pointer flex-shrink-0 w-48 transition-all duration-300"
                 >
                   <div className="flex items-center gap-3">

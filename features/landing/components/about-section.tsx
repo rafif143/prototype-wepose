@@ -49,14 +49,6 @@ export default function AboutSection() {
         
         {/* Header */}
         <div className="text-center mb-12">
-          <motion.div
-            initial={{ opacity: 0, y: 10 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="inline-block px-4 py-1.5 rounded-full bg-orange-100/50 text-orange font-poppins font-semibold text-xs mb-4 uppercase"
-          >
-            Tentang Wepose
-          </motion.div>
           <motion.h2
             initial={{ opacity: 0, y: 10 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -160,7 +152,7 @@ export default function AboutSection() {
                 initial={{ opacity: 0, scale: 1.1 }}
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.95 }}
-                transition={{ duration: 0.5 }}
+                transition={{ duration: 0.8 }}
                 className="absolute inset-0"
               >
                 <Image
@@ -169,16 +161,17 @@ export default function AboutSection() {
                   fill
                   className="object-cover"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
                 
-                {/* Image Caption */}
-                <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
-                  <h3 className="font-poppins font-bold text-[18px] md:text-[20px] mb-2">
-                    {features[activeIndex].title}
-                  </h3>
-                  <p className="font-dm-sans text-[13px] md:text-[14px] text-white/90">
-                    {features[activeIndex].description}
-                  </p>
+                {/* Image Caption - Label Style */}
+                <div className="absolute bottom-6 left-6 right-6">
+                  <div className="bg-white/95 backdrop-blur-sm rounded-2xl p-5 shadow-lg border border-orange/30">
+                    <h3 className="font-poppins font-bold text-[18px] md:text-[20px] text-navy mb-2">
+                      {features[activeIndex].title}
+                    </h3>
+                    <p className="font-dm-sans text-[13px] md:text-[14px] text-gray-600 line-clamp-2">
+                      {features[activeIndex].description}
+                    </p>
+                  </div>
                 </div>
               </motion.div>
             </AnimatePresence>

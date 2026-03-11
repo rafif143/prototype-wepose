@@ -81,21 +81,13 @@ export default function ExtraServicesSection() {
     <section id="extra-services" className="py-20 bg-gray-50 overflow-hidden">
       <div className="container mx-auto px-4 max-w-[1280px]">
         {/* Header */}
-        <div className="mb-12">
-          <motion.div 
-            initial={{ opacity: 0, y: 10 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
-            className="inline-block px-4 py-1.5 rounded-full bg-orange-100/50 text-orange font-poppins font-semibold text-xs mb-4 uppercase"
-          >
-            Layanan Ekstra
-          </motion.div>
+        <div className="mb-12 text-center">
           <motion.h2 
             initial={{ opacity: 0, y: 10 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-100px" }}
             transition={{ delay: 0.1 }}
-            className="font-poppins font-semibold text-[28px] text-navy mb-2"
+            className="font-poppins font-semibold text-[28px] md:text-[36px] text-navy mb-2"
           >
             Layanan Ekstra
           </motion.h2>

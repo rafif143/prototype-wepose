@@ -31,22 +31,14 @@ export default function ContactSection() {
       <div className="container mx-auto px-4 max-w-[1280px]">
         {/* Header */}
         <div className="text-center mb-12">
-          <motion.div 
-            initial={{ opacity: 0, y: 10 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
-            className="inline-block px-4 py-1.5 rounded-full bg-orange-100/50 text-orange font-poppins font-semibold text-xs mb-4 uppercase tracking-wide"
-          >
-            Hubungi Kami
-          </motion.div>
           <motion.h2 
             initial={{ opacity: 0, y: 10 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-100px" }}
             transition={{ delay: 0.1 }}
-            className="font-poppins font-bold text-[32px] md:text-[40px] text-navy mb-4 leading-tight uppercase tracking-wide"
+            className="font-poppins font-bold text-[28px] md:text-[36px] text-navy mb-4 leading-tight"
           >
-            Kunjungi Kantor Kami atau Hubungi Kami
+            Kunjungi atau Hubungi Kami
           </motion.h2>
           <motion.p
             initial={{ opacity: 0, y: 10 }}
