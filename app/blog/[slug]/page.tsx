@@ -1,5 +1,6 @@
 import { notFound } from "next/navigation"
 import BlogDetailClient from "@/features/blog/components/BlogDetailClient"
+import Footer from "@/shared/layout/Footer"
 
 // Sample blog data
 const blogPosts = {
@@ -309,5 +310,10 @@ export default async function BlogDetailPage({ params }: { params: Promise<{ slu
     notFound()
   }
 
-  return <BlogDetailClient post={post} />
+  return (
+    <>
+      <BlogDetailClient post={post} />
+      <Footer />
+    </>
+  )
 }

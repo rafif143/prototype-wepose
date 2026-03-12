@@ -11,10 +11,11 @@ import { RequirementsTab } from "@/features/visa/components/RequirementsTab";
 import { PricingTab } from "@/features/visa/components/PricingTab";
 import { FaqTab } from "@/features/visa/components/FaqTab";
 import { TravelInfoTab } from "@/features/visa/components/TravelInfoTab";
+import { ProcessTab } from "@/features/visa/components/ProcessTab";
 import { AddonsTab } from "@/features/visa/components/AddonsTab";
 import { visaDatabase } from "@/features/visa/lib/data";
 
-type TabType = 'overview' | 'requirements' | 'pricing' | 'faq' | 'travel-info' | 'addons';
+type TabType = 'overview' | 'requirements' | 'pricing' | 'process' | 'faq' | 'travel-info' | 'addons';
 
 export default function VisaDetailPage() {
   const params = useParams();
@@ -31,7 +32,7 @@ export default function VisaDetailPage() {
   // Update active tab based on scroll position
   useEffect(() => {
     const handleScroll = () => {
-      const sections = ['overview', 'requirements', 'pricing', 'faq', 'travel-info', 'addons'];
+      const sections = ['overview', 'requirements', 'pricing', 'process', 'faq', 'travel-info', 'addons'];
       const scrollPosition = window.scrollY + 200; // offset for sticky elements
 
       for (const section of sections) {
@@ -121,6 +122,7 @@ export default function VisaDetailPage() {
           <OverviewTab visa={visaData} />
           <RequirementsTab visa={visaData} />
           <PricingTab visa={visaData} />
+          <ProcessTab visa={visaData} />
           <FaqTab visa={visaData} />
           <TravelInfoTab visa={visaData} />
           <AddonsTab visa={visaData} />

@@ -289,18 +289,6 @@ export default function Navbar() {
                               Bandingkan Visa
                             </Link>
                           </li>
-                          <li>
-                            <Link href="#" className="flex items-center gap-2 px-3 py-2 rounded-lg font-dm-sans text-sm text-gray-800 hover:bg-orange-50 hover:text-orange transition-colors duration-100">
-                              <BoltIcon className="w-4 h-4" />
-                              Proses Tercepat
-                            </Link>
-                          </li>
-                          <li>
-                            <Link href="#" className="flex items-center gap-2 px-3 py-2 rounded-lg font-dm-sans text-sm text-gray-800 hover:bg-orange-50 hover:text-orange transition-colors duration-100">
-                              <SparklesIcon className="w-4 h-4" />
-                              Visa Terbaru
-                            </Link>
-                          </li>
                         </ul>
                       </div>
                     </div>

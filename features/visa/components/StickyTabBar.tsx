@@ -8,9 +8,10 @@ import {
   MapPinIcon,
   QuestionMarkCircleIcon,
   PuzzlePieceIcon,
+  ClockIcon,
 } from "@heroicons/react/24/outline";
 
-type TabType = 'overview' | 'requirements' | 'pricing' | 'faq' | 'travel-info' | 'addons';
+type TabType = 'overview' | 'requirements' | 'pricing' | 'process' | 'faq' | 'travel-info' | 'addons';
 
 interface Tab {
   id: TabType;
@@ -22,6 +23,7 @@ const tabs: Tab[] = [
   { id: 'overview', label: 'Overview', icon: InformationCircleIcon },
   { id: 'requirements', label: 'Persyaratan', icon: DocumentCheckIcon },
   { id: 'pricing', label: 'Harga', icon: BanknotesIcon },
+  { id: 'process', label: 'Proses', icon: ClockIcon },
   { id: 'faq', label: 'FAQ', icon: QuestionMarkCircleIcon },
   { id: 'travel-info', label: 'Perjalanan', icon: MapPinIcon },
   { id: 'addons', label: 'Add-on', icon: PuzzlePieceIcon },
