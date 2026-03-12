@@ -41,7 +41,11 @@ export function TravelInfoTab({ visa }: TravelInfoTabProps) {
     ];
 
     // Add country-specific tips
-    const countrySpecific = {
+    const countrySpecific: Record<string, Array<{
+      icon: typeof ExclamationTriangleIcon;
+      title: string;
+      description: string;
+    }>> = {
       "Prancis": [
         {
           icon: ExclamationTriangleIcon,
