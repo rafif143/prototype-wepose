@@ -176,6 +176,14 @@ function AuthPageContent() {
 
                 <SubmitButton isLoading={isLoading} label="Masuk" loadingLabel="Masuk..." />
 
+                {/* Dev Mode Dashboard Button */}
+                <Link 
+                  href="/dashboard"
+                  className="w-full bg-gradient-to-r from-navy to-navy/90 text-white font-poppins font-bold py-3 px-6 rounded-xl hover:shadow-xl hover:shadow-navy/25 hover:-translate-y-0.5 transition-all duration-200 text-center block"
+                >
+                  Dev Mode Dashboard
+                </Link>
+
                 <Divider />
 
                 <p className="text-center text-gray-500 font-dm-sans text-sm">

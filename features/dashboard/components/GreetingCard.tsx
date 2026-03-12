@@ -11,7 +11,7 @@ export function GreetingCard() {
   });
 
   const profileCompletion = 75; // Mock data
-  const userName = "Rafif"; // Mock data
+  const userName = "User"; // Mock data
 
   return (
     <motion.div
