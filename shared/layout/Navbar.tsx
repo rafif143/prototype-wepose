@@ -338,23 +338,35 @@ export default function Navbar() {
                 <span className="absolute left-0 right-0 -bottom-[21px] h-[2px] bg-orange scale-x-0 group-hover:scale-x-100 transition-transform origin-left"></span>
               )}
             </Link>
-            <a 
-              href="#contact" 
-              onClick={(e) => handleSmoothScroll(e, '#contact')}
-              className={getLinkClasses('contact')}
+            <Link 
+              href="/contact"
+              className={`font-dm-sans font-medium text-[15px] transition-colors duration-150 relative group cursor-pointer
+                ${pathname === '/contact' ? 'text-orange' : 'text-gray-500 hover:text-orange'}
+              `}
             >
               Contact
-              {isActive('contact') && (
-                <motion.span 
-                  layoutId="activeIndicator"
-                  className="absolute left-0 right-0 -bottom-[21px] h-[2px] bg-orange"
-                  transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
-                />
+              {pathname === '/contact' && (
+                <span className="absolute left-0 right-0 -bottom-[21px] h-[2px] bg-orange"></span>
               )}
-              {!isActive('contact') && (
+              {pathname !== '/contact' && (
                 <span className="absolute left-0 right-0 -bottom-[21px] h-[2px] bg-orange scale-x-0 group-hover:scale-x-100 transition-transform origin-left"></span>
               )}
-            </a>
+            </Link>
+
+            <Link 
+              href="/tos"
+              className={`font-dm-sans font-medium text-[15px] transition-colors duration-150 relative group cursor-pointer
+                ${pathname === '/tos' ? 'text-orange' : 'text-gray-500 hover:text-orange'}
+              `}
+            >
+              ToS
+              {pathname === '/tos' && (
+                <span className="absolute left-0 right-0 -bottom-[21px] h-[2px] bg-orange"></span>
+              )}
+              {pathname !== '/tos' && (
+                <span className="absolute left-0 right-0 -bottom-[21px] h-[2px] bg-orange scale-x-0 group-hover:scale-x-100 transition-transform origin-left"></span>
+              )}
+            </Link>
           </div>
 
           {/* Desktop Right */}

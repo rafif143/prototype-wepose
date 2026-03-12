@@ -27,6 +27,25 @@ export function HeroHeader({ visa }: HeroHeaderProps) {
         <div className="absolute inset-0 bg-gradient-to-t from-navy/95 via-navy/50 to-navy/20" />
       </div>
 
+      {/* Breadcrumb - Top Left */}
+      <motion.nav
+        initial={{ opacity: 0, x: -20 }}
+        animate={{ opacity: 1, x: 0 }}
+        transition={{ delay: 0.1, duration: 0.5 }}
+        className="absolute top-6 left-6 md:left-8 lg:left-12 flex items-center gap-2 text-sm font-dm-sans z-10"
+      >
+        <Link href="/" className="flex items-center gap-1 text-white/70 hover:text-white transition-colors">
+          <HomeIcon className="w-4 h-4" />
+          <span>Beranda</span>
+        </Link>
+        <span className="text-white/50">&gt;</span>
+        <Link href="/visa" className="text-white/70 hover:text-white transition-colors">
+          Visa
+        </Link>
+        <span className="text-white/50">&gt;</span>
+        <span className="text-white font-medium">{visa.country}</span>
+      </motion.nav>
+
       {/* Content Container */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
@@ -34,20 +53,6 @@ export function HeroHeader({ visa }: HeroHeaderProps) {
         transition={{ delay: 0.2, duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94] }}
         className="absolute bottom-0 left-0 right-0 px-6 md:px-8 lg:px-12 pb-6 md:pb-8"
       >
-        {/* Breadcrumb */}
-        <nav className="flex items-center gap-2 text-sm font-dm-sans mb-6">
-          <Link href="/" className="flex items-center gap-1 text-white/60 hover:text-white transition-colors">
-            <HomeIcon className="w-4 h-4" />
-            <span>Beranda</span>
-          </Link>
-          <span className="text-white/40">&gt;</span>
-          <Link href="/visa" className="text-white/60 hover:text-white transition-colors">
-            Visa
-          </Link>
-          <span className="text-white/40">&gt;</span>
-          <span className="text-white">{visa.country}</span>
-        </nav>
-
         {/* Badge Row */}
         <div className="flex flex-wrap items-center gap-2 mb-4">
           <span className="inline-flex items-center px-3 py-1.5 rounded-full bg-white/15 backdrop-blur-sm border border-white/30 text-white font-poppins font-semibold text-xs uppercase">

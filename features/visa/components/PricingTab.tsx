@@ -35,7 +35,9 @@ export function PricingTab({ visa }: PricingTabProps) {
       const addon = visa.addons.find(a => a.id === id);
       return sum + (addon?.price || 0);
     }, 0);
-    return (visa.priceBase + addonsTotal) * quantity;
+    
+    // Base price (subtotal) + addons, semua dikali quantity
+    return (subtotal + addonsTotal) * quantity;
   };
 
   const formatPrice = (price: number) => {
@@ -49,47 +51,11 @@ export function PricingTab({ visa }: PricingTabProps) {
   return (
     <div id="pricing" className="space-y-8">
       <div>
-        <h3 className="font-poppins font-semibold text-2xl text-navy mb-6">Breakdown Harga</h3>
+        <h3 className="font-poppins font-semibold text-2xl text-navy mb-6">Hitung Total Biaya Visa</h3>
 
-        {/* Price Table */}
-        <div className="bg-white shadow-md rounded-2xl overflow-hidden mb-8">
-          <div className="bg-navy px-6 py-3">
-            <div className="grid grid-cols-2 gap-4">
-              <span className="font-poppins font-semibold text-sm text-white">Komponen</span>
-              <span className="font-poppins font-semibold text-sm text-white text-right">Harga</span>
-            </div>
-          </div>
-          <div>
-            {priceBreakdown.map((item, index) => (
-              <div
-                key={index}
-                className={`grid grid-cols-2 gap-4 px-6 py-3 ${
-                  index % 2 === 0 ? 'bg-white' : 'bg-gray-50'
-                }`}
-              >
-                <span className="font-dm-sans text-sm text-gray-700">{item.label}</span>
-                <span className="font-dm-sans text-sm text-gray-700 text-right">{formatPrice(item.amount)}</span>
-              </div>
-            ))}
-            <div className="border-t-2 border-gray-200 px-6 py-3 bg-white">
-              <div className="grid grid-cols-2 gap-4">
-                <span className="font-poppins font-bold text-base text-navy">Subtotal</span>
-                <span className="font-poppins font-bold text-base text-navy text-right">{formatPrice(subtotal)}</span>
-              </div>
-            </div>
-            <div className="px-6 py-4 bg-orange-50">
-              <div className="grid grid-cols-2 gap-4">
-                <span className="font-poppins font-bold text-lg text-navy">Total</span>
-                <span className="font-poppins font-bold text-lg text-orange text-right">{visa.priceDisplay}</span>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* Calculator */}
+        {/* Combined Calculator & Breakdown */}
         <div className="bg-orange-50 rounded-2xl p-6 md:p-8">
-          <h4 className="font-poppins font-semibold text-xl text-navy mb-6">Hitung Total untuk Rombonganmu</h4>
-
+          
           {/* Quantity Stepper */}
           <div className="mb-6">
             <label className="block font-dm-sans text-sm text-gray-700 mb-2">Jumlah Orang</label>
@@ -138,6 +104,35 @@ export function PricingTab({ visa }: PricingTabProps) {
             </div>
           </div>
 
+          {/* Price Breakdown Table */}
+          <div className="bg-white shadow-md rounded-2xl overflow-hidden mb-6">
+            <div className="bg-navy px-6 py-3">
+              <div className="grid grid-cols-2 gap-4">
+                <span className="font-poppins font-semibold text-sm text-white">Komponen Biaya</span>
+                <span className="font-poppins font-semibold text-sm text-white text-right">Harga per Orang</span>
+              </div>
+            </div>
+            <div>
+              {priceBreakdown.map((item, index) => (
+                <div
+                  key={index}
+                  className={`grid grid-cols-2 gap-4 px-6 py-3 ${
+                    index % 2 === 0 ? 'bg-white' : 'bg-gray-50'
+                  }`}
+                >
+                  <span className="font-dm-sans text-sm text-gray-700">{item.label}</span>
+                  <span className="font-dm-sans text-sm text-gray-700 text-right">{formatPrice(item.amount)}</span>
+                </div>
+              ))}
+              <div className="border-t-2 border-gray-200 px-6 py-3 bg-white">
+                <div className="grid grid-cols-2 gap-4">
+                  <span className="font-poppins font-bold text-base text-navy">Subtotal per Orang</span>
+                  <span className="font-poppins font-bold text-base text-navy text-right">{formatPrice(subtotal)}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
           {/* Total Display */}
           <div className="bg-white rounded-xl p-6 mb-6">
             <p className="font-dm-sans text-sm text-gray-500 mb-2">Total untuk {quantity} orang</p>
@@ -157,7 +152,7 @@ export function PricingTab({ visa }: PricingTabProps) {
 
           {/* CTA Button */}
           <button className="w-full px-8 py-4 bg-orange hover:bg-orange-dark text-white font-poppins font-semibold rounded-full transition-all duration-200 hover:shadow-cta-hover">
-            Lanjut Apply dengan Harga Ini →
+            Apply Sekarang dengan Harga Ini →
           </button>
         </div>
 

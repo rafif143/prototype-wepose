@@ -1,6 +1,7 @@
 import Navbar from "@/shared/layout/Navbar";
 import { HeroSection } from "@/features/landing/components/HeroSection";
 import AboutSection from "@/features/landing/components/about-section";
+import TrackVisaSection from "@/features/landing/components/track-visa-section";
 import HowItWorksSection from "@/features/landing/components/how-it-works-section";
 import PopularVisaSection from "@/features/landing/components/popular-visa-section";
 import ExtraServicesSection from "@/features/landing/components/extra-services-section";
@@ -24,6 +25,7 @@ export default function Home() {
       <div id="about">
         <AboutSection />
       </div>
+      <TrackVisaSection />
       <div id="how-it-works">
         <HowItWorksSection />
       </div>

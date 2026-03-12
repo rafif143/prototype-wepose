@@ -64,7 +64,7 @@ export default function HeroSection() {
         <motion.div
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.1, duration: 0.5, ease: "easeOut" }}
+          transition={{ delay: 0, duration: 0.2, ease: "easeOut" }}
           className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-orange-100/10 border border-orange/30 text-orange font-poppins font-semibold text-[12px] mb-6"
         >
           <span>✈️</span> Platform Visa #1 di Indonesia
@@ -74,7 +74,7 @@ export default function HeroSection() {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.2, duration: 0.5, ease: "easeOut" }}
+          transition={{ delay: 0.05, duration: 0.2, ease: "easeOut" }}
           className="w-full"
         >
           <h1 className="font-poppins font-bold text-[36px] md:text-[56px] text-white leading-tight mb-4">
@@ -86,7 +86,7 @@ export default function HeroSection() {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.3, duration: 0.5, ease: "easeOut" }}
+          transition={{ delay: 0.1, duration: 0.2, ease: "easeOut" }}
           className="max-w-2xl mx-auto mb-10"
         >
           <p className="font-dm-sans text-[15px] md:text-[18px] text-gray-300">
@@ -99,7 +99,7 @@ export default function HeroSection() {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.4, duration: 0.5, ease: "easeOut" }}
+          transition={{ delay: 0.15, duration: 0.2, ease: "easeOut" }}
           className="w-full max-w-2xl bg-white rounded-[10px] shadow-md p-2 flex items-center mb-8 focus-within:border-orange focus-within:ring focus-within:ring-orange/20 border border-transparent transition-all"
         >
           <div className="pl-3 pr-2 text-gray-400">
@@ -123,7 +123,7 @@ export default function HeroSection() {
             hidden: { opacity: 0 },
             show: {
               opacity: 1,
-              transition: { staggerChildren: 0.05, delayChildren: 0.5 }
+              transition: { staggerChildren: 0.02, delayChildren: 0.2 }
             }
           }}
           className="flex flex-wrap justify-center gap-2 max-w-3xl"
@@ -133,7 +133,7 @@ export default function HeroSection() {
               key={chip}
               variants={{
                 hidden: { opacity: 0, scale: 0.9 },
-                show: { opacity: 1, scale: 1, transition: { type: "spring", bounce: 0, duration: 0.4 } }
+                show: { opacity: 1, scale: 1, transition: { type: "spring", bounce: 0, duration: 0.2 } }
               }}
               whileHover={{ scale: 1.05, backgroundColor: "rgba(255,255,255,0.2)" }}
               whileTap={{ scale: 0.95 }}
@@ -150,7 +150,7 @@ export default function HeroSection() {
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ delay: 0.8, duration: 0.5 }}
+        transition={{ delay: 0.4, duration: 0.3 }}
         className="absolute bottom-0 left-0 right-0 bg-orange py-6 z-20"
       >
         <div className="container mx-auto px-4 max-w-[1280px]">

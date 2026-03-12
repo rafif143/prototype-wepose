@@ -10,12 +10,11 @@ import { OverviewTab } from "@/features/visa/components/OverviewTab";
 import { RequirementsTab } from "@/features/visa/components/RequirementsTab";
 import { PricingTab } from "@/features/visa/components/PricingTab";
 import { FaqTab } from "@/features/visa/components/FaqTab";
+import { TravelInfoTab } from "@/features/visa/components/TravelInfoTab";
 import { AddonsTab } from "@/features/visa/components/AddonsTab";
-import { OrderSummary } from "@/features/visa/components/OrderSummary";
-import { StickyCTAMobile } from "@/features/visa/components/StickyCTAMobile";
 import { visaDatabase } from "@/features/visa/lib/data";
 
-type TabType = 'overview' | 'requirements' | 'pricing' | 'faq' | 'addons';
+type TabType = 'overview' | 'requirements' | 'pricing' | 'faq' | 'travel-info' | 'addons';
 
 export default function VisaDetailPage() {
   const params = useParams();
@@ -24,10 +23,15 @@ export default function VisaDetailPage() {
 
   const [activeTab, setActiveTab] = useState<TabType>('overview');
 
+  // Scroll to top on page load
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'instant' });
+  }, []);
+
   // Update active tab based on scroll position
   useEffect(() => {
     const handleScroll = () => {
-      const sections = ['overview', 'requirements', 'pricing', 'faq', 'addons'];
+      const sections = ['overview', 'requirements', 'pricing', 'faq', 'travel-info', 'addons'];
       const scrollPosition = window.scrollY + 200; // offset for sticky elements
 
       for (const section of sections) {
@@ -112,24 +116,16 @@ export default function VisaDetailPage() {
       <StickyTabBar activeTab={activeTab} onTabChange={setActiveTab} />
       
       <div className="container mx-auto px-4 md:px-8 max-w-[1280px] py-10 md:py-16">
-        <div className="grid grid-cols-1 lg:grid-cols-[1fr_380px] gap-8">
-          {/* Main Content */}
-          <div className="space-y-16">
-            <OverviewTab visa={visaData} />
-            <RequirementsTab visa={visaData} />
-            <PricingTab visa={visaData} />
-            <FaqTab visa={visaData} />
-            <AddonsTab visa={visaData} />
-          </div>
-
-          {/* Sidebar */}
-          <div>
-            <OrderSummary visa={visaData} />
-          </div>
+        {/* Main Content - Full Width */}
+        <div className="max-w-4xl mx-auto space-y-16">
+          <OverviewTab visa={visaData} />
+          <RequirementsTab visa={visaData} />
+          <PricingTab visa={visaData} />
+          <FaqTab visa={visaData} />
+          <TravelInfoTab visa={visaData} />
+          <AddonsTab visa={visaData} />
         </div>
       </div>
-
-      <StickyCTAMobile visa={visaData} />
       
       <Footer />
     </main>
