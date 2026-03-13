@@ -21,7 +21,15 @@ export default function CtaSection() {
             Siap Mulai Petualanganmu?
           </h2>
           <p className="font-dm-sans text-[18px] text-gray-300 mb-10">
-            Bergabung dengan 10.000+ traveler yang sudah percaya Wepose.
+            Bergabung dengan 10.000+ traveler yang sudah percaya <span className="inline-flex items-center">
+              <span>WEP</span>
+              <img 
+                src="/wepose-logo-mini.svg" 
+                alt="Wepose Logo" 
+                className="w-3 h-3 mx-0.5"
+              />
+              <span>SE</span>
+            </span>.
           </p>
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">

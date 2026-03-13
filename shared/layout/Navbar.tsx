@@ -140,8 +140,13 @@ export default function Navbar() {
         <div className="container mx-auto px-4 lg:px-8 max-w-[1280px] w-full flex justify-between items-center h-full">
           {/* Logo */}
           <Link href="/" className="flex items-center">
-            <span className="font-poppins font-bold text-[22px] tracking-tight text-navy">WE</span>
-            <span className="font-poppins font-bold text-[22px] tracking-tight text-orange">POSE</span>
+            <span className="font-poppins font-bold text-[22px] tracking-tight text-navy">WEP</span>
+            <img 
+              src="/wepose-logo-mini.svg" 
+              alt="O" 
+              className="w-[22px] h-[22px] mx-0.5" 
+            />
+            <span className="font-poppins font-bold text-[22px] tracking-tight text-orange">SE</span>
           </Link>
 
           {/* Desktop Links */}
@@ -393,8 +398,13 @@ export default function Navbar() {
           >
             <div className="flex justify-between items-center mb-8">
               <Link href="/" className="flex items-center">
-                <span className="font-poppins font-bold text-2xl text-white">WE</span>
-                <span className="font-poppins font-bold text-2xl text-orange">POSE</span>
+                <span className="font-poppins font-bold text-2xl text-white">WEP</span>
+                <img 
+                  src="/wepose-logo-mini.svg" 
+                  alt="O" 
+                  className="w-[24px] h-[24px] mx-0.5" 
+                />
+                <span className="font-poppins font-bold text-2xl text-orange">SE</span>
               </Link>
               <button 
                 className="text-white text-2xl"

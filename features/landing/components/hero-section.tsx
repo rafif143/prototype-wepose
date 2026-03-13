@@ -90,7 +90,15 @@ export default function HeroSection() {
           className="max-w-2xl mx-auto mb-10"
         >
           <p className="font-dm-sans text-[15px] md:text-[18px] text-gray-300">
-            Urus visa ke 35+ negara bersama tim profesional Wepose.<br />
+            Urus visa ke 35+ negara bersama tim profesional <span className="inline-flex items-center">
+              <span>WEP</span>
+              <img 
+                src="/wepose-logo-mini.svg" 
+                alt="Wepose Logo" 
+                className="w-3 h-3 mx-0.5"
+              />
+              <span>SE</span>
+            </span>.<br />
             Cepat, aman, transparan.
           </p>
         </motion.div>

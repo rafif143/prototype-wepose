@@ -11,8 +11,15 @@ export default function Footer() {
           {/* Col 1 - Brand */}
           <div>
             <Link href="/" className="inline-block mb-4">
-              <span className="font-poppins font-bold text-2xl text-white">WE</span>
-              <span className="font-poppins font-bold text-2xl text-orange">POSE</span>
+              <div className="flex items-center">
+                <span className="font-poppins font-bold text-2xl text-white">WEP</span>
+                <img 
+                  src="/wepose-logo-mini.svg" 
+                  alt="Wepose Logo" 
+                  className="w-6 h-6 mx-0.5"
+                />
+                <span className="font-poppins font-bold text-2xl text-orange">SE</span>
+              </div>
             </Link>
             <p className="text-gray-400 font-dm-sans text-sm mb-6">
               Platform visa terpercaya untuk traveler Indonesia
@@ -46,7 +53,15 @@ export default function Footer() {
 
         {/* Bottom bar */}
         <div className="pt-8 border-t border-gray-800 flex flex-col md:flex-row justify-between items-center gap-4">
-          <p className="text-gray-500 font-dm-sans text-sm">© 2026 WePose. All rights reserved.</p>
+          <div className="flex items-center text-gray-500 font-dm-sans text-sm">
+            <span>© 2026 WEP</span>
+            <img 
+              src="/wepose-logo-mini.svg" 
+              alt="Wepose Logo" 
+              className="w-3 h-3 mx-0.5"
+            />
+            <span>SE. All rights reserved.</span>
+          </div>
           <div className="flex gap-4">
             <Link href="/auth" className="text-gray-500 font-dm-sans text-sm hover:text-orange transition-colors">Login</Link>
             <span className="text-gray-700">·</span>
