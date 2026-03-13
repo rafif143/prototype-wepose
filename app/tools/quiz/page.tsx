@@ -6,6 +6,7 @@ import { ProgressBar } from '@/features/tools/components/quiz/ProgressBar';
 import { QuizScreen } from '@/features/tools/components/quiz/QuizScreen';
 import { QuizPaywall } from '@/features/tools/components/quiz/QuizPaywall';
 import { QuizResult } from '@/features/tools/components/quiz/QuizResult';
+import { DevModeResultModal } from '@/features/tools/components/quiz/DevModeResultModal';
 import { quizQuestions } from '@/features/tools/lib/quiz/questions';
 import { calculateRecommendation } from '@/features/tools/lib/quiz/recommendation';
 import { useQuizState } from '@/features/visa/hooks/useQuizState';
@@ -32,6 +33,7 @@ export default function QuizPage() {
   } = useQuizState();
 
   const [showExitModal, setShowExitModal] = useState(false);
+  const [showDevModeResult, setShowDevModeResult] = useState(false);
 
   const currentQuestionData = quizQuestions[currentQuestion];
   const selectedAnswer = answers[currentQuestion];
@@ -66,6 +68,14 @@ export default function QuizPage() {
 
   const handleRestart = () => {
     restart();
+  };
+
+  const handleDevModeEndTest = () => {
+    setShowDevModeResult(true);
+  };
+
+  const handleCloseDevModeResult = () => {
+    setShowDevModeResult(false);
   };
 
   // Calculate recommendation when showing results
@@ -122,6 +132,7 @@ export default function QuizPage() {
           onNext={goToNext}
           onBack={goToPrevious}
           onClose={handleClose}
+          onDevModeEndTest={handleDevModeEndTest}
           canGoBack={canGoBack}
           questionNumber={currentQuestion + 1}
           totalQuestions={quizQuestions.length}
@@ -133,6 +144,12 @@ export default function QuizPage() {
           onClose={closePaywall}
           onPurchase={handlePurchase}
           onBundleWithVisa={handleBundleWithVisa}
+        />
+
+        {/* Dev Mode Result Modal */}
+        <DevModeResultModal
+          isOpen={showDevModeResult}
+          onClose={handleCloseDevModeResult}
         />
       </div>
     </>

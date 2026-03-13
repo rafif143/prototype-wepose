@@ -12,6 +12,7 @@ interface QuizScreenProps {
   onNext: () => void;
   onBack: () => void;
   onClose: () => void;
+  onDevModeEndTest?: () => void;
   canGoBack: boolean;
   questionNumber: number;
   totalQuestions: number;
@@ -24,6 +25,7 @@ export function QuizScreen({
   onNext,
   onBack,
   onClose,
+  onDevModeEndTest,
   canGoBack,
   questionNumber,
   totalQuestions,
@@ -172,7 +174,19 @@ export function QuizScreen({
                 <span>←</span> Sebelumnya
               </motion.button>
             ) : (
-              <div></div> // Empty div to maintain spacing
+              <div className="flex gap-3">
+                {/* Dev Mode Button - Only show on first question */}
+                {questionNumber === 1 && onDevModeEndTest && (
+                  <motion.button
+                    initial={{ opacity: 0, x: -20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    onClick={onDevModeEndTest}
+                    className="px-4 py-2 rounded-lg bg-navy text-white font-dm-sans font-medium text-xs hover:bg-navy-dark transition-all duration-200 flex items-center gap-2"
+                  >
+                    <span>🔧</span> Dev Mode End Test
+                  </motion.button>
+                )}
+              </div>
             )}
 
             {/* Next Button */}
