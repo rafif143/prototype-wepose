@@ -150,7 +150,7 @@ export default function SupportedCountriesSection() {
             transition={{ delay: 0.1 }}
             className="font-dm-sans text-[16px] leading-relaxed text-gray-600 max-w-2xl mx-auto"
           >
-            Platform visa online paling lengkap di Asia Tenggara dengan dukungan 90+ negara dan approval rate 99%
+            Layanan visa online dengan dukungan 90+ negara dan berbagai tipe visa untuk kebutuhan perjalanan Anda
           </motion.p>
         </div>
 
@@ -276,10 +276,10 @@ export default function SupportedCountriesSection() {
             </div>
             <div className="text-left">
               <p className="font-poppins text-lg font-bold text-navy">
-                Approval Rate 99%
+                Proses Terpercaya
               </p>
               <p className="font-dm-sans text-sm text-gray-500">
-                Berhasil diproses & disetujui
+                Diproses dengan teliti & profesional
               </p>
             </div>
           </div>

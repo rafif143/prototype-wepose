@@ -10,6 +10,8 @@
   --orange-dark: #ea6b0a;
   --navy: #0f1f3d;
   --navy-mid: #1e3a5f;
+  --navy-dark: #0a1426;
+  --navy-darker: #051018;
   --orange-100: #ffedd5;
   --orange-50: #fff7ed;
 
@@ -70,6 +72,8 @@
   --color-orange-50: var(--orange-50);
   --color-navy: var(--navy);
   --color-navy-mid: var(--navy-mid);
+  --color-navy-dark: var(--navy-dark);
+  --color-navy-darker: var(--navy-darker);
   --color-navy-light: var(--navy-light);
   --color-gray-800: var(--gray-800);
   --color-gray-500: var(--gray-500);
