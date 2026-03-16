@@ -10,7 +10,7 @@ import {
   AcademicCapIcon,
   PlusCircleIcon,
 } from "@heroicons/react/24/outline"
-import CountriesModal from "./CountriesModal"
+import CountriesModal from "../../../features/landing/components/CountriesModal"
 
 export default function SupportedCountriesSection() {
   const [isModalOpen, setIsModalOpen] = useState(false)

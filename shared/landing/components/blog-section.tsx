@@ -84,7 +84,7 @@ export default function BlogSection() {
     <section id="blog" className="py-20 bg-white overflow-hidden">
       <div className="container mx-auto px-4 max-w-[1280px]">
         {/* Header */}
-        <div className="mb-12 text-center">
+        <div className="text-center mb-12">
           <motion.h2 
             initial={{ opacity: 0, y: 10 }}
             whileInView={{ opacity: 1, y: 0 }}

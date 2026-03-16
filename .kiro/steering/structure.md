@@ -19,8 +19,10 @@ app/                          # Next.js App Router pages
 features/                     # Feature modules (domain-specific)
 ├── blog/
 │   └── components/           # Blog-specific components
-├── landing/
-│   └── components/           # Landing page sections
+├── landing/                  # V1 Landing page components
+│   └── components/           # V1-specific landing sections
+├── landing-v2/               # V2 Landing page components  
+│   └── components/           # V2-specific landing sections
 ├── tools/
 │   ├── components/           # Tool components (quiz, compare, sponsor-letter)
 │   ├── hooks/                # Tool-specific hooks
@@ -33,6 +35,8 @@ features/                     # Feature modules (domain-specific)
 shared/                       # Shared/reusable code
 ├── ui/                       # Reusable UI components
 ├── layout/                   # Layout components (Navbar, Footer)
+├── landing/                  # Shared landing components
+│   └── components/           # Components used by both V1 & V2
 ├── hooks/                    # Shared hooks
 ├── lib/                      # Utilities and helpers
 ├── utils/                    # Utility functions

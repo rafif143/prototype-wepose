@@ -18,7 +18,6 @@ The target architecture organizes code by business features (visa, blog, tools, 
 ### High-Level Structure
 
 The refactored architecture follows a feature-based organization pattern:
-
 ```
 project-root/
 ├── app/                    # Next.js App Router (unchanged)

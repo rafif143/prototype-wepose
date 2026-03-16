@@ -1,17 +1,17 @@
 import Navbar from "@/shared/layout/Navbar";
 import { HeroSection } from "@/features/landing/components/HeroSection";
-import AboutSection from "@/features/landing/components/about-section";
-import TrackVisaSection from "@/features/landing/components/track-visa-section";
-import HowItWorksSection from "@/features/landing/components/how-it-works-section";
+import AboutSection from "@/shared/landing/components/about-section";
+import TrackVisaSection from "@/shared/landing/components/track-visa-section";
+import HowItWorksSection from "@/shared/landing/components/how-it-works-section";
 import PopularVisaSection from "@/features/landing/components/popular-visa-section";
-import ExtraServicesSection from "@/features/landing/components/extra-services-section";
-import SupportedCountriesSection from "@/features/landing/components/supported-countries-section";
-import TestimonialsSection from "@/features/landing/components/testimonials-section";
-import BlogSection from "@/features/landing/components/blog-section";
-import ContactSection from "@/features/landing/components/contact-section";
-import CtaDualSection from "@/features/landing/components/cta-dual-section";
-import FaqSection from "@/features/landing/components/faq-section";
-import CtaSection from "@/features/landing/components/cta-section";
+import ExtraServicesSection from "@/shared/landing/components/extra-services-section";
+import SupportedCountriesSection from "@/shared/landing/components/supported-countries-section";
+import TestimonialsSection from "@/shared/landing/components/testimonials-section";
+import BlogSection from "@/shared/landing/components/blog-section";
+import ContactSection from "@/shared/landing/components/contact-section";
+import CtaDualSection from "@/shared/landing/components/cta-dual-section";
+import FaqSection from "@/shared/landing/components/faq-section";
+import CtaSection from "@/shared/landing/components/cta-section";
 import Footer from "@/shared/layout/Footer";
 import { PromoPopup } from "@/shared/ui/PromoPopup";
 
@@ -22,10 +22,6 @@ export default function Home() {
       <div id="home">
         <HeroSection />
       </div>
-      <div id="about">
-        <AboutSection />
-      </div>
-      <TrackVisaSection />
       <div id="how-it-works">
         <HowItWorksSection />
       </div>
@@ -36,6 +32,10 @@ export default function Home() {
         <ExtraServicesSection />
       </div>
       <SupportedCountriesSection />
+      <div id="about">
+        <AboutSection />
+      </div>
+      <TrackVisaSection />
       <TestimonialsSection />
       <BlogSection />
       <div id="contact">

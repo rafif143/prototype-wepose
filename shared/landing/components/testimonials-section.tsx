@@ -134,9 +134,9 @@ export default function TestimonialsSection() {
         </div>
 
         {/* Auto-scrolling Reviews - 2 Rows */}
-        <div className="space-y-6">
+        <div className="space-y-6 px-8 md:px-16 lg:px-24 py-8">
           {/* First Row - Scroll Right */}
-          <div className="w-full overflow-hidden">
+          <div className="w-full overflow-hidden py-4">
             <motion.div
               animate={{
                 x: [0, -1920]
@@ -199,7 +199,7 @@ export default function TestimonialsSection() {
           </div>
 
           {/* Second Row - Scroll Left */}
-          <div className="w-full overflow-hidden">
+          <div className="w-full overflow-hidden py-4">
             <motion.div
               animate={{
                 x: [-1920, 0]

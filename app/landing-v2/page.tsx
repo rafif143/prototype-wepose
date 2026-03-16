@@ -1,18 +1,18 @@
 import { Metadata } from "next";
 import Navbar from "@/shared/layout/Navbar";
-import HeroSectionV2 from "@/features/landing/components/HeroSectionV2";
-import AboutSection from "@/features/landing/components/about-section";
-import TrackVisaSection from "@/features/landing/components/track-visa-section";
-import HowItWorksSection from "@/features/landing/components/how-it-works-section";
-import PopularVisaSection from "@/features/landing/components/popular-visa-section";
-import ExtraServicesSection from "@/features/landing/components/extra-services-section";
-import SupportedCountriesSection from "@/features/landing/components/supported-countries-section";
-import TestimonialsSection from "@/features/landing/components/testimonials-section";
-import BlogSection from "@/features/landing/components/blog-section";
-import ContactSection from "@/features/landing/components/contact-section";
-import CtaDualSection from "@/features/landing/components/cta-dual-section";
-import FaqSection from "@/features/landing/components/faq-section";
-import CtaSection from "@/features/landing/components/cta-section";
+import HeroSectionV2 from "@/features/landing-v2/components/HeroSectionV2";
+import AboutSectionV2 from "@/features/landing-v2/components/AboutSectionV2";
+import TrackVisaSection from "@/shared/landing/components/track-visa-section";
+import HowItWorksSectionV2 from "@/features/landing-v2/components/HowItWorksSectionV2";
+import PopularVisaSectionV2 from "@/features/landing-v2/components/PopularVisaSectionV2";
+import ExtraServicesSectionV2 from "@/features/landing-v2/components/ExtraServicesSectionV2";
+import SupportedCountriesSectionV2 from "@/features/landing-v2/components/SupportedCountriesSectionV2";
+import TestimonialsSection from "@/shared/landing/components/testimonials-section";
+import BlogSection from "@/shared/landing/components/blog-section";
+import ContactSection from "@/shared/landing/components/contact-section";
+import CtaDualSection from "@/shared/landing/components/cta-dual-section";
+import FaqSectionV2 from "@/features/landing-v2/components/FaqSectionV2";
+import CtaSection from "@/shared/landing/components/cta-section";
 import Footer from "@/shared/layout/Footer";
 import { PromoPopup } from "@/shared/ui/PromoPopup";
 
@@ -34,27 +34,27 @@ export default function LandingV2() {
       <div id="home">
         <HeroSectionV2 />
       </div>
-      <div id="about">
-        <AboutSection />
-      </div>
-      <TrackVisaSection />
       <div id="how-it-works">
-        <HowItWorksSection />
+        <HowItWorksSectionV2 />
       </div>
       <div id="popular-visa">
-        <PopularVisaSection />
+        <PopularVisaSectionV2 />
       </div>
       <div id="extra-services">
-        <ExtraServicesSection />
+        <ExtraServicesSectionV2 />
       </div>
-      <SupportedCountriesSection />
+      <SupportedCountriesSectionV2 />
+      <div id="about">
+        <AboutSectionV2 />
+      </div>
+      <TrackVisaSection />
       <TestimonialsSection />
       <BlogSection />
       <div id="contact">
         <ContactSection />
       </div>
       <CtaDualSection />
-      <FaqSection />
+      <FaqSectionV2 />
       <CtaSection />
       <Footer />
       <PromoPopup />

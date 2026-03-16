@@ -1,11 +1,11 @@
 "use client"
 
-import React, { useState } from "react"
+import React, { useState, useRef } from "react"
 import Link from "next/link"
 import Image from "next/image"
 import { useRouter } from "next/navigation"
 import { motion, Variants, AnimatePresence } from "framer-motion"
-import { ScaleIcon, ArrowRightIcon, ClockIcon, CalendarDaysIcon, XMarkIcon, CheckIcon, BanknotesIcon, BoltIcon, DocumentIcon, BuildingOfficeIcon, DocumentArrowDownIcon, UserGroupIcon, StarIcon } from "@heroicons/react/24/outline"
+import { ScaleIcon, ArrowRightIcon, ClockIcon, CalendarDaysIcon, XMarkIcon, CheckIcon, BanknotesIcon, BoltIcon, DocumentIcon, BuildingOfficeIcon, DocumentArrowDownIcon, UserGroupIcon, StarIcon, ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/24/outline"
 import { FR, JP, KR, AU, US, GB } from 'country-flag-icons/react/3x2'
 
 // Helper component for comparison rows
@@ -85,11 +85,12 @@ function ComparisonRow({
   )
 }
 
-export default function PopularVisaSection() {
+export default function PopularVisaSectionV2() {
   const router = useRouter()
   const [showCompareModal, setShowCompareModal] = useState(false)
   const [selectedVisa, setSelectedVisa] = useState<any>(null)
   const [compareWith, setCompareWith] = useState<string[]>([])
+  const promoScrollRef = useRef<HTMLDivElement>(null)
   
   const container: Variants = {
     hidden: {},
@@ -238,29 +239,58 @@ export default function PopularVisaSection() {
     }
   }
 
+  // Carousel navigation functions
+  const scrollPromoLeft = () => {
+    if (promoScrollRef.current) {
+      promoScrollRef.current.scrollBy({ left: -320, behavior: 'smooth' })
+    }
+  }
+
+  const scrollPromoRight = () => {
+    if (promoScrollRef.current) {
+      promoScrollRef.current.scrollBy({ left: 320, behavior: 'smooth' })
+    }
+  }
+
   return (
     <section id="popular-visa" className="py-20 bg-white overflow-hidden">
       <div className="container mx-auto px-4 max-w-[1280px]">
-        {/* Header */}
-        <div className="text-center mb-8">
-          <motion.h2 
-            initial={{ opacity: 0, y: 10 }}
-            whileInView={{ opacity: 1, y: 0 }}
+        {/* Header - Left Aligned */}
+        <div className="flex items-end justify-between mb-8">
+          <div>
+            <motion.h2 
+              initial={{ opacity: 0, x: -20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ delay: 0.1 }}
+              className="font-poppins font-semibold text-[28px] md:text-[36px] text-navy mb-2"
+            >
+              Destinasi Favorit Pelanggan
+            </motion.h2>
+            <motion.p
+              initial={{ opacity: 0, x: -20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ delay: 0.2 }}
+              className="font-dm-sans text-base text-gray-600"
+            >
+              Temukan visa yang sesuai dengan kebutuhanmu
+            </motion.p>
+          </div>
+          
+          {/* Right side CTA */}
+          <motion.div
+            initial={{ opacity: 0, x: 20 }}
+            whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, margin: "-100px" }}
-            transition={{ delay: 0.1 }}
-            className="font-poppins font-semibold text-[28px] md:text-[36px] text-navy mb-2"
+            transition={{ delay: 0.3 }}
+            className="hidden md:block"
           >
-            Destinasi Favorit Pelanggan
-          </motion.h2>
-          <motion.p
-            initial={{ opacity: 0, y: 10 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ delay: 0.2 }}
-            className="font-dm-sans text-base text-gray-600"
-          >
-            Temukan visa yang sesuai dengan kebutuhanmu
-          </motion.p>
+            <Link href="/visa" className="inline-flex items-center gap-2 text-orange hover:text-orange-dark font-poppins font-semibold text-[15px] transition-colors">
+              Lihat Semua
+              <ArrowRightIcon className="w-4 h-4 stroke-[2.5]" />
+            </Link>
+          </motion.div>
         </div>
 
         {/* Grid */}
@@ -278,55 +308,63 @@ export default function PopularVisaSection() {
                 key={idx}
                 variants={itemAnim}
                 whileHover={{ scale: 1.02, transition: { duration: 0.2, ease: "easeOut" } }}
-                className="bg-white rounded-[16px] shadow-md hover:shadow-lg overflow-hidden cursor-pointer flex flex-col border border-gray-100"
+                className="bg-white rounded-[20px] shadow-md hover:shadow-xl overflow-hidden cursor-pointer flex flex-col border border-gray-100 group"
               >
                 <Link href={`/visa/${visa.slug}`} className="flex flex-col h-full">
-                  {/* Cover Top with Real Image */}
-                  <div className="relative h-[140px] overflow-hidden">
+                  {/* Cover Top with Bigger Image */}
+                  <div className="relative h-[200px] overflow-hidden">
                     <Image
                       src={visa.coverImage}
                       alt={visa.country}
                       fill
-                      className="object-cover"
+                      className="object-cover group-hover:scale-105 transition-transform duration-500"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
                     
                     {/* Type Badge */}
-                    <span className="absolute top-3 right-3 bg-orange-100 text-orange text-[11px] font-poppins font-semibold px-2 py-1 rounded-full">
+                    <span className="absolute top-4 right-4 bg-white/95 backdrop-blur-sm text-navy text-[12px] font-poppins font-semibold px-3 py-1.5 rounded-full shadow-sm">
                       {visa.type}
                     </span>
                     
-                    {/* Flag Circle with SVG */}
-                    <div className="absolute bottom-3 left-3 w-12 h-12 rounded-full bg-white flex items-center justify-center shadow-lg overflow-hidden border-2 border-white">
+                    {/* Flag Circle with SVG - Bigger */}
+                    <div className="absolute bottom-4 left-4 w-14 h-14 rounded-full bg-white flex items-center justify-center shadow-lg overflow-hidden border-3 border-white">
                       <FlagIcon className="w-full h-full object-cover" />
+                    </div>
+
+                    {/* Country Name Overlay */}
+                    <div className="absolute bottom-4 right-4">
+                      <h3 className="font-poppins font-bold text-[18px] text-white drop-shadow-lg">
+                        {visa.countryName}
+                      </h3>
                     </div>
                   </div>
 
-                {/* Body */}
-                <div className="p-4 flex-1 flex flex-col bg-white">
-                  <h3 className="font-poppins font-semibold text-[15px] text-navy mb-3">
-                    Visa {visa.country}
-                  </h3>
-                  
-                  <div className="flex items-center gap-2 font-dm-sans text-[12px] text-gray-500 mb-4">
-                    <ClockIcon className="w-3.5 h-3.5" />
-                    <span>{visa.time}</span>
-                    <span>·</span>
-                    <CalendarDaysIcon className="w-3.5 h-3.5" />
-                    <span>{visa.stay}</span>
-                  </div>
-
-                  <div className="mt-auto mb-4">
-                    <span className="font-dm-sans text-[11px] text-gray-400 block mb-0.5">Mulai dari</span>
-                    <div className="font-poppins font-semibold text-[14px] text-orange">
+                {/* Body - More Compact */}
+                <div className="p-5 flex-1 flex flex-col bg-white">
+                  <div className="flex items-center justify-between mb-3">
+                    <h4 className="font-poppins font-semibold text-[16px] text-navy">
+                      Visa {visa.type}
+                    </h4>
+                    <div className="font-poppins font-bold text-[16px] text-orange">
                       {visa.price}
+                    </div>
+                  </div>
+                  
+                  <div className="flex items-center gap-3 font-dm-sans text-[13px] text-gray-500 mb-4">
+                    <div className="flex items-center gap-1">
+                      <ClockIcon className="w-4 h-4" />
+                      <span>{visa.time}</span>
+                    </div>
+                    <div className="flex items-center gap-1">
+                      <CalendarDaysIcon className="w-4 h-4" />
+                      <span>{visa.stay}</span>
                     </div>
                   </div>
 
                   {/* Add-on badges */}
-                  <div className="flex flex-wrap gap-1.5 mb-5 h-[24px]">
+                  <div className="flex flex-wrap gap-2 mb-5">
                     {visa.badges.map(badge => (
-                      <span key={badge} className="bg-orange-50 text-orange-dark text-[10px] font-dm-sans px-2 py-0.5 rounded-full border border-orange-100">
+                      <span key={badge} className="bg-orange-50 text-orange-dark text-[11px] font-dm-sans font-medium px-2.5 py-1 rounded-full border border-orange-100">
                         {badge}
                       </span>
                     ))}
@@ -336,12 +374,12 @@ export default function PopularVisaSection() {
                   <div className="flex justify-between items-center pt-4 border-t border-gray-100 mt-auto">
                     <button 
                       onClick={(e) => handleCompareClick(e, visa)}
-                      className="flex items-center gap-1.5 text-gray-500 hover:text-orange transition-colors font-dm-sans text-xs font-medium cursor-pointer"
+                      className="flex items-center gap-1.5 text-gray-500 hover:text-orange transition-colors font-dm-sans text-[13px] font-medium cursor-pointer"
                     >
                       <ScaleIcon className="w-4 h-4" />
                       Bandingkan
                     </button>
-                    <span className="bg-orange text-white text-[12px] font-poppins font-medium px-4 py-1.5 rounded-full hover:bg-orange-dark transition-colors cursor-pointer">
+                    <span className="bg-orange text-white text-[13px] font-poppins font-semibold px-5 py-2 rounded-full hover:bg-orange-dark transition-colors cursor-pointer shadow-sm">
                       Lihat Detail →
                     </span>
                   </div>
@@ -352,12 +390,12 @@ export default function PopularVisaSection() {
           })}
         </motion.div>
 
-        {/* Below Grid Button */}
+        {/* Mobile CTA */}
         <motion.div 
           initial={{ opacity: 0, y: 10 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-50px" }}
-          className="mt-12 text-center"
+          className="mt-12 text-center md:hidden"
         >
           <Link href="/visa" className="inline-flex items-center gap-2 bg-orange text-white px-8 py-3 rounded-full font-poppins font-semibold text-[15px] hover:bg-orange-dark hover:shadow-cta-hover transition-all duration-200">
             Lihat Semua 100+ Visa
@@ -365,219 +403,301 @@ export default function PopularVisaSection() {
           </Link>
         </motion.div>
 
-        {/* Divider */}
-        <div className="flex items-center gap-4 my-16">
-          <div className="flex-1 h-px bg-gradient-to-r from-transparent via-gray-300 to-gray-300"></div>
-          <div className="flex items-center gap-2 bg-orange-50 px-4 py-2 rounded-full border border-orange-100">
-            <BoltIcon className="w-4 h-4 text-orange" />
-            <span className="font-poppins font-semibold text-sm text-orange">Promo Spesial</span>
+        {/* Promo Header - Left Aligned with Navigation */}
+        <div className="flex items-end justify-between mb-8 mt-16">
+          <div>
+            <motion.h3 
+              initial={{ opacity: 0, x: -20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ delay: 0.1 }}
+              className="font-poppins font-semibold text-[24px] md:text-[28px] text-navy mb-2"
+            >
+              Promo Visa Murah
+            </motion.h3>
+            <motion.p
+              initial={{ opacity: 0, x: -20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ delay: 0.2 }}
+              className="font-dm-sans text-base text-gray-600"
+            >
+              Hemat hingga 40% untuk visa pilihan terbaik
+            </motion.p>
           </div>
-          <div className="flex-1 h-px bg-gradient-to-l from-transparent via-gray-300 to-gray-300"></div>
-        </div>
-
-        {/* Promo Header */}
-        <div className="text-center mb-8">
-          <motion.h3 
-            initial={{ opacity: 0, y: 10 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ delay: 0.1 }}
-            className="font-poppins font-semibold text-[24px] md:text-[28px] text-navy mb-2"
-          >
-            Promo Visa Murah
-          </motion.h3>
-          <motion.p
-            initial={{ opacity: 0, y: 10 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ delay: 0.2 }}
-            className="font-dm-sans text-base text-gray-600"
-          >
-            Hemat hingga 40% untuk visa pilihan terbaik
-          </motion.p>
-        </div>
-
-        {/* Promo Grid */}
-        <motion.div
-          variants={container}
-          initial="hidden"
-          whileInView="show"
-          viewport={{ once: true, margin: "-100px" }}
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6"
-        >
-          {[
-            {
-              country: "Thailand",
-              countryName: "Thailand",
-              type: "Tourist",
-              slug: "thailand-tourist",
-              FlagComponent: ({ className }: { className: string }) => (
-                <div className={`${className} bg-gradient-to-b from-red-500 via-white to-blue-500 flex items-center justify-center`}>
-                  <span className="text-xs font-bold text-red-600">🇹🇭</span>
-                </div>
-              ),
-              coverImage: "https://images.unsplash.com/photo-1552465011-b4e21bf6e79a?q=80&w=400&auto=format&fit=crop",
-              time: "3-5 hari",
-              stay: "30 hari tinggal",
-              originalPrice: "Rp 750.000",
-              price: "Rp 450.000",
-              discount: "40%",
-              badges: ["Visa on Arrival", "Promo"]
-            },
-            {
-              country: "Malaysia",
-              countryName: "Malaysia", 
-              type: "Tourist",
-              slug: "malaysia-tourist",
-              FlagComponent: ({ className }: { className: string }) => (
-                <div className={`${className} bg-gradient-to-b from-red-500 via-white to-blue-500 flex items-center justify-center`}>
-                  <span className="text-xs font-bold">🇲🇾</span>
-                </div>
-              ),
-              coverImage: "https://images.unsplash.com/photo-1596422846543-75c6fc197f07?q=80&w=400&auto=format&fit=crop",
-              time: "1-2 hari",
-              stay: "30 hari tinggal",
-              originalPrice: "Rp 500.000",
-              price: "Rp 350.000",
-              discount: "30%",
-              badges: ["E-Visa", "Same Day"]
-            },
-            {
-              country: "Singapura",
-              countryName: "Singapura",
-              type: "Tourist",
-              slug: "singapore-tourist", 
-              FlagComponent: ({ className }: { className: string }) => (
-                <div className={`${className} bg-gradient-to-b from-red-500 via-white to-red-500 flex items-center justify-center`}>
-                  <span className="text-xs font-bold">🇸🇬</span>
-                </div>
-              ),
-              coverImage: "https://images.unsplash.com/photo-1525625293386-3f8f99389edd?q=80&w=400&auto=format&fit=crop",
-              time: "2-3 hari",
-              stay: "30 hari tinggal",
-              originalPrice: "Rp 650.000",
-              price: "Rp 450.000",
-              discount: "31%",
-              badges: ["E-Visa", "Multiple Entry"]
-            },
-            {
-              country: "Vietnam",
-              countryName: "Vietnam",
-              type: "Tourist",
-              slug: "vietnam-tourist",
-              FlagComponent: ({ className }: { className: string }) => (
-                <div className={`${className} bg-gradient-to-b from-red-600 via-red-600 to-yellow-400 flex items-center justify-center`}>
-                  <span className="text-xs font-bold text-yellow-300">🇻🇳</span>
-                </div>
-              ),
-              coverImage: "https://images.unsplash.com/photo-1559592413-7cec4d0cae2b?q=80&w=400&auto=format&fit=crop",
-              time: "3-5 hari",
-              stay: "30 hari tinggal", 
-              originalPrice: "Rp 800.000",
-              price: "Rp 550.000",
-              discount: "31%",
-              badges: ["E-Visa", "Promo Spesial"]
-            }
-          ].map((visa, idx) => {
-            const FlagIcon = visa.FlagComponent;
-            return (
-              <motion.div
-                key={idx}
-                variants={itemAnim}
-                whileHover={{ scale: 1.02, transition: { duration: 0.2, ease: "easeOut" } }}
-                className="bg-white rounded-[16px] shadow-md hover:shadow-lg overflow-hidden cursor-pointer flex flex-col border border-orange-100 relative ring-1 ring-orange-100"
+          
+          <div className="flex items-center gap-4">
+            {/* Navigation Buttons */}
+            <motion.div
+              initial={{ opacity: 0, x: 20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ delay: 0.2 }}
+              className="hidden md:flex items-center gap-2"
+            >
+              <button
+                onClick={scrollPromoLeft}
+                className="w-10 h-10 rounded-full bg-white border-2 border-gray-200 hover:border-orange hover:bg-orange-50 flex items-center justify-center transition-all duration-200 group"
               >
-                <Link href={`/visa/${visa.slug}`} className="flex flex-col h-full">
-                  {/* Promo Badge */}
-                  <div className="absolute top-3 left-3 z-10 bg-red-500 text-white text-[10px] font-poppins font-bold px-2 py-1 rounded-full shadow-lg">
-                    HEMAT {visa.discount}
+                <ChevronLeftIcon className="w-5 h-5 text-gray-600 group-hover:text-orange" />
+              </button>
+              <button
+                onClick={scrollPromoRight}
+                className="w-10 h-10 rounded-full bg-white border-2 border-gray-200 hover:border-orange hover:bg-orange-50 flex items-center justify-center transition-all duration-200 group"
+              >
+                <ChevronRightIcon className="w-5 h-5 text-gray-600 group-hover:text-orange" />
+              </button>
+            </motion.div>
+
+            {/* Right side CTA */}
+            <motion.div
+              initial={{ opacity: 0, x: 20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ delay: 0.3 }}
+              className="hidden lg:block"
+            >
+              <Link href="/visa" className="inline-flex items-center gap-2 text-orange hover:text-orange-dark font-poppins font-semibold text-[15px] transition-colors">
+                Lihat Semua Promo
+                <ArrowRightIcon className="w-4 h-4 stroke-[2.5]" />
+              </Link>
+            </motion.div>
+          </div>
+        </div>
+
+        {/* Promo Carousel Container */}
+        <div className="relative">
+          {/* Scrollable Container */}
+          <div 
+            ref={promoScrollRef}
+            className="flex gap-6 overflow-x-auto scrollbar-hide pb-4"
+            style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+          >
+            {[
+              {
+                country: "Thailand",
+                countryName: "Thailand",
+                type: "Tourist",
+                slug: "thailand-tourist",
+                FlagComponent: ({ className }: { className: string }) => (
+                  <div className={`${className} bg-gradient-to-b from-red-500 via-white to-blue-500 flex items-center justify-center`}>
+                    <span className="text-xs font-bold text-red-600">🇹🇭</span>
                   </div>
-
-                  {/* Cover Top with Real Image */}
-                  <div className="relative h-[120px] overflow-hidden">
-                    <Image
-                      src={visa.coverImage}
-                      alt={visa.country}
-                      fill
-                      className="object-cover"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
-                    
-                    {/* Type Badge */}
-                    <span className="absolute top-3 right-3 bg-white/90 text-navy text-[10px] font-poppins font-semibold px-2 py-1 rounded-full">
-                      {visa.type}
-                    </span>
-                    
-                    {/* Flag Circle */}
-                    <div className="absolute bottom-3 left-3 w-10 h-10 rounded-full bg-white flex items-center justify-center shadow-lg overflow-hidden border-2 border-white">
-                      <FlagIcon className="w-full h-full object-cover" />
-                    </div>
+                ),
+                coverImage: "https://images.unsplash.com/photo-1552465011-b4e21bf6e79a?q=80&w=400&auto=format&fit=crop",
+                time: "3-5 hari",
+                stay: "30 hari tinggal",
+                originalPrice: "Rp 750.000",
+                price: "Rp 450.000",
+                discount: "40%",
+                badges: ["Visa on Arrival", "Promo"]
+              },
+              {
+                country: "Malaysia",
+                countryName: "Malaysia", 
+                type: "Tourist",
+                slug: "malaysia-tourist",
+                FlagComponent: ({ className }: { className: string }) => (
+                  <div className={`${className} bg-gradient-to-b from-red-500 via-white to-blue-500 flex items-center justify-center`}>
+                    <span className="text-xs font-bold">🇲🇾</span>
                   </div>
-
-                  {/* Body */}
-                  <div className="p-4 flex-1 flex flex-col bg-white">
-                    <h3 className="font-poppins font-semibold text-[14px] text-navy mb-2">
-                      Visa {visa.country}
-                    </h3>
-                    
-                    <div className="flex items-center gap-2 font-dm-sans text-[11px] text-gray-500 mb-3">
-                      <ClockIcon className="w-3 h-3" />
-                      <span>{visa.time}</span>
-                      <span>·</span>
-                      <CalendarDaysIcon className="w-3 h-3" />
-                      <span>{visa.stay}</span>
+                ),
+                coverImage: "https://images.unsplash.com/photo-1596422846543-75c6fc197f07?q=80&w=400&auto=format&fit=crop",
+                time: "1-2 hari",
+                stay: "30 hari tinggal",
+                originalPrice: "Rp 500.000",
+                price: "Rp 350.000",
+                discount: "30%",
+                badges: ["E-Visa", "Same Day"]
+              },
+              {
+                country: "Singapura",
+                countryName: "Singapura",
+                type: "Tourist",
+                slug: "singapore-tourist", 
+                FlagComponent: ({ className }: { className: string }) => (
+                  <div className={`${className} bg-gradient-to-b from-red-500 via-white to-red-500 flex items-center justify-center`}>
+                    <span className="text-xs font-bold">🇸🇬</span>
+                  </div>
+                ),
+                coverImage: "https://images.unsplash.com/photo-1525625293386-3f8f99389edd?q=80&w=400&auto=format&fit=crop",
+                time: "2-3 hari",
+                stay: "30 hari tinggal",
+                originalPrice: "Rp 650.000",
+                price: "Rp 450.000",
+                discount: "31%",
+                badges: ["E-Visa", "Multiple Entry"]
+              },
+              {
+                country: "Vietnam",
+                countryName: "Vietnam",
+                type: "Tourist",
+                slug: "vietnam-tourist",
+                FlagComponent: ({ className }: { className: string }) => (
+                  <div className={`${className} bg-gradient-to-b from-red-600 via-red-600 to-yellow-400 flex items-center justify-center`}>
+                    <span className="text-xs font-bold text-yellow-300">🇻🇳</span>
+                  </div>
+                ),
+                coverImage: "https://images.unsplash.com/photo-1559592413-7cec4d0cae2b?q=80&w=400&auto=format&fit=crop",
+                time: "3-5 hari",
+                stay: "30 hari tinggal", 
+                originalPrice: "Rp 800.000",
+                price: "Rp 550.000",
+                discount: "31%",
+                badges: ["E-Visa", "Promo Spesial"]
+              },
+              {
+                country: "Cambodia",
+                countryName: "Kamboja",
+                type: "Tourist",
+                slug: "cambodia-tourist",
+                FlagComponent: ({ className }: { className: string }) => (
+                  <div className={`${className} bg-gradient-to-b from-blue-600 via-red-500 to-blue-600 flex items-center justify-center`}>
+                    <span className="text-xs font-bold text-white">🇰🇭</span>
+                  </div>
+                ),
+                coverImage: "https://images.unsplash.com/photo-1539650116574-75c0c6d73f6e?q=80&w=400&auto=format&fit=crop",
+                time: "2-4 hari",
+                stay: "30 hari tinggal",
+                originalPrice: "Rp 600.000",
+                price: "Rp 400.000",
+                discount: "33%",
+                badges: ["E-Visa", "Fast Process"]
+              },
+              {
+                country: "Laos",
+                countryName: "Laos",
+                type: "Tourist",
+                slug: "laos-tourist",
+                FlagComponent: ({ className }: { className: string }) => (
+                  <div className={`${className} bg-gradient-to-b from-red-600 via-blue-600 to-red-600 flex items-center justify-center`}>
+                    <span className="text-xs font-bold text-white">🇱🇦</span>
+                  </div>
+                ),
+                coverImage: "https://images.unsplash.com/photo-1570366583862-f91883984fde?q=80&w=400&auto=format&fit=crop",
+                time: "3-5 hari",
+                stay: "30 hari tinggal",
+                originalPrice: "Rp 700.000",
+                price: "Rp 480.000",
+                discount: "31%",
+                badges: ["Visa on Arrival", "Budget Friendly"]
+              }
+            ].map((visa, idx) => {
+              const FlagIcon = visa.FlagComponent;
+              return (
+                <motion.div
+                  key={idx}
+                  initial={{ opacity: 0, y: 24 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: "-100px" }}
+                  transition={{ delay: 0.1 * idx, duration: 0.5, ease: "easeOut" }}
+                  whileHover={{ scale: 1.02, transition: { duration: 0.2, ease: "easeOut" } }}
+                  className="bg-white rounded-[20px] shadow-md hover:shadow-xl overflow-hidden cursor-pointer flex flex-col border border-orange-100 relative ring-1 ring-orange-100 group flex-shrink-0 w-[280px]"
+                >
+                  <Link href={`/visa/${visa.slug}`} className="flex flex-col h-full">
+                    {/* Promo Badge */}
+                    <div className="absolute top-4 left-4 z-10 bg-red-500 text-white text-[11px] font-poppins font-bold px-2.5 py-1.5 rounded-full shadow-lg">
+                      HEMAT {visa.discount}
                     </div>
 
-                    {/* Price Section */}
-                    <div className="mt-auto mb-3">
-                      <div className="flex items-center gap-2 mb-1">
-                        <span className="font-dm-sans text-[10px] text-gray-400 line-through">
-                          {visa.originalPrice}
-                        </span>
-                        <span className="bg-red-100 text-red-600 text-[9px] font-poppins font-bold px-1.5 py-0.5 rounded-full">
-                          -{visa.discount}
-                        </span>
-                      </div>
-                      <div className="font-poppins font-bold text-[15px] text-orange">
-                        {visa.price}
-                      </div>
-                    </div>
-
-                    {/* Add-on badges */}
-                    <div className="flex flex-wrap gap-1 mb-4 h-[20px]">
-                      {visa.badges.map(badge => (
-                        <span key={badge} className="bg-orange-50 text-orange-dark text-[9px] font-dm-sans px-1.5 py-0.5 rounded-full border border-orange-100">
-                          {badge}
-                        </span>
-                      ))}
-                    </div>
-
-                    {/* Footer Card */}
-                    <div className="flex justify-between items-center pt-3 border-t border-gray-100 mt-auto">
-                      <button 
-                        onClick={(e) => handleCompareClick(e, visa)}
-                        className="flex items-center gap-1 text-gray-500 hover:text-orange transition-colors font-dm-sans text-[11px] font-medium cursor-pointer"
-                      >
-                        <ScaleIcon className="w-3.5 h-3.5" />
-                        Bandingkan
-                      </button>
-                      <span className="bg-orange text-white text-[11px] font-poppins font-medium px-3 py-1 rounded-full hover:bg-orange-dark transition-colors cursor-pointer">
-                        Ambil Promo →
+                    {/* Cover Top with Bigger Image */}
+                    <div className="relative h-[160px] overflow-hidden">
+                      <Image
+                        src={visa.coverImage}
+                        alt={visa.country}
+                        fill
+                        className="object-cover group-hover:scale-105 transition-transform duration-500"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
+                      
+                      {/* Type Badge */}
+                      <span className="absolute top-4 right-4 bg-white/95 backdrop-blur-sm text-navy text-[11px] font-poppins font-semibold px-2.5 py-1 rounded-full shadow-sm">
+                        {visa.type}
                       </span>
-                    </div>
-                  </div>
-                </Link>
-              </motion.div>
-            );
-          })}
-        </motion.div>
+                      
+                      {/* Flag Circle - Bigger */}
+                      <div className="absolute bottom-3 left-3 w-12 h-12 rounded-full bg-white flex items-center justify-center shadow-lg overflow-hidden border-2 border-white">
+                        <FlagIcon className="w-full h-full object-cover" />
+                      </div>
 
-        {/* Final CTA */}
+                      {/* Country Name Overlay */}
+                      <div className="absolute bottom-3 right-3">
+                        <h3 className="font-poppins font-bold text-[16px] text-white drop-shadow-lg">
+                          {visa.countryName}
+                        </h3>
+                      </div>
+                    </div>
+
+                    {/* Body - More Compact */}
+                    <div className="p-4 flex-1 flex flex-col bg-white">
+                      <div className="flex items-center justify-between mb-3">
+                        <h4 className="font-poppins font-semibold text-[15px] text-navy">
+                          Visa {visa.type}
+                        </h4>
+                      </div>
+                      
+                      <div className="flex items-center gap-3 font-dm-sans text-[12px] text-gray-500 mb-3">
+                        <div className="flex items-center gap-1">
+                          <ClockIcon className="w-3.5 h-3.5" />
+                          <span>{visa.time}</span>
+                        </div>
+                        <div className="flex items-center gap-1">
+                          <CalendarDaysIcon className="w-3.5 h-3.5" />
+                          <span>{visa.stay}</span>
+                        </div>
+                      </div>
+
+                      {/* Price Section */}
+                      <div className="mb-3">
+                        <div className="flex items-center gap-2 mb-1">
+                          <span className="font-dm-sans text-[11px] text-gray-400 line-through">
+                            {visa.originalPrice}
+                          </span>
+                          <span className="bg-red-100 text-red-600 text-[10px] font-poppins font-bold px-2 py-0.5 rounded-full">
+                            -{visa.discount}
+                          </span>
+                        </div>
+                        <div className="font-poppins font-bold text-[16px] text-orange">
+                          {visa.price}
+                        </div>
+                      </div>
+
+                      {/* Add-on badges */}
+                      <div className="flex flex-wrap gap-1.5 mb-4">
+                        {visa.badges.map(badge => (
+                          <span key={badge} className="bg-orange-50 text-orange-dark text-[10px] font-dm-sans font-medium px-2 py-0.5 rounded-full border border-orange-100">
+                            {badge}
+                          </span>
+                        ))}
+                      </div>
+
+                      {/* Footer Card */}
+                      <div className="flex justify-between items-center pt-3 border-t border-gray-100 mt-auto">
+                        <button 
+                          onClick={(e) => handleCompareClick(e, visa)}
+                          className="flex items-center gap-1 text-gray-500 hover:text-orange transition-colors font-dm-sans text-[12px] font-medium cursor-pointer"
+                        >
+                          <ScaleIcon className="w-3.5 h-3.5" />
+                          Bandingkan
+                        </button>
+                        <span className="bg-orange text-white text-[12px] font-poppins font-semibold px-4 py-1.5 rounded-full hover:bg-orange-dark transition-colors cursor-pointer shadow-sm">
+                          Ambil Promo →
+                        </span>
+                      </div>
+                    </div>
+                  </Link>
+                </motion.div>
+              );
+            })}
+          </div>
+        </div>
+
+        {/* Mobile CTA for Promo */}
         <motion.div 
           initial={{ opacity: 0, y: 10 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-50px" }}
-          className="mt-12 text-center"
+          className="mt-12 text-center md:hidden"
         >
           <Link href="/visa" className="inline-flex items-center gap-2 bg-navy text-white px-8 py-3 rounded-full font-poppins font-semibold text-[15px] hover:bg-navy-dark hover:shadow-lg transition-all duration-200">
             Lihat Semua Promo Visa
