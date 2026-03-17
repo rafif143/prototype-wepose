@@ -1,203 +1,148 @@
-"use client"
+"use client";
 
-import React, { useEffect, useState } from "react"
-import { motion } from "framer-motion"
-import { MagnifyingGlassIcon } from "@heroicons/react/24/outline"
-import { WorldMap } from "@/shared/ui/WorldMap"
+import { motion } from "framer-motion";
+import { MagnifyingGlassIcon, GlobeAltIcon, BuildingOfficeIcon, MapPinIcon, PlusIcon, SparklesIcon } from "@heroicons/react/24/outline";
+import { WorldMap } from "@/shared/ui/WorldMap";
+import BannerHeroAdsV2 from "./BannerHeroAdsV2";
 
-const StatCounter = ({ end, duration = 1.2 }: { end: number, duration?: number }) => {
-  const [count, setCount] = useState(0)
-  const [hasAnimated, setHasAnimated] = useState(false)
+const mapDots = [
+  { start: { lat: -6.2, lng: 106.8, label: "Jakarta" }, end: { lat: 48.8, lng: 2.3, label: "Paris" } },
+  { start: { lat: -6.2, lng: 106.8, label: "Jakarta" }, end: { lat: 35.6, lng: 139.7, label: "Tokyo" } },
+  { start: { lat: -6.2, lng: 106.8, label: "Jakarta" }, end: { lat: 37.5, lng: 127.0, label: "Seoul" } },
+  { start: { lat: -6.2, lng: 106.8, label: "Jakarta" }, end: { lat: 51.5, lng: -0.1, label: "London" } },
+  { start: { lat: -6.2, lng: 106.8, label: "Jakarta" }, end: { lat: 40.7, lng: -74.0, label: "New York" } },
+  { start: { lat: -6.2, lng: 106.8, label: "Jakarta" }, end: { lat: -33.8, lng: 151.2, label: "Sydney" } },
+];
 
-  useEffect(() => {
-    if (hasAnimated) return; // Only animate once
-    
-    let animationFrame: number;
-    let startTimestamp: number | null = null;
-    
-    const step = (timestamp: number) => {
-      if (!startTimestamp) startTimestamp = timestamp;
-      const progress = Math.min((timestamp - startTimestamp) / (duration * 1000), 1);
-      const easeOut = 1 - Math.pow(1 - progress, 3);
-      setCount(Math.floor(easeOut * end));
-      
-      if (progress < 1) {
-        animationFrame = window.requestAnimationFrame(step);
-      } else {
-        setHasAnimated(true);
-      }
-    };
-    
-    animationFrame = window.requestAnimationFrame(step);
-    
-    return () => {
-      if (animationFrame) {
-        window.cancelAnimationFrame(animationFrame);
-      }
-    };
-  }, [end, duration, hasAnimated]);
+const quickCategories = [
+  { icon: MapPinIcon, label: "Jepang" },
+  { icon: MapPinIcon, label: "Korea" },
+  { icon: MapPinIcon, label: "Australia" },
+  { icon: MapPinIcon, label: "Amerika" },
+  { icon: MapPinIcon, label: "Singapura" },
+  { icon: GlobeAltIcon, label: "Eropa" },
+  { icon: PlusIcon, label: "Lihat Semua" },
+];
 
-  return <>{count}</>
-}
+const containerVariants = {
+  hidden: {},
+  show: {
+    transition: {
+      staggerChildren: 0.1,
+    },
+  },
+};
 
-import { Flag } from '@/shared/ui/Flag';
+const itemVariants = {
+  hidden: { opacity: 0, y: 20 },
+  show: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.6,
+      ease: [0.25, 0.46, 0.45, 0.94] as const,
+    },
+  },
+};
 
 export default function HeroSectionV2() {
-  // Map dots without labels for V2
-  const mapDots = [
-    { start: { lat: -6.2, lng: 106.8 }, end: { lat: 48.8, lng: 2.3 } },
-    { start: { lat: -6.2, lng: 106.8 }, end: { lat: 35.6, lng: 139.7 } },
-    { start: { lat: -6.2, lng: 106.8 }, end: { lat: 37.5, lng: 127.0 } },
-    { start: { lat: -6.2, lng: 106.8 }, end: { lat: 51.5, lng: -0.1 } },
-    { start: { lat: -6.2, lng: 106.8 }, end: { lat: 40.7, lng: -74.0 } },
-    { start: { lat: -6.2, lng: 106.8 }, end: { lat: -33.8, lng: 151.2 } },
-  ];
-
   return (
-    <section className="relative min-h-screen bg-navy flex items-center justify-center pt-24 pb-16 overflow-hidden">
-      {/* Background Map - Without labels */}
-      <div className="absolute inset-0 opacity-30">
-        <WorldMap dots={mapDots} lineColor="#F97316" loop={false} />
+    <section className="relative min-h-screen bg-gradient-to-br from-orange via-orange-dark to-[#c2410c] flex items-center justify-center overflow-hidden">
+      {/* Navy Accent Blobs */}
+      <div className="absolute top-0 left-0 w-[600px] h-[600px] bg-navy/20 rounded-full blur-[120px]" />
+      <div className="absolute bottom-0 right-0 w-[500px] h-[500px] bg-navy/15 rounded-full blur-[100px]" />
+
+      {/* WorldMap Background */}
+      <div className="absolute inset-0 opacity-25">
+        <WorldMap
+          dots={mapDots}
+          lineColor="#1E3A5F"
+          showLabels={false}
+          loop={true}
+          animationDuration={3}
+        />
       </div>
 
+      {/* Gradient Overlay for better readability */}
+      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-orange-dark/40" />
+
+      {/* Banner Hero Ads */}
+      <BannerHeroAdsV2 />
+
       {/* Content */}
-      <div className="container mx-auto px-4 max-w-[1280px] z-10 relative flex flex-col items-center text-center">
-        
+      <motion.div
+        className="relative z-10 max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 xl:px-16 text-center py-20"
+        variants={containerVariants}
+        initial="hidden"
+        animate="show"
+      >
         {/* Badge */}
-        <motion.div
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0, duration: 0.2, ease: "easeOut" }}
-          className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-orange-100/10 border border-orange/30 text-orange font-poppins font-semibold text-[12px] mb-6"
-        >
-          <span>✈️</span> Platform Visa #1 di Indonesia
+        <motion.div variants={itemVariants} className="mb-8">
+          <span className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-white/20 border border-white/30 text-white font-poppins font-semibold text-sm backdrop-blur-sm">
+            <SparklesIcon className="w-4 h-4" />
+            Platform Visa #1 di Indonesia
+          </span>
         </motion.div>
 
         {/* Headline */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.05, duration: 0.2, ease: "easeOut" }}
-          className="w-full"
+        <motion.h1
+          variants={itemVariants}
+          className="font-poppins font-bold text-5xl sm:text-6xl lg:text-7xl xl:text-8xl text-white mb-6 leading-tight drop-shadow-lg max-w-6xl mx-auto"
         >
-          <h1 className="font-poppins font-bold text-[36px] md:text-[56px] text-white leading-tight mb-4">
-            Apply Visa Jadi Effortless
-          </h1>
-        </motion.div>
+          Apply Visa Jadi Effortless
+        </motion.h1>
 
         {/* Sub-headline */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.1, duration: 0.2, ease: "easeOut" }}
-          className="max-w-2xl mx-auto mb-10"
+        <motion.p
+          variants={itemVariants}
+          className="font-dm-sans text-lg sm:text-xl lg:text-2xl text-white/90 mb-12 max-w-3xl mx-auto leading-relaxed"
         >
-          <p className="font-dm-sans text-[15px] md:text-[18px] text-gray-300">
-            Urus visa ke 35+ negara bersama tim profesional <span className="inline-flex items-center">
-              <span>WEP</span>
-              <img 
-                src="/wepose-logo-mini.svg" 
-                alt="Wepose Logo" 
-                className="w-3 h-3 mx-0.5"
-              />
-              <span>SE</span>
-            </span>.<br />
-            Cepat, aman, transparan.
-          </p>
-        </motion.div>
+          Urus visa ke 35+ negara bersama tim profesional Wepose.
+          <br />
+          Cepat, aman, transparan.
+        </motion.p>
 
         {/* Search Bar */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.15, duration: 0.2, ease: "easeOut" }}
-          className="w-full max-w-2xl bg-white rounded-[10px] shadow-md p-2 flex items-center mb-8 focus-within:border-orange focus-within:ring focus-within:ring-orange/20 border border-transparent transition-all"
-        >
-          <div className="pl-3 pr-2 text-gray-400">
-            <MagnifyingGlassIcon className="w-5 h-5" />
+        <motion.div variants={itemVariants} className="mb-10">
+          <div className="relative max-w-4xl mx-auto">
+            <div className="flex items-center bg-white rounded-xl shadow-2xl overflow-hidden hover:shadow-[0_20px_60px_rgba(0,0,0,0.3)] transition-shadow duration-300">
+              <div className="pl-6 pr-3">
+                <MagnifyingGlassIcon className="w-6 h-6 text-gray-400" />
+              </div>
+              <input
+                type="text"
+                placeholder="Mau visa ke mana? Cth: Jepang, Prancis, Korea..."
+                className="flex-1 py-5 px-3 text-gray-800 placeholder:text-gray-400 focus:outline-none font-dm-sans text-base lg:text-lg"
+              />
+              <button className="m-2 px-8 py-3.5 bg-navy hover:bg-navy-mid text-white font-poppins font-semibold rounded-full transition-all duration-200 hover:shadow-lg hover:-translate-y-0.5 lg:px-10 lg:py-4">
+                Cari Visa
+              </button>
+            </div>
           </div>
-          <input 
-            type="text" 
-            placeholder="Mau visa ke mana? Cth: Jepang, Prancis, Korea..."
-            className="flex-1 bg-transparent border-none outline-none font-dm-sans text-gray-800 placeholder-gray-400 text-[15px] md:text-base py-2"
-          />
-          <button className="bg-orange hover:bg-orange-dark text-white rounded-full px-6 py-2.5 font-poppins font-semibold text-sm transition-colors shadow-sm ml-2 shrink-0">
-            Cari Visa
-          </button>
         </motion.div>
 
         {/* Quick Category Chips */}
         <motion.div
-          initial="hidden"
-          animate="show"
-          variants={{
-            hidden: { opacity: 0 },
-            show: {
-              opacity: 1,
-              transition: { staggerChildren: 0.02, delayChildren: 0.2 }
-            }
-          }}
-          className="flex flex-wrap justify-center gap-2 max-w-3xl"
+          variants={containerVariants}
+          className="flex flex-wrap items-center justify-center gap-3 mb-24 md:mb-28 lg:mb-32 max-w-4xl mx-auto"
         >
-          {[
-            { label: "Schengen", flag: "eu" },
-            { label: "Jepang", flag: "jp" },
-            { label: "Korea", flag: "kr" },
-            { label: "Australia", flag: "au" },
-            { label: "Amerika", flag: "us" },
-            { label: "Eropa", flag: "eu" },
-            { label: "Timur Tengah", flag: "ae" },
-            { label: "Lihat Semua", flag: null }
-          ].map((chip) => (
-            <motion.button
-              key={chip.label}
-              variants={{
-                hidden: { opacity: 0, scale: 0.9 },
-                show: { opacity: 1, scale: 1, transition: { type: "spring", bounce: 0, duration: 0.2 } }
-              }}
-              whileHover={{ scale: 1.05, backgroundColor: "rgba(255,255,255,0.2)" }}
-              whileTap={{ scale: 0.95 }}
-              className="bg-white/10 border border-white/20 text-white rounded-full py-2 px-4 font-dm-sans text-sm transition-colors"
-            >
-              <span className="flex items-center gap-2">
-                {chip.flag && <Flag countryCode={chip.flag} size="sm" />}
-                {chip.flag === null && <span>➕</span>}
-                {chip.label}
-              </span>
-            </motion.button>
-          ))}
+          {quickCategories.map((category) => {
+            const Icon = category.icon;
+            return (
+              <motion.button
+                key={category.label}
+                variants={itemVariants}
+                whileHover={{ scale: 1.05, backgroundColor: "rgba(255, 255, 255, 0.35)" }}
+                whileTap={{ scale: 0.95 }}
+                className="inline-flex items-center gap-2 px-5 py-2.5 lg:px-6 lg:py-3 bg-white/20 backdrop-blur-sm border border-white/30 text-white rounded-full text-sm lg:text-base font-dm-sans transition-all duration-200 hover:border-white/50"
+              >
+                <Icon className="w-4 h-4 lg:w-5 lg:h-5" />
+                <span>{category.label}</span>
+              </motion.button>
+            );
+          })}
         </motion.div>
-
-      </div>
-      
-      {/* Stats Bar - Moved below hero content */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 0.4, duration: 0.3 }}
-        className="absolute bottom-0 left-0 right-0 bg-orange py-6 z-20"
-      >
-        <div className="container mx-auto px-4 max-w-[1280px]">
-          <div className="flex flex-wrap justify-center items-center gap-x-8 gap-y-4 md:gap-x-12">
-            {[
-              { num: 35, suffix: "+", label: "Negara" },
-              { num: 100, suffix: "+", label: "Tipe Visa" },
-              { num: 10000, suffix: "+", label: "Pelanggan Puas" },
-              { num: 5, suffix: "+", label: "Tahun Pengalaman" },
-            ].map((stat, idx) => (
-              <React.Fragment key={stat.label}>
-                <div className="flex flex-col items-center">
-                  <div className="font-poppins font-bold text-[44px] md:text-[56px] text-white flex items-center leading-none">
-                    <StatCounter end={stat.num} />{stat.suffix}
-                  </div>
-                  <div className="font-dm-sans font-normal text-[12px] md:text-[13px] text-white/90 mt-1">{stat.label}</div>
-                </div>
-                {idx < 3 && <div className="hidden md:block w-[1px] h-16 bg-white/30"></div>}
-              </React.Fragment>
-            ))}
-          </div>
-        </div>
       </motion.div>
     </section>
-  )
+  );
 }

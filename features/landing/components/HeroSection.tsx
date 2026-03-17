@@ -1,8 +1,9 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { MagnifyingGlassIcon, GlobeAltIcon, BuildingOfficeIcon, MapPinIcon, PlusIcon, SparklesIcon } from "@heroicons/react/24/outline";
+import { MagnifyingGlassIcon, GlobeAltIcon, MapPinIcon, PlusIcon, SparklesIcon } from "@heroicons/react/24/outline";
 import { WorldMap } from "@/shared/ui/WorldMap";
+import BannerHeroAds from "./BannerHeroAds";
 
 const mapDots = [
   { start: { lat: -6.2, lng: 106.8, label: "Jakarta" }, end: { lat: 48.8, lng: 2.3, label: "Paris" } },
@@ -14,13 +15,12 @@ const mapDots = [
 ];
 
 const quickCategories = [
-  { icon: GlobeAltIcon, label: "Schengen" },
   { icon: MapPinIcon, label: "Jepang" },
   { icon: MapPinIcon, label: "Korea" },
   { icon: MapPinIcon, label: "Australia" },
   { icon: MapPinIcon, label: "Amerika" },
+  { icon: MapPinIcon, label: "Singapura" },
   { icon: GlobeAltIcon, label: "Eropa" },
-  { icon: BuildingOfficeIcon, label: "Timur Tengah" },
   { icon: PlusIcon, label: "Lihat Semua" },
 ];
 
@@ -66,9 +66,12 @@ export function HeroSection() {
       {/* Gradient Overlay for better readability */}
       <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-orange-dark/40" />
 
+      {/* Banner Hero Ads */}
+      <BannerHeroAds />
+
       {/* Content */}
       <motion.div
-        className="relative z-10 max-w-5xl mx-auto px-6 sm:px-8 lg:px-12 text-center py-20"
+        className="relative z-10 max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 xl:px-16 text-center py-20"
         variants={containerVariants}
         initial="hidden"
         animate="show"
@@ -84,7 +87,7 @@ export function HeroSection() {
         {/* Headline */}
         <motion.h1
           variants={itemVariants}
-          className="font-poppins font-bold text-5xl sm:text-6xl lg:text-7xl text-white mb-6 leading-tight drop-shadow-lg"
+          className="font-poppins font-bold text-5xl sm:text-6xl lg:text-7xl xl:text-8xl text-white mb-6 leading-tight drop-shadow-lg max-w-6xl mx-auto"
         >
           Apply Visa Jadi Effortless
         </motion.h1>
@@ -92,7 +95,7 @@ export function HeroSection() {
         {/* Sub-headline */}
         <motion.p
           variants={itemVariants}
-          className="font-dm-sans text-lg sm:text-xl text-white/90 mb-12 max-w-2xl mx-auto leading-relaxed"
+          className="font-dm-sans text-lg sm:text-xl lg:text-2xl text-white/90 mb-12 max-w-3xl mx-auto leading-relaxed"
         >
           Urus visa ke 35+ negara bersama tim profesional Wepose.
           <br />
@@ -101,7 +104,7 @@ export function HeroSection() {
 
         {/* Search Bar */}
         <motion.div variants={itemVariants} className="mb-10">
-          <div className="relative max-w-3xl mx-auto">
+          <div className="relative max-w-4xl mx-auto">
             <div className="flex items-center bg-white rounded-xl shadow-2xl overflow-hidden hover:shadow-[0_20px_60px_rgba(0,0,0,0.3)] transition-shadow duration-300">
               <div className="pl-6 pr-3">
                 <MagnifyingGlassIcon className="w-6 h-6 text-gray-400" />
@@ -109,9 +112,9 @@ export function HeroSection() {
               <input
                 type="text"
                 placeholder="Mau visa ke mana? Cth: Jepang, Prancis, Korea..."
-                className="flex-1 py-5 px-3 text-gray-800 placeholder:text-gray-400 focus:outline-none font-dm-sans text-base"
+                className="flex-1 py-5 px-3 text-gray-800 placeholder:text-gray-400 focus:outline-none font-dm-sans text-base lg:text-lg"
               />
-              <button className="m-2 px-8 py-3.5 bg-navy hover:bg-navy-mid text-white font-poppins font-semibold rounded-full transition-all duration-200 hover:shadow-lg hover:-translate-y-0.5">
+              <button className="m-2 px-8 py-3.5 bg-navy hover:bg-navy-mid text-white font-poppins font-semibold rounded-full transition-all duration-200 hover:shadow-lg hover:-translate-y-0.5 lg:px-10 lg:py-4">
                 Cari Visa
               </button>
             </div>
@@ -121,9 +124,9 @@ export function HeroSection() {
         {/* Quick Category Chips */}
         <motion.div
           variants={containerVariants}
-          className="flex flex-wrap items-center justify-center gap-3 mb-16"
+          className="flex flex-wrap items-center justify-center gap-3 mb-24 md:mb-28 lg:mb-32 max-w-4xl mx-auto"
         >
-          {quickCategories.map((category, index) => {
+          {quickCategories.map((category) => {
             const Icon = category.icon;
             return (
               <motion.button
@@ -131,39 +134,13 @@ export function HeroSection() {
                 variants={itemVariants}
                 whileHover={{ scale: 1.05, backgroundColor: "rgba(255, 255, 255, 0.35)" }}
                 whileTap={{ scale: 0.95 }}
-                className="inline-flex items-center gap-2 px-5 py-2.5 bg-white/20 backdrop-blur-sm border border-white/30 text-white rounded-full text-sm font-dm-sans transition-all duration-200 hover:border-white/50"
+                className="inline-flex items-center gap-2 px-5 py-2.5 lg:px-6 lg:py-3 bg-white/20 backdrop-blur-sm border border-white/30 text-white rounded-full text-sm lg:text-base font-dm-sans transition-all duration-200 hover:border-white/50"
               >
-                <Icon className="w-4 h-4" />
+                <Icon className="w-4 h-4 lg:w-5 lg:h-5" />
                 <span>{category.label}</span>
               </motion.button>
             );
           })}
-        </motion.div>
-
-        {/* Stats Bar */}
-        <motion.div
-          variants={itemVariants}
-          className="grid grid-cols-2 md:flex md:flex-wrap md:items-center md:justify-center gap-6 md:gap-8 lg:gap-12 text-center"
-        >
-          <div className="flex flex-col items-center gap-1">
-            <span className="font-poppins font-bold text-2xl md:text-3xl lg:text-4xl text-white drop-shadow-md">35+</span>
-            <span className="font-dm-sans text-xs md:text-sm text-white/80">Negara</span>
-          </div>
-          <div className="hidden md:block text-white/30 text-2xl">|</div>
-          <div className="flex flex-col items-center gap-1">
-            <span className="font-poppins font-bold text-2xl md:text-3xl lg:text-4xl text-white drop-shadow-md">100+</span>
-            <span className="font-dm-sans text-xs md:text-sm text-white/80">Tipe Visa</span>
-          </div>
-          <div className="hidden md:block text-white/30 text-2xl">|</div>
-          <div className="flex flex-col items-center gap-1">
-            <span className="font-poppins font-bold text-2xl md:text-3xl lg:text-4xl text-white drop-shadow-md">10.000+</span>
-            <span className="font-dm-sans text-xs md:text-sm text-white/80">Pelanggan Puas</span>
-          </div>
-          <div className="hidden md:block text-white/30 text-2xl">|</div>
-          <div className="flex flex-col items-center gap-1">
-            <span className="font-poppins font-bold text-2xl md:text-3xl lg:text-4xl text-white drop-shadow-md">5+</span>
-            <span className="font-dm-sans text-xs md:text-sm text-white/80">Tahun Pengalaman</span>
-          </div>
         </motion.div>
       </motion.div>
     </section>
