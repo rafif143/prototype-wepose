@@ -6,6 +6,7 @@ import HowItWorksSection from "@/shared/landing/components/how-it-works-section"
 import PopularVisaSection from "@/features/landing/components/popular-visa-section";
 import ExtraServicesSection from "@/shared/landing/components/extra-services-section";
 import SupportedCountriesSection from "@/shared/landing/components/supported-countries-section";
+import EmbassyRegistrationSection from "@/shared/landing/components/embassy-registration-section";
 import TestimonialsSection from "@/shared/landing/components/testimonials-section";
 import BlogSection from "@/shared/landing/components/blog-section";
 import ContactSection from "@/shared/landing/components/contact-section";
@@ -32,6 +33,7 @@ export default function Home() {
         <ExtraServicesSection />
       </div>
       <SupportedCountriesSection />
+      <EmbassyRegistrationSection />
       <div id="about">
         <AboutSection />
       </div>

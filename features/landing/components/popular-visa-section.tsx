@@ -7,6 +7,7 @@ import { useRouter } from "next/navigation"
 import { motion, Variants, AnimatePresence } from "framer-motion"
 import { ScaleIcon, ArrowRightIcon, ClockIcon, CalendarDaysIcon, XMarkIcon, CheckIcon, BanknotesIcon, BoltIcon, DocumentIcon, BuildingOfficeIcon, DocumentArrowDownIcon, UserGroupIcon, StarIcon } from "@heroicons/react/24/outline"
 import { Flag } from '@/shared/ui/Flag'
+import { visaDatabase } from '@/features/visa/lib/data'
 
 // Helper component for comparison rows
 function ComparisonRow({ 
@@ -106,12 +107,14 @@ export default function PopularVisaSection() {
       country: "France Schengen",
       countryName: "Prancis",
       type: "Tourist",
-      slug: "france-schengen-tourist",
+      slug: "schengen-prancis",
       countryCode: "fr",
-      coverImage: "https://images.unsplash.com/photo-1502602898657-3e91760cbb34?q=80&w=400&auto=format&fit=crop",
-      time: "15-20 hari",
-      stay: "90 hari tinggal",
-      price: "Rp 1.850.000",
+      coverImage: visaDatabase["schengen-prancis"]?.coverImage || "https://images.unsplash.com/photo-1502602898657-3e91760cbb34?q=80&w=400&auto=format&fit=crop",
+      time: visaDatabase["schengen-prancis"]?.processDays || "15-20 hari",
+      stay: visaDatabase["schengen-prancis"]?.stayDuration + " tinggal" || "90 hari tinggal",
+      originalPrice: "Rp 1.650.000",
+      price: visaDatabase["schengen-prancis"]?.priceDisplay || "Rp 1.350.000",
+      discount: "18%",
       gradient: "from-[#0F1F3D] to-[#1E3A5F]",
       badges: ["Multiple Entry", "Fast Track"]
     },
@@ -119,12 +122,14 @@ export default function PopularVisaSection() {
       country: "Jepang",
       countryName: "Jepang",
       type: "Tourist",
-      slug: "japan-tourist",
+      slug: "jepang-tourist",
       countryCode: "jp",
-      coverImage: "https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?q=80&w=400&auto=format&fit=crop",
-      time: "7-10 hari",
-      stay: "15 hari tinggal",
-      price: "Rp 950.000",
+      coverImage: visaDatabase["jepang-tourist"]?.coverImage || "https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?q=80&w=400&auto=format&fit=crop",
+      time: visaDatabase["jepang-tourist"]?.processDays || "7-10 hari",
+      stay: visaDatabase["jepang-tourist"]?.stayDuration + " tinggal" || "15 hari tinggal",
+      originalPrice: "Rp 850.000",
+      price: visaDatabase["jepang-tourist"]?.priceDisplay || "Rp 650.000",
+      discount: "24%",
       gradient: "from-[#DC2626] to-[#991B1B]",
       badges: ["Single Entry", "E-Visa Optional"]
     },
@@ -132,12 +137,12 @@ export default function PopularVisaSection() {
       country: "Korea Selatan",
       countryName: "Korea Selatan",
       type: "Tourist",
-      slug: "korea-tourist",
+      slug: "korea-selatan",
       countryCode: "kr",
-      coverImage: "https://images.unsplash.com/photo-1517154421773-0529f29ea451?q=80&w=400&auto=format&fit=crop",
-      time: "5-7 hari",
-      stay: "30 hari tinggal",
-      price: "Rp 850.000",
+      coverImage: visaDatabase["korea-selatan"]?.coverImage || "https://images.unsplash.com/photo-1517154421773-0529f29ea451?q=80&w=400&auto=format&fit=crop",
+      time: visaDatabase["korea-selatan"]?.processDays || "5-7 hari",
+      stay: visaDatabase["korea-selatan"]?.stayDuration + " tinggal" || "30 hari tinggal",
+      price: visaDatabase["korea-selatan"]?.priceDisplay || "Rp 650.000",
       gradient: "from-[#1D4ED8] to-[#1E40AF]",
       badges: ["Single Entry", "Promo"]
     },
@@ -145,12 +150,12 @@ export default function PopularVisaSection() {
       country: "Australia",
       countryName: "Australia",
       type: "Tourist",
-      slug: "australia-tourist",
+      slug: "australia",
       countryCode: "au",
-      coverImage: "https://images.unsplash.com/photo-1506973035872-a4ec16b8e8d9?q=80&w=400&auto=format&fit=crop",
-      time: "10-15 hari",
-      stay: "3 bulan tinggal",
-      price: "Rp 1.250.000",
+      coverImage: visaDatabase["australia"]?.coverImage || "https://images.unsplash.com/photo-1506973035872-a4ec16b8e8d9?q=80&w=400&auto=format&fit=crop",
+      time: visaDatabase["australia"]?.processDays || "10-15 hari",
+      stay: visaDatabase["australia"]?.stayDuration + " tinggal" || "3 bulan tinggal",
+      price: visaDatabase["australia"]?.priceDisplay || "Rp 1.850.000",
       gradient: "from-[#15803D] to-[#166534]",
       badges: ["E-Visa", "Multiple Entry"]
     },
@@ -158,12 +163,12 @@ export default function PopularVisaSection() {
       country: "Amerika",
       countryName: "Amerika Serikat",
       type: "B1/B2",
-      slug: "usa-b1-b2",
+      slug: "amerika-serikat",
       countryCode: "us",
-      coverImage: "https://images.unsplash.com/photo-1485738422979-f5c462d49f74?q=80&w=400&auto=format&fit=crop",
-      time: "30-60 hari",
-      stay: "6 bulan tinggal",
-      price: "Rp 3.500.000",
+      coverImage: visaDatabase["amerika-serikat"]?.coverImage || "https://images.unsplash.com/photo-1485738422979-f5c462d49f74?q=80&w=400&auto=format&fit=crop",
+      time: visaDatabase["amerika-serikat"]?.processDays || "30-60 hari",
+      stay: visaDatabase["amerika-serikat"]?.stayDuration + " tinggal" || "6 bulan tinggal",
+      price: visaDatabase["amerika-serikat"]?.priceDisplay || "Rp 3.000.000",
       gradient: "from-[#7C3AED] to-[#6D28D9]",
       badges: ["10 Tahun", "Wawancara"]
     },
@@ -171,12 +176,12 @@ export default function PopularVisaSection() {
       country: "United Kingdom",
       countryName: "Inggris",
       type: "Standard",
-      slug: "uk-standard",
+      slug: "uk-inggris",
       countryCode: "gb",
-      coverImage: "https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?q=80&w=400&auto=format&fit=crop",
-      time: "20-30 hari",
-      stay: "6 bulan tinggal",
-      price: "Rp 2.100.000",
+      coverImage: visaDatabase["uk-inggris"]?.coverImage || "https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?q=80&w=400&auto=format&fit=crop",
+      time: visaDatabase["uk-inggris"]?.processDays || "20-30 hari",
+      stay: visaDatabase["uk-inggris"]?.stayDuration + " tinggal" || "6 bulan tinggal",
+      price: visaDatabase["uk-inggris"]?.priceDisplay || "Rp 2.000.000",
       gradient: "from-[#B45309] to-[#92400E]",
       badges: ["Multiple Entry", "Biometric"]
     }
@@ -311,9 +316,25 @@ export default function PopularVisaSection() {
 
                   <div className="mt-auto mb-4">
                     <span className="font-dm-sans text-[11px] text-gray-400 block mb-0.5">Mulai dari</span>
-                    <div className="font-poppins font-semibold text-[14px] text-orange">
-                      {visa.price}
-                    </div>
+                    {visa.originalPrice ? (
+                      <div>
+                        <div className="flex items-center gap-2 mb-1">
+                          <span className="font-dm-sans text-[11px] text-gray-400 line-through">
+                            {visa.originalPrice}
+                          </span>
+                          <span className="bg-red-100 text-red-600 text-[9px] font-poppins font-bold px-1.5 py-0.5 rounded-full">
+                            -{visa.discount}
+                          </span>
+                        </div>
+                        <div className="font-poppins font-semibold text-[14px] text-orange">
+                          {visa.price}
+                        </div>
+                      </div>
+                    ) : (
+                      <div className="font-poppins font-semibold text-[14px] text-orange">
+                        {visa.price}
+                      </div>
+                    )}
                   </div>
 
                   {/* Add-on badges */}
@@ -403,13 +424,13 @@ export default function PopularVisaSection() {
               country: "Thailand",
               countryName: "Thailand",
               type: "Tourist",
-              slug: "thailand-tourist",
+              slug: "thailand",
               countryCode: "th",
-              coverImage: "https://images.unsplash.com/photo-1552465011-b4e21bf6e79a?q=80&w=400&auto=format&fit=crop",
-              time: "3-5 hari",
-              stay: "30 hari tinggal",
+              coverImage: visaDatabase["thailand"]?.coverImage || "https://images.unsplash.com/photo-1552465011-b4e21bf6e79a?q=80&w=400&auto=format&fit=crop",
+              time: visaDatabase["thailand"]?.processDays || "3-5 hari",
+              stay: visaDatabase["thailand"]?.stayDuration + " tinggal" || "60 hari tinggal",
               originalPrice: "Rp 750.000",
-              price: "Rp 450.000",
+              price: visaDatabase["thailand"]?.priceDisplay || "Rp 450.000",
               discount: "40%",
               badges: ["Visa on Arrival", "Promo"]
             },
@@ -417,13 +438,13 @@ export default function PopularVisaSection() {
               country: "Malaysia",
               countryName: "Malaysia", 
               type: "Tourist",
-              slug: "malaysia-tourist",
+              slug: "malaysia",
               countryCode: "my",
-              coverImage: "https://images.unsplash.com/photo-1596422846543-75c6fc197f07?q=80&w=400&auto=format&fit=crop",
-              time: "1-2 hari",
-              stay: "30 hari tinggal",
+              coverImage: visaDatabase["malaysia"]?.coverImage || "https://images.unsplash.com/photo-1596422846543-75c6fc197f07?q=80&w=400&auto=format&fit=crop",
+              time: visaDatabase["malaysia"]?.processDays || "3-5 hari",
+              stay: visaDatabase["malaysia"]?.stayDuration + " tinggal" || "30 hari tinggal",
               originalPrice: "Rp 500.000",
-              price: "Rp 350.000",
+              price: visaDatabase["malaysia"]?.priceDisplay || "Rp 450.000",
               discount: "30%",
               badges: ["E-Visa", "Same Day"]
             },
@@ -431,28 +452,28 @@ export default function PopularVisaSection() {
               country: "Singapura",
               countryName: "Singapura",
               type: "Tourist",
-              slug: "singapore-tourist", 
+              slug: "singapura", 
               countryCode: "sg",
-              coverImage: "https://images.unsplash.com/photo-1525625293386-3f8f99389edd?q=80&w=400&auto=format&fit=crop",
-              time: "2-3 hari",
-              stay: "30 hari tinggal",
+              coverImage: visaDatabase["singapura"]?.coverImage || "https://images.unsplash.com/photo-1525625293386-3f8f99389edd?q=80&w=400&auto=format&fit=crop",
+              time: visaDatabase["singapura"]?.processDays || "3-5 hari",
+              stay: visaDatabase["singapura"]?.stayDuration + " tinggal" || "30 hari tinggal",
               originalPrice: "Rp 650.000",
-              price: "Rp 450.000",
+              price: visaDatabase["singapura"]?.priceDisplay || "Rp 500.000",
               discount: "31%",
               badges: ["E-Visa", "Multiple Entry"]
             },
             {
-              country: "Vietnam",
-              countryName: "Vietnam",
+              country: "Dubai UAE",
+              countryName: "Dubai",
               type: "Tourist",
-              slug: "vietnam-tourist",
-              countryCode: "vn",
-              coverImage: "https://images.unsplash.com/photo-1559592413-7cec4d0cae2b?q=80&w=400&auto=format&fit=crop",
-              time: "3-5 hari",
-              stay: "30 hari tinggal", 
-              originalPrice: "Rp 800.000",
-              price: "Rp 550.000",
-              discount: "31%",
+              slug: "dubai-uae",
+              countryCode: "ae",
+              coverImage: visaDatabase["dubai-uae"]?.coverImage || "https://images.unsplash.com/photo-1512453979798-5ea266f8880c?q=80&w=400&auto=format&fit=crop",
+              time: visaDatabase["dubai-uae"]?.processDays || "3-5 hari",
+              stay: visaDatabase["dubai-uae"]?.stayDuration + " tinggal" || "30 hari tinggal", 
+              originalPrice: "Rp 1.500.000",
+              price: visaDatabase["dubai-uae"]?.priceDisplay || "Rp 1.200.000",
+              discount: "20%",
               badges: ["E-Visa", "Promo Spesial"]
             }
           ].map((visa, idx) => {

@@ -7,9 +7,10 @@ import HowItWorksSectionV2 from "@/features/landing-v2/components/HowItWorksSect
 import PopularVisaSectionV2 from "@/features/landing-v2/components/PopularVisaSectionV2";
 import ExtraServicesSectionV2 from "@/features/landing-v2/components/ExtraServicesSectionV2";
 import SupportedCountriesSectionV2 from "@/features/landing-v2/components/SupportedCountriesSectionV2";
+import EmbassyRegistrationSection from "@/shared/landing/components/embassy-registration-section";
 import TestimonialsSection from "@/shared/landing/components/testimonials-section";
 import BlogSection from "@/shared/landing/components/blog-section";
-import ContactSection from "@/shared/landing/components/contact-section";
+import ContactSectionV2 from "@/features/landing-v2/components/ContactSectionV2";
 import CtaDualSection from "@/shared/landing/components/cta-dual-section";
 import FaqSectionV2 from "@/features/landing-v2/components/FaqSectionV2";
 import CtaSection from "@/shared/landing/components/cta-section";
@@ -44,6 +45,7 @@ export default function LandingV2() {
         <ExtraServicesSectionV2 />
       </div>
       <SupportedCountriesSectionV2 />
+      <EmbassyRegistrationSection />
       <div id="about">
         <AboutSectionV2 />
       </div>
@@ -51,7 +53,7 @@ export default function LandingV2() {
       <TestimonialsSection />
       <BlogSection />
       <div id="contact">
-        <ContactSection />
+        <ContactSectionV2 />
       </div>
       <CtaDualSection />
       <FaqSectionV2 />

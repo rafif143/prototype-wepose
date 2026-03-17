@@ -8,7 +8,6 @@ import {
   GlobeAltIcon,
   DocumentTextIcon,
   CheckCircleIcon,
-  TrophyIcon,
 } from "@heroicons/react/24/outline"
 import { US, GB, JP, AU, CA, FR, DE, NL, SG, KR, EU, TH, MY, VN, KH } from 'country-flag-icons/react/3x2'
 
@@ -17,7 +16,6 @@ export default function SupportedCountriesSectionV2() {
     { number: "300+", label: "Tipe Visa", icon: DocumentTextIcon },
     { number: "90+", label: "Negara", icon: GlobeAltIcon },
     { number: "50K+", label: "Visa Diproses", icon: CheckCircleIcon },
-    { number: "99%", label: "Success Rate", icon: TrophyIcon },
   ]
 
   const featuredCountries = [
@@ -103,7 +101,7 @@ export default function SupportedCountriesSectionV2() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ delay: 0.2 }}
-          className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-20 px-8 md:px-16 lg:px-24"
+          className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-20 px-8 md:px-16 lg:px-24"
         >
           {stats.map((stat, idx) => (
             <motion.div

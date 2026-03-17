@@ -12,9 +12,22 @@ interface RequirementsTabProps {
 
 type ProfileType = 'employee' | 'entrepreneur' | 'student';
 
+interface ApplicantCriteria {
+  maritalStatus: string;
+  ageRange: string;
+  sponsorStatus: string;
+  invitationStatus: string;
+}
+
 export function RequirementsTab({ visa }: RequirementsTabProps) {
   const [selectedProfile, setSelectedProfile] = useState<ProfileType>('employee');
   const [openCategories, setOpenCategories] = useState<string[]>(['Dokumen Pribadi']);
+  const [criteria, setCriteria] = useState<ApplicantCriteria>({
+    maritalStatus: '',
+    ageRange: '',
+    sponsorStatus: '',
+    invitationStatus: ''
+  });
 
   const profiles = [
     { id: 'employee' as ProfileType, icon: UserIcon, label: 'Karyawan' },
@@ -30,6 +43,10 @@ export function RequirementsTab({ visa }: RequirementsTabProps) {
     );
   };
 
+  const updateCriteria = (field: keyof ApplicantCriteria, value: string) => {
+    setCriteria(prev => ({ ...prev, [field]: value }));
+  };
+
   return (
     <div id="requirements" className="space-y-8">
       <div>
@@ -42,6 +59,81 @@ export function RequirementsTab({ visa }: RequirementsTabProps) {
             <p className="font-dm-sans text-sm text-gray-700">
               Persyaratan dapat berbeda tergantung status pernikahan, pekerjaan, dan usia pemohon. Pilih profilmu di bawah untuk persyaratan yang relevan.
             </p>
+          </div>
+        </div>
+
+        {/* Kriteria Pemohon */}
+        <div className="mb-8">
+          <h4 className="font-poppins font-semibold text-lg text-navy mb-4">Kriteria Pemohon</h4>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {/* Status Pernikahan */}
+            <div className="space-y-3">
+              <label className="block font-dm-sans font-medium text-sm text-gray-700">Status Pernikahan</label>
+              <select 
+                value={criteria.maritalStatus}
+                onChange={(e) => updateCriteria('maritalStatus', e.target.value)}
+                className="w-full px-4 py-3 border border-gray-200 rounded-xl font-dm-sans text-sm text-navy focus:ring-2 focus:ring-orange focus:border-orange transition-colors"
+              >
+                <option value="">Pilih status pernikahan</option>
+                <option value="single">Belum Menikah</option>
+                <option value="married">Menikah</option>
+                <option value="divorced">Cerai</option>
+                <option value="widowed">Janda/Duda</option>
+              </select>
+            </div>
+
+            {/* Status Umur */}
+            <div className="space-y-3">
+              <label className="block font-dm-sans font-medium text-sm text-gray-700">Rentang Umur</label>
+              <select 
+                value={criteria.ageRange}
+                onChange={(e) => updateCriteria('ageRange', e.target.value)}
+                className="w-full px-4 py-3 border border-gray-200 rounded-xl font-dm-sans text-sm text-navy focus:ring-2 focus:ring-orange focus:border-orange transition-colors"
+              >
+                <option value="">Pilih rentang umur</option>
+                <option value="under-18">Di bawah 18 tahun</option>
+                <option value="18-25">18-25 tahun</option>
+                <option value="26-35">26-35 tahun</option>
+                <option value="36-50">36-50 tahun</option>
+                <option value="over-50">Di atas 50 tahun</option>
+              </select>
+            </div>
+
+            {/* Status Sponsor */}
+            <div className="space-y-3">
+              <label className="block font-dm-sans font-medium text-sm text-gray-700">Status Sponsor</label>
+              <select 
+                value={criteria.sponsorStatus}
+                onChange={(e) => updateCriteria('sponsorStatus', e.target.value)}
+                className="w-full px-4 py-3 border border-gray-200 rounded-xl font-dm-sans text-sm text-navy focus:ring-2 focus:ring-orange focus:border-orange transition-colors"
+              >
+                <option value="">Pilih status sponsor</option>
+                <option value="self-funded">Biaya Sendiri</option>
+                <option value="family-sponsor">Sponsor Keluarga</option>
+                <option value="company-sponsor">Sponsor Perusahaan</option>
+                <option value="government-sponsor">Sponsor Pemerintah</option>
+                <option value="scholarship">Beasiswa</option>
+              </select>
+            </div>
+
+            {/* Status Undangan */}
+            <div className="space-y-3">
+              <label className="block font-dm-sans font-medium text-sm text-gray-700">Status Undangan</label>
+              <select 
+                value={criteria.invitationStatus}
+                onChange={(e) => updateCriteria('invitationStatus', e.target.value)}
+                className="w-full px-4 py-3 border border-gray-200 rounded-xl font-dm-sans text-sm text-navy focus:ring-2 focus:ring-orange focus:border-orange transition-colors"
+              >
+                <option value="">Pilih status undangan</option>
+                <option value="no-invitation">Tidak Ada Undangan</option>
+                <option value="family-invitation">Undangan Keluarga</option>
+                <option value="friend-invitation">Undangan Teman</option>
+                <option value="business-invitation">Undangan Bisnis</option>
+                <option value="event-invitation">Undangan Acara</option>
+                <option value="official-invitation">Undangan Resmi</option>
+              </select>
+            </div>
           </div>
         </div>
 

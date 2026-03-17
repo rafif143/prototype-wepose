@@ -112,7 +112,9 @@ export default function PopularVisaSectionV2() {
       coverImage: "https://images.unsplash.com/photo-1502602898657-3e91760cbb34?q=80&w=400&auto=format&fit=crop",
       time: "15-20 hari",
       stay: "90 hari tinggal",
+      originalPrice: "Rp 2.200.000",
       price: "Rp 1.850.000",
+      discount: "16%",
       gradient: "from-[#0F1F3D] to-[#1E3A5F]",
       badges: ["Multiple Entry", "Fast Track"]
     },
@@ -125,7 +127,9 @@ export default function PopularVisaSectionV2() {
       coverImage: "https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?q=80&w=400&auto=format&fit=crop",
       time: "7-10 hari",
       stay: "15 hari tinggal",
+      originalPrice: "Rp 1.200.000",
       price: "Rp 950.000",
+      discount: "21%",
       gradient: "from-[#DC2626] to-[#991B1B]",
       badges: ["Single Entry", "E-Visa Optional"]
     },
@@ -338,9 +342,25 @@ export default function PopularVisaSectionV2() {
                     <h4 className="font-poppins font-semibold text-[16px] text-navy">
                       Visa {visa.type}
                     </h4>
-                    <div className="font-poppins font-bold text-[16px] text-orange">
-                      {visa.price}
-                    </div>
+                    {visa.originalPrice ? (
+                      <div className="text-right">
+                        <div className="flex items-center gap-2 mb-1 justify-end">
+                          <span className="font-dm-sans text-[11px] text-gray-400 line-through">
+                            {visa.originalPrice}
+                          </span>
+                          <span className="bg-red-100 text-red-600 text-[9px] font-poppins font-bold px-1.5 py-0.5 rounded-full">
+                            -{visa.discount}
+                          </span>
+                        </div>
+                        <div className="font-poppins font-bold text-[16px] text-orange">
+                          {visa.price}
+                        </div>
+                      </div>
+                    ) : (
+                      <div className="font-poppins font-bold text-[16px] text-orange">
+                        {visa.price}
+                      </div>
+                    )}
                   </div>
                   
                   <div className="flex items-center gap-3 font-dm-sans text-[13px] text-gray-500 mb-4">
