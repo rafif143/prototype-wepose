@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { ArrowRightIcon, ClockIcon, CalendarDaysIcon, LockClosedIcon } from "@heroicons/react/24/outline";
+import { Flag } from "@/shared/ui/Flag";
 import type { VisaData } from "@/features/visa/lib/data";
 
 interface OrderSummaryProps {
@@ -40,8 +41,10 @@ export function OrderSummary({ visa }: OrderSummaryProps) {
     <div className="hidden lg:block sticky top-32">
       <div className="bg-white rounded-2xl shadow-md border border-gray-200 p-6">
         {/* Header */}
-        <div className="flex items-center gap-2 mb-4">
-          <span className="text-2xl">{visa.flag}</span>
+        <div className="flex items-center gap-3 mb-4">
+          <div className="w-6 h-4 rounded overflow-hidden border border-gray-200">
+            <Flag countryCode={visa.flag} className="w-full h-full" />
+          </div>
           <h3 className="font-poppins font-semibold text-base text-navy">{visa.name}</h3>
         </div>
 

@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import Link from "next/link";
 import Image from "next/image";
 import { HomeIcon, ClockIcon, DocumentTextIcon } from "@heroicons/react/24/outline";
+import { Flag } from "@/shared/ui/Flag";
 import type { VisaData } from "@/features/visa/lib/data";
 
 interface HeroHeaderProps {
@@ -74,8 +75,10 @@ export function HeroHeader({ visa }: HeroHeaderProps) {
         </h1>
 
         {/* Flag + Country */}
-        <div className="flex items-center gap-2 mb-4">
-          <span className="text-2xl">{visa.flag}</span>
+        <div className="flex items-center gap-3 mb-4">
+          <div className="w-8 h-6 rounded overflow-hidden shadow-md border border-white/20">
+            <Flag countryCode={visa.flag} className="w-full h-full" />
+          </div>
           <span className="font-dm-sans font-medium text-base text-white/80">{visa.country}</span>
         </div>
 
