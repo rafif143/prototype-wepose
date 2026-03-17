@@ -5,13 +5,12 @@ import { motion, AnimatePresence } from "framer-motion"
 import { StarIcon, ChevronLeftIcon, ChevronRightIcon, ArrowRightIcon } from "@heroicons/react/24/solid"
 import { ArrowRightIcon as ArrowRightOutline } from "@heroicons/react/24/outline"
 import Link from "next/link"
+import { Flag } from '@/shared/ui/Flag'
 
 export default function TestimonialsSectionV2() {
   const [currentIndex, setCurrentIndex] = useState(0)
 
-  import { Flag } from '@/shared/ui/Flag';
-
-const testimonials = [
+  const testimonials = [
     {
       name: "Sarah Wijaya",
       role: "Business Traveler",
