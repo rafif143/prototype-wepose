@@ -4,6 +4,7 @@ import React, { useEffect, useState } from "react"
 import { motion } from "framer-motion"
 import { MagnifyingGlassIcon } from "@heroicons/react/24/outline"
 import { WorldMap } from "@/shared/ui/WorldMap"
+import { Flag } from '@/shared/ui/Flag'
 
 const StatCounter = ({ end, duration = 1.2 }: { end: number, duration?: number }) => {
   const [count, setCount] = useState(0)
@@ -136,18 +137,32 @@ export default function HeroSection() {
           }}
           className="flex flex-wrap justify-center gap-2 max-w-3xl"
         >
-          {["🇪🇺 Schengen", "🇯🇵 Jepang", "🇰🇷 Korea", "🇦🇺 Australia", "🇺🇸 Amerika", "🌍 Eropa", "🕌 Timur Tengah", "➕ Lihat Semua"].map((chip) => (
+          {[
+            { label: "Schengen", countryCode: "eu" },
+            { label: "Jepang", countryCode: "jp" },
+            { label: "Korea", countryCode: "kr" },
+            { label: "Australia", countryCode: "au" },
+            { label: "Amerika", countryCode: "us" },
+            { label: "Eropa", countryCode: null, icon: "🌍" },
+            { label: "Timur Tengah", countryCode: null, icon: "🕌" },
+            { label: "Lihat Semua", countryCode: null, icon: "➕" }
+          ].map((chip) => (
             <motion.button
-              key={chip}
+              key={chip.label}
               variants={{
                 hidden: { opacity: 0, scale: 0.9 },
                 show: { opacity: 1, scale: 1, transition: { type: "spring", bounce: 0, duration: 0.2 } }
               }}
               whileHover={{ scale: 1.05, backgroundColor: "rgba(255,255,255,0.2)" }}
               whileTap={{ scale: 0.95 }}
-              className="bg-white/10 border border-white/20 text-white rounded-full py-2 px-4 font-dm-sans text-sm transition-colors"
+              className="bg-white/10 border border-white/20 text-white rounded-full py-2 px-4 font-dm-sans text-sm transition-colors flex items-center gap-2"
             >
-              {chip}
+              {chip.countryCode ? (
+                <Flag countryCode={chip.countryCode} size="sm" />
+              ) : (
+                <span>{chip.icon}</span>
+              )}
+              {chip.label}
             </motion.button>
           ))}
         </motion.div>

@@ -15,12 +15,7 @@ export function Flag({ countryCode, className = '', size = 'md' }: FlagProps) {
 
   return (
     <span 
-      className={`fi fi-${countryCode.toLowerCase()} inline-block ${sizeClasses[size]} ${className}`}
-      style={{ 
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
-        borderRadius: '2px'
-      }}
+      className={`fi fi-${countryCode.toLowerCase()} inline-block flag-container ${className}`}
     />
   );
 }
