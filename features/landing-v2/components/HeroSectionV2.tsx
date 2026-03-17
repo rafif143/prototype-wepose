@@ -40,6 +40,8 @@ const StatCounter = ({ end, duration = 1.2 }: { end: number, duration?: number }
   return <>{count}</>
 }
 
+import { Flag } from '@/shared/ui/Flag';
+
 export default function HeroSectionV2() {
   // Map dots without labels for V2
   const mapDots = [
@@ -137,9 +139,18 @@ export default function HeroSectionV2() {
           }}
           className="flex flex-wrap justify-center gap-2 max-w-3xl"
         >
-          {["🇪🇺 Schengen", "🇯🇵 Jepang", "🇰🇷 Korea", "🇦🇺 Australia", "🇺🇸 Amerika", "🌍 Eropa", "🕌 Timur Tengah", "➕ Lihat Semua"].map((chip) => (
+          {[
+            { label: "Schengen", flag: "eu" },
+            { label: "Jepang", flag: "jp" },
+            { label: "Korea", flag: "kr" },
+            { label: "Australia", flag: "au" },
+            { label: "Amerika", flag: "us" },
+            { label: "Eropa", flag: "eu" },
+            { label: "Timur Tengah", flag: "ae" },
+            { label: "Lihat Semua", flag: null }
+          ].map((chip) => (
             <motion.button
-              key={chip}
+              key={chip.label}
               variants={{
                 hidden: { opacity: 0, scale: 0.9 },
                 show: { opacity: 1, scale: 1, transition: { type: "spring", bounce: 0, duration: 0.2 } }
@@ -148,7 +159,11 @@ export default function HeroSectionV2() {
               whileTap={{ scale: 0.95 }}
               className="bg-white/10 border border-white/20 text-white rounded-full py-2 px-4 font-dm-sans text-sm transition-colors"
             >
-              {chip}
+              <span className="flex items-center gap-2">
+                {chip.flag && <Flag countryCode={chip.flag} size="sm" />}
+                {chip.flag === null && <span>➕</span>}
+                {chip.label}
+              </span>
             </motion.button>
           ))}
         </motion.div>

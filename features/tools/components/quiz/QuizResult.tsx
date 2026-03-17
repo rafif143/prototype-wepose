@@ -8,6 +8,9 @@ import {
   ArrowPathIcon,
   ChevronRightIcon,
   IdentificationIcon,
+  LockClosedIcon,
+  CheckCircleIcon,
+  SparklesIcon,
 } from '@heroicons/react/24/outline';
 import { VisaRecommendation } from '@/features/tools/lib/quiz/recommendation';
 import { staggerChildren, staggerItem } from '@/shared/utils/animations';
@@ -17,6 +20,8 @@ interface QuizResultProps {
   onRestart: () => void;
   onApply: () => void;
   onSave: () => void;
+  onPurchasePremium: () => void;
+  onBundleWithVisa: () => void;
 }
 
 export function QuizResult({
@@ -24,6 +29,8 @@ export function QuizResult({
   onRestart,
   onApply,
   onSave,
+  onPurchasePremium,
+  onBundleWithVisa,
 }: QuizResultProps) {
   const { visaName, country, flag, approvalLevel, approvalPercentage, tips, requiredDocuments } =
     recommendation;
@@ -59,7 +66,7 @@ export function QuizResult({
         variants={staggerChildren}
         initial="initial"
         animate="animate"
-        className="max-w-3xl mx-auto space-y-8 relative z-10"
+        className="max-w-5xl mx-auto space-y-8 relative z-10"
       >
         {/* Header */}
         <motion.div variants={staggerItem} className="text-center">
@@ -67,7 +74,7 @@ export function QuizResult({
             initial={{ scale: 0 }}
             animate={{ scale: 1 }}
             transition={{ type: 'spring', duration: 0.6 }}
-            className="flex justify-center mb-6"
+            className="flex justify-center mb-6 mt-6"
           >
             <div className="w-24 h-24 bg-gradient-to-br from-orange to-orange-dark rounded-full flex items-center justify-center">
               <IdentificationIcon className="w-12 h-12 text-white" />
@@ -82,79 +89,167 @@ export function QuizResult({
           </p>
         </motion.div>
 
-        {/* Approval Meter */}
-        <motion.div
-          variants={staggerItem}
-          className="bg-white border border-gray-200 rounded-2xl p-8 shadow-lg"
-        >
-          <p className="text-sm font-dm-sans text-gray-500 mb-4 font-medium">Peluang Approval</p>
-          <div className="relative">
-            <div className="h-4 bg-gray-100 rounded-full overflow-hidden">
-              <motion.div
-                className={`h-full bg-gradient-to-r ${meterColor}`}
-                initial={{ width: 0 }}
-                animate={{ width: `${approvalPercentage}%` }}
-                transition={{ duration: 1.2, ease: 'easeOut', delay: 0.4 }}
-              />
+        {/* Main Content Grid */}
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+          {/* Left Column - Quiz Results */}
+          <div className="lg:col-span-2 space-y-8">
+            {/* Approval Meter */}
+            <motion.div
+              variants={staggerItem}
+              className="bg-white border border-gray-200 rounded-2xl p-8 shadow-lg"
+            >
+              <p className="text-sm font-dm-sans text-gray-500 mb-4 font-medium">Peluang Approval</p>
+              <div className="relative">
+                <div className="h-4 bg-gray-100 rounded-full overflow-hidden">
+                  <motion.div
+                    className={`h-full bg-gradient-to-r ${meterColor}`}
+                    initial={{ width: 0 }}
+                    animate={{ width: `${approvalPercentage}%` }}
+                    transition={{ duration: 1.2, ease: 'easeOut', delay: 0.4 }}
+                  />
+                </div>
+                <div className="flex justify-between items-center mt-4">
+                  <span className="text-2xl font-poppins font-bold text-navy">{approvalPercentage}%</span>
+                  <span className={`px-4 py-2 rounded-full text-sm font-poppins font-bold border ${badgeColor}`}>
+                    {approvalLevel}
+                  </span>
+                </div>
+              </div>
+              <p className="text-sm font-dm-sans text-gray-500 mt-4">
+                Berdasarkan profil dan dokumen yang kamu miliki
+              </p>
+            </motion.div>
+
+            {/* Tips */}
+            <motion.div
+              variants={staggerItem}
+              className="bg-white border border-gray-200 rounded-2xl p-8 shadow-lg"
+            >
+              <div className="flex items-center gap-4 mb-6">
+                <div className="w-10 h-10 bg-orange-50 rounded-xl flex items-center justify-center">
+                  <LightBulbIcon className="w-6 h-6 text-orange" />
+                </div>
+                <h3 className="text-xl font-poppins font-bold text-navy">Tips untuk Kamu</h3>
+              </div>
+              <div className="space-y-4">
+                {tips.map((tip, index) => (
+                  <div key={index} className="flex items-start gap-4">
+                    <ChevronRightIcon className="w-5 h-5 text-orange flex-shrink-0 mt-0.5" />
+                    <p className="text-base font-dm-sans text-gray-700">{tip}</p>
+                  </div>
+                ))}
+              </div>
+            </motion.div>
+
+            {/* Required Documents */}
+            <motion.div
+              variants={staggerItem}
+              className="bg-white border border-gray-200 rounded-2xl p-8 shadow-lg"
+            >
+              <div className="flex items-center gap-4 mb-6">
+                <div className="w-10 h-10 bg-orange-50 rounded-xl flex items-center justify-center">
+                  <DocumentTextIcon className="w-6 h-6 text-orange" />
+                </div>
+                <h3 className="text-xl font-poppins font-bold text-navy">
+                  Dokumen yang Kamu Butuhkan
+                </h3>
+              </div>
+              <div className="space-y-3">
+                {requiredDocuments.map((doc, index) => (
+                  <div key={index} className="flex items-start gap-4">
+                    <div className="w-5 h-5 rounded border-2 border-gray-300 flex-shrink-0 mt-0.5" />
+                    <p className="text-base font-dm-sans text-gray-700">{doc}</p>
+                  </div>
+                ))}
+              </div>
+              <button className="text-base font-dm-sans text-orange hover:text-orange-dark transition-colors mt-4 font-medium">
+                Lihat daftar lengkap →
+              </button>
+            </motion.div>
+          </div>
+
+          {/* Right Column - Premium Tools */}
+          <motion.div
+            variants={staggerItem}
+            className="lg:col-span-1 bg-white border border-gray-200 rounded-2xl p-6 shadow-lg sticky top-8 h-fit"
+          >
+            {/* Premium Badge */}
+            <div className="flex justify-center mb-4">
+              <div className="inline-flex items-center px-3 py-1 rounded-full bg-info-purple/10 border border-info-purple/30">
+                <SparklesIcon className="w-4 h-4 text-info-purple mr-1" />
+                <span className="text-xs font-poppins font-semibold text-info-purple uppercase tracking-wide">
+                  PREMIUM TOOLS
+                </span>
+              </div>
             </div>
-            <div className="flex justify-between items-center mt-4">
-              <span className="text-2xl font-poppins font-bold text-navy">{approvalPercentage}%</span>
-              <span className={`px-4 py-2 rounded-full text-sm font-poppins font-bold border ${badgeColor}`}>
-                {approvalLevel}
+
+            {/* Lock Icon */}
+            <div className="flex justify-center mb-4">
+              <div className="w-16 h-16 rounded-full bg-orange-100 flex items-center justify-center">
+                <LockClosedIcon className="w-8 h-8 text-orange" />
+              </div>
+            </div>
+
+            {/* Title */}
+            <h3 className="text-xl font-poppins font-bold text-navy mb-3 text-center">
+              Unlock Premium Tools
+            </h3>
+
+            {/* Description */}
+            <p className="text-sm font-dm-sans text-gray-500 mb-4 text-center">
+              Dapatkan akses ke semua tools premium untuk memaksimalkan peluang visa kamu
+            </p>
+
+            {/* Price */}
+            <div className="text-center mb-6">
+              <span className="text-2xl font-poppins font-bold text-orange">
+                Rp 99.000
+              </span>
+              <span className="text-sm font-dm-sans text-gray-400 ml-1">
+                /bulan
               </span>
             </div>
-          </div>
-          <p className="text-sm font-dm-sans text-gray-500 mt-4">
-            Berdasarkan profil dan dokumen yang kamu miliki
-          </p>
-        </motion.div>
 
-        {/* Tips */}
-        <motion.div
-          variants={staggerItem}
-          className="bg-white border border-gray-200 rounded-2xl p-8 shadow-lg"
-        >
-          <div className="flex items-center gap-3 mb-6">
-            <div className="w-10 h-10 bg-orange-50 rounded-xl flex items-center justify-center">
-              <LightBulbIcon className="w-6 h-6 text-orange" />
+            {/* Features */}
+            <div className="space-y-3 mb-6">
+              {[
+                'Visa Comparison Tool (Unlimited)',
+                'Sponsor Letter Generator',
+                'Document Checklist Generator',
+                'Priority Customer Support',
+                'Visa Status Tracker',
+              ].map((feature, index) => (
+                <div key={index} className="flex items-start gap-2">
+                  <CheckCircleIcon className="w-4 h-4 text-success-green flex-shrink-0 mt-0.5" />
+                  <span className="text-xs font-dm-sans text-gray-600">
+                    {feature}
+                  </span>
+                </div>
+              ))}
             </div>
-            <h3 className="text-xl font-poppins font-bold text-navy">Tips untuk Kamu</h3>
-          </div>
-          <div className="space-y-4">
-            {tips.map((tip, index) => (
-              <div key={index} className="flex items-start gap-3">
-                <ChevronRightIcon className="w-5 h-5 text-orange flex-shrink-0 mt-0.5" />
-                <p className="text-base font-dm-sans text-gray-700">{tip}</p>
-              </div>
-            ))}
-          </div>
-        </motion.div>
 
-        {/* Required Documents */}
-        <motion.div
-          variants={staggerItem}
-          className="bg-white border border-gray-200 rounded-2xl p-8 shadow-lg"
-        >
-          <div className="flex items-center gap-3 mb-6">
-            <div className="w-10 h-10 bg-orange-50 rounded-xl flex items-center justify-center">
-              <DocumentTextIcon className="w-6 h-6 text-orange" />
+            {/* Premium Buttons */}
+            <div className="space-y-3">
+              <button
+                onClick={onPurchasePremium}
+                className="w-full bg-orange text-white font-poppins font-semibold text-sm py-3 px-6 rounded-full hover:shadow-lg hover:shadow-orange/25 hover:-translate-y-0.5 active:scale-[0.97] transition-all duration-200"
+              >
+                Upgrade ke Premium
+              </button>
+              <button
+                onClick={onBundleWithVisa}
+                className="w-full border-2 border-navy text-navy font-poppins font-semibold text-sm py-3 px-6 rounded-full hover:bg-navy/10 active:scale-[0.97] transition-all duration-200"
+              >
+                Bundle dengan Order Visa (Gratis)
+              </button>
             </div>
-            <h3 className="text-xl font-poppins font-bold text-navy">
-              Dokumen yang Kamu Butuhkan
-            </h3>
-          </div>
-          <div className="space-y-3">
-            {requiredDocuments.map((doc, index) => (
-              <div key={index} className="flex items-start gap-3">
-                <div className="w-5 h-5 rounded border-2 border-gray-300 flex-shrink-0 mt-0.5" />
-                <p className="text-base font-dm-sans text-gray-700">{doc}</p>
-              </div>
-            ))}
-          </div>
-          <button className="text-base font-dm-sans text-orange hover:text-orange-dark transition-colors mt-4 font-medium">
-            Lihat daftar lengkap →
-          </button>
-        </motion.div>
+
+            {/* Footer Text */}
+            <p className="text-xs font-dm-sans text-gray-400 mt-4 text-center">
+              Sudah punya akses? <span className="underline cursor-pointer hover:text-gray-600">Masuk</span>
+            </p>
+          </motion.div>
+        </div>
 
         {/* CTA Buttons */}
         <motion.div variants={staggerItem} className="space-y-4">

@@ -5,8 +5,6 @@ import { useState } from 'react';
 export interface QuizState {
   currentQuestion: number;
   answers: Record<number, string>;
-  isUnlocked: boolean;
-  showPaywall: boolean;
   showResult: boolean;
 }
 
@@ -14,8 +12,6 @@ export function useQuizState() {
   const [hasStarted, setHasStarted] = useState(false);
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [answers, setAnswers] = useState<Record<number, string>>({});
-  const [isUnlocked, setIsUnlocked] = useState(false);
-  const [showPaywall, setShowPaywall] = useState(false);
   const [showResult, setShowResult] = useState(false);
 
   const startQuiz = () => {
@@ -27,12 +23,6 @@ export function useQuizState() {
   };
 
   const goToNext = () => {
-    // Check if we need to show paywall at question 4 (index 3)
-    if (currentQuestion === 2 && !isUnlocked) {
-      setShowPaywall(true);
-      return;
-    }
-
     // Check if we've completed all questions
     if (currentQuestion === 7) {
       setShowResult(true);
@@ -49,14 +39,11 @@ export function useQuizState() {
   };
 
   const unlock = () => {
-    setIsUnlocked(true);
-    setShowPaywall(false);
-    // Move to question 4 after unlocking
-    setCurrentQuestion(3);
+    // No longer needed but keeping for compatibility
   };
 
   const closePaywall = () => {
-    setShowPaywall(false);
+    // No longer needed but keeping for compatibility
   };
 
   const restart = () => {
@@ -73,8 +60,6 @@ export function useQuizState() {
     hasStarted,
     currentQuestion,
     answers,
-    isUnlocked,
-    showPaywall,
     showResult,
     canGoBack,
     hasAnswered,

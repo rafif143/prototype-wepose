@@ -6,7 +6,7 @@ import Image from "next/image"
 import { useRouter } from "next/navigation"
 import { motion, Variants, AnimatePresence } from "framer-motion"
 import { ScaleIcon, ArrowRightIcon, ClockIcon, CalendarDaysIcon, XMarkIcon, CheckIcon, BanknotesIcon, BoltIcon, DocumentIcon, BuildingOfficeIcon, DocumentArrowDownIcon, UserGroupIcon, StarIcon, ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/24/outline"
-import { FR, JP, KR, AU, US, GB } from 'country-flag-icons/react/3x2'
+import { Flag } from '@/shared/ui/Flag';
 
 // Helper component for comparison rows
 function ComparisonRow({ 
@@ -108,8 +108,7 @@ export default function PopularVisaSectionV2() {
       countryName: "Prancis",
       type: "Tourist",
       slug: "france-schengen-tourist",
-      emoji: "🇫🇷",
-      FlagComponent: FR,
+      countryCode: "fr",
       coverImage: "https://images.unsplash.com/photo-1502602898657-3e91760cbb34?q=80&w=400&auto=format&fit=crop",
       time: "15-20 hari",
       stay: "90 hari tinggal",
@@ -122,8 +121,7 @@ export default function PopularVisaSectionV2() {
       countryName: "Jepang",
       type: "Tourist",
       slug: "japan-tourist",
-      emoji: "🇯🇵",
-      FlagComponent: JP,
+      countryCode: "jp",
       coverImage: "https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?q=80&w=400&auto=format&fit=crop",
       time: "7-10 hari",
       stay: "15 hari tinggal",
@@ -136,8 +134,7 @@ export default function PopularVisaSectionV2() {
       countryName: "Korea Selatan",
       type: "Tourist",
       slug: "korea-tourist",
-      emoji: "🇰🇷",
-      FlagComponent: KR,
+      countryCode: "kr",
       coverImage: "https://images.unsplash.com/photo-1517154421773-0529f29ea451?q=80&w=400&auto=format&fit=crop",
       time: "5-7 hari",
       stay: "30 hari tinggal",
@@ -150,8 +147,7 @@ export default function PopularVisaSectionV2() {
       countryName: "Australia",
       type: "Tourist",
       slug: "australia-tourist",
-      emoji: "🇦🇺",
-      FlagComponent: AU,
+      countryCode: "au",
       coverImage: "https://images.unsplash.com/photo-1506973035872-a4ec16b8e8d9?q=80&w=400&auto=format&fit=crop",
       time: "10-15 hari",
       stay: "3 bulan tinggal",
@@ -164,8 +160,7 @@ export default function PopularVisaSectionV2() {
       countryName: "Amerika Serikat",
       type: "B1/B2",
       slug: "usa-b1-b2",
-      emoji: "🇺🇸",
-      FlagComponent: US,
+      countryCode: "us",
       coverImage: "https://images.unsplash.com/photo-1485738422979-f5c462d49f74?q=80&w=400&auto=format&fit=crop",
       time: "30-60 hari",
       stay: "6 bulan tinggal",
@@ -178,8 +173,7 @@ export default function PopularVisaSectionV2() {
       countryName: "Inggris",
       type: "Standard",
       slug: "uk-standard",
-      emoji: "🇬🇧",
-      FlagComponent: GB,
+      countryCode: "gb",
       coverImage: "https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?q=80&w=400&auto=format&fit=crop",
       time: "20-30 hari",
       stay: "6 bulan tinggal",
@@ -302,7 +296,6 @@ export default function PopularVisaSectionV2() {
           className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"
         >
           {visas.map((visa, idx) => {
-            const FlagIcon = visa.FlagComponent;
             return (
               <motion.div
                 key={idx}
@@ -328,7 +321,7 @@ export default function PopularVisaSectionV2() {
                     
                     {/* Flag Circle with SVG - Bigger */}
                     <div className="absolute bottom-4 left-4 w-14 h-14 rounded-full bg-white flex items-center justify-center shadow-lg overflow-hidden border-3 border-white">
-                      <FlagIcon className="w-full h-full object-cover" />
+                      <Flag countryCode={visa.countryCode} className="w-full h-full object-cover" />
                     </div>
 
                     {/* Country Name Overlay */}
@@ -479,11 +472,7 @@ export default function PopularVisaSectionV2() {
                 countryName: "Thailand",
                 type: "Tourist",
                 slug: "thailand-tourist",
-                FlagComponent: ({ className }: { className: string }) => (
-                  <div className={`${className} bg-gradient-to-b from-red-500 via-white to-blue-500 flex items-center justify-center`}>
-                    <span className="text-xs font-bold text-red-600">🇹🇭</span>
-                  </div>
-                ),
+                countryCode: "th",
                 coverImage: "https://images.unsplash.com/photo-1552465011-b4e21bf6e79a?q=80&w=400&auto=format&fit=crop",
                 time: "3-5 hari",
                 stay: "30 hari tinggal",
@@ -497,11 +486,7 @@ export default function PopularVisaSectionV2() {
                 countryName: "Malaysia", 
                 type: "Tourist",
                 slug: "malaysia-tourist",
-                FlagComponent: ({ className }: { className: string }) => (
-                  <div className={`${className} bg-gradient-to-b from-red-500 via-white to-blue-500 flex items-center justify-center`}>
-                    <span className="text-xs font-bold">🇲🇾</span>
-                  </div>
-                ),
+                countryCode: "my",
                 coverImage: "https://images.unsplash.com/photo-1596422846543-75c6fc197f07?q=80&w=400&auto=format&fit=crop",
                 time: "1-2 hari",
                 stay: "30 hari tinggal",
@@ -515,11 +500,7 @@ export default function PopularVisaSectionV2() {
                 countryName: "Singapura",
                 type: "Tourist",
                 slug: "singapore-tourist", 
-                FlagComponent: ({ className }: { className: string }) => (
-                  <div className={`${className} bg-gradient-to-b from-red-500 via-white to-red-500 flex items-center justify-center`}>
-                    <span className="text-xs font-bold">🇸🇬</span>
-                  </div>
-                ),
+                countryCode: "sg",
                 coverImage: "https://images.unsplash.com/photo-1525625293386-3f8f99389edd?q=80&w=400&auto=format&fit=crop",
                 time: "2-3 hari",
                 stay: "30 hari tinggal",
@@ -533,11 +514,7 @@ export default function PopularVisaSectionV2() {
                 countryName: "Vietnam",
                 type: "Tourist",
                 slug: "vietnam-tourist",
-                FlagComponent: ({ className }: { className: string }) => (
-                  <div className={`${className} bg-gradient-to-b from-red-600 via-red-600 to-yellow-400 flex items-center justify-center`}>
-                    <span className="text-xs font-bold text-yellow-300">🇻🇳</span>
-                  </div>
-                ),
+                countryCode: "vn",
                 coverImage: "https://images.unsplash.com/photo-1559592413-7cec4d0cae2b?q=80&w=400&auto=format&fit=crop",
                 time: "3-5 hari",
                 stay: "30 hari tinggal", 
@@ -551,11 +528,7 @@ export default function PopularVisaSectionV2() {
                 countryName: "Kamboja",
                 type: "Tourist",
                 slug: "cambodia-tourist",
-                FlagComponent: ({ className }: { className: string }) => (
-                  <div className={`${className} bg-gradient-to-b from-blue-600 via-red-500 to-blue-600 flex items-center justify-center`}>
-                    <span className="text-xs font-bold text-white">🇰🇭</span>
-                  </div>
-                ),
+                countryCode: "kh",
                 coverImage: "https://images.unsplash.com/photo-1539650116574-75c0c6d73f6e?q=80&w=400&auto=format&fit=crop",
                 time: "2-4 hari",
                 stay: "30 hari tinggal",
@@ -569,11 +542,7 @@ export default function PopularVisaSectionV2() {
                 countryName: "Laos",
                 type: "Tourist",
                 slug: "laos-tourist",
-                FlagComponent: ({ className }: { className: string }) => (
-                  <div className={`${className} bg-gradient-to-b from-red-600 via-blue-600 to-red-600 flex items-center justify-center`}>
-                    <span className="text-xs font-bold text-white">🇱🇦</span>
-                  </div>
-                ),
+                countryCode: "la",
                 coverImage: "https://images.unsplash.com/photo-1570366583862-f91883984fde?q=80&w=400&auto=format&fit=crop",
                 time: "3-5 hari",
                 stay: "30 hari tinggal",
@@ -583,7 +552,6 @@ export default function PopularVisaSectionV2() {
                 badges: ["Visa on Arrival", "Budget Friendly"]
               }
             ].map((visa, idx) => {
-              const FlagIcon = visa.FlagComponent;
               return (
                 <motion.div
                   key={idx}
@@ -617,7 +585,7 @@ export default function PopularVisaSectionV2() {
                       
                       {/* Flag Circle - Bigger */}
                       <div className="absolute bottom-3 left-3 w-12 h-12 rounded-full bg-white flex items-center justify-center shadow-lg overflow-hidden border-2 border-white">
-                        <FlagIcon className="w-full h-full object-cover" />
+                        <Flag countryCode={visa.countryCode} className="w-full h-full object-cover" />
                       </div>
 
                       {/* Country Name Overlay */}
@@ -743,9 +711,7 @@ export default function PopularVisaSectionV2() {
                       </button>
                       <div className="flex items-center gap-4 mb-4">
                         <div className="w-16 h-16 rounded-2xl overflow-hidden border-2 border-white/20">
-                          {selectedVisa.FlagComponent && (
-                            <selectedVisa.FlagComponent className="w-full h-full object-cover" />
-                          )}
+                          <Flag countryCode={selectedVisa.countryCode} className="w-full h-full object-cover" />
                         </div>
                         <div>
                           <h3 className="font-poppins font-bold text-xl text-white">
@@ -773,7 +739,6 @@ export default function PopularVisaSectionV2() {
                       {visas
                         .filter(v => v.slug !== selectedVisa.slug)
                         .map((visa) => {
-                          const FlagIcon = visa.FlagComponent
                           const isSelected = compareWith.includes(visa.slug)
                           const isDisabled = !isSelected && compareWith.length >= 2
 
@@ -803,7 +768,7 @@ export default function PopularVisaSectionV2() {
 
                               {/* Flag */}
                               <div className="w-12 h-12 rounded-xl overflow-hidden border border-gray-200 flex-shrink-0">
-                                <FlagIcon className="w-full h-full object-cover" />
+                                <Flag countryCode={visa.countryCode} className="w-full h-full object-cover" />
                               </div>
 
                               {/* Info */}
@@ -912,7 +877,6 @@ export default function PopularVisaSectionV2() {
 
                             {/* Visa Column Headers */}
                             {comparedVisas.map((visa) => {
-                              const FlagIcon = visa.FlagComponent
                               return (
                                 <th
                                   key={visa.slug}
@@ -927,7 +891,7 @@ export default function PopularVisaSectionV2() {
                                       <XMarkIcon className="w-3.5 h-3.5" />
                                     </button>
                                     <div className="w-12 h-12 rounded-xl overflow-hidden border border-gray-200 shadow-sm">
-                                      <FlagIcon className="w-full h-full object-cover" />
+                                      <Flag countryCode={visa.countryCode} className="w-full h-full object-cover" />
                                     </div>
                                     <span className="text-[13px] font-poppins font-semibold text-navy text-center leading-tight">
                                       {visa.country}

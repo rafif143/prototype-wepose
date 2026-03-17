@@ -1,6 +1,6 @@
 "use client"
 
-import React, { useState } from "react"
+import { useState } from "react"
 import { motion } from "framer-motion"
 import {
   CheckBadgeIcon,
@@ -11,6 +11,8 @@ import {
   PlusCircleIcon,
 } from "@heroicons/react/24/outline"
 import CountriesModal from "../../../features/landing/components/CountriesModal"
+
+import { Flag, getCountryCode } from '@/shared/ui/Flag';
 
 export default function SupportedCountriesSection() {
   const [isModalOpen, setIsModalOpen] = useState(false)
@@ -23,96 +25,96 @@ export default function SupportedCountriesSection() {
   ]
 
   const topDestinations = [
-    { name: "Schengen", flag: "🇪🇺", count: "27 negara", popular: true },
-    { name: "Amerika", flag: "🇺🇸", count: "B1/B2", popular: true },
-    { name: "Jepang", flag: "🇯🇵", count: "Tourist", popular: true },
-    { name: "Australia", flag: "🇦🇺", count: "ETA", popular: false },
-    { name: "Inggris", flag: "🇬🇧", count: "Standard", popular: false },
-    { name: "Kanada", flag: "🇨🇦", count: "eTA", popular: false },
-    { name: "Korea", flag: "🇰🇷", count: "C-3", popular: false },
-    { name: "Singapura", flag: "🇸🇬", count: "Tourist", popular: false },
+    { name: "Schengen", countryCode: "eu", count: "27 negara", popular: true },
+    { name: "Amerika", countryCode: "us", count: "B1/B2", popular: true },
+    { name: "Jepang", countryCode: "jp", count: "Tourist", popular: true },
+    { name: "Australia", countryCode: "au", count: "ETA", popular: false },
+    { name: "Inggris", countryCode: "gb", count: "Standard", popular: false },
+    { name: "Kanada", countryCode: "ca", count: "eTA", popular: false },
+    { name: "Korea", countryCode: "kr", count: "C-3", popular: false },
+    { name: "Singapura", countryCode: "sg", count: "Tourist", popular: false },
   ]
 
   const allCountries = [
-    { name: "Fiji", flag: "🇫🇯" },
-    { name: "Kiribati", flag: "🇰🇮" },
-    { name: "Kepulauan Marshall", flag: "🇲🇭" },
-    { name: "Mikronesia", flag: "🇫🇲" },
-    { name: "Nauru", flag: "🇳🇷" },
-    { name: "Selandia Baru", flag: "🇳🇿" },
-    { name: "Palau", flag: "🇵🇼" },
-    { name: "India", flag: "🇮🇳" },
-    { name: "Maladewa", flag: "🇲🇻" },
-    { name: "Nepal", flag: "🇳🇵" },
-    { name: "Pakistan", flag: "🇵🇰" },
-    { name: "Sri Lanka", flag: "🇱🇰" },
-    { name: "Kazakhstan", flag: "🇰🇿" },
-    { name: "Kirgistan", flag: "🇰🇬" },
-    { name: "Irlandia", flag: "🇮🇪" },
-    { name: "Italia", flag: "🇮🇹" },
-    { name: "Latvia", flag: "🇱🇻" },
-    { name: "Liechtenstein", flag: "🇱🇮" },
-    { name: "Lithuania", flag: "🇱🇹" },
-    { name: "Luksemburg", flag: "🇱🇺" },
-    { name: "Malta", flag: "🇲🇹" },
-    { name: "Monako", flag: "🇲🇨" },
-    { name: "Republik Dominika", flag: "🇩🇴" },
-    { name: "Grenada", flag: "🇬🇩" },
-    { name: "Haiti", flag: "🇭🇹" },
-    { name: "Jamaika", flag: "🇯🇲" },
-    { name: "Saint Kitts dan Nevis", flag: "🇰🇳" },
-    { name: "Saint Lucia", flag: "🇱🇨" },
-    { name: "Uni Emirat Arab", flag: "🇦🇪" },
-    { name: "Yaman", flag: "🇾🇪" },
-    { name: "Aljazair", flag: "🇩🇿" },
-    { name: "Angola", flag: "🇦🇴" },
-    { name: "Benin", flag: "🇧🇯" },
-    { name: "Botswana", flag: "🇧🇼" },
-    { name: "Burkina Faso", flag: "🇧🇫" },
-    { name: "Burundi", flag: "🇧🇮" },
-    { name: "Kamerun", flag: "🇨🇲" },
-    { name: "Tanjung Verde", flag: "🇨🇻" },
-    { name: "Chad", flag: "🇹🇩" },
-    { name: "Komoro", flag: "🇰🇲" },
-    { name: "Kongo", flag: "🇨🇬" },
-    { name: "Pantai Gading", flag: "🇨🇮" },
-    { name: "Mesir", flag: "🇪🇬" },
-    { name: "Guinea Khatulistiwa", flag: "🇬🇶" },
-    { name: "Eritrea", flag: "🇪🇷" },
-    { name: "Eswatini", flag: "🇸🇿" },
-    { name: "Ethiopia", flag: "🇪🇹" },
-    { name: "Gabon", flag: "🇬🇦" },
-    { name: "Gambia", flag: "🇬🇲" },
-    { name: "Ghana", flag: "🇬🇭" },
-    { name: "Guinea", flag: "🇬🇳" },
-    { name: "Kenya", flag: "🇰🇪" },
-    { name: "Lesotho", flag: "🇱🇸" },
-    { name: "Liberia", flag: "🇱🇷" },
-    { name: "Libya", flag: "🇱🇾" },
-    { name: "Madagaskar", flag: "🇲🇬" },
-    { name: "Malawi", flag: "🇲🇼" },
-    { name: "Mali", flag: "🇲🇱" },
-    { name: "Mauritania", flag: "🇲🇷" },
-    { name: "Mauritius", flag: "🇲🇺" },
-    { name: "Maroko", flag: "🇲🇦" },
-    { name: "Mozambik", flag: "🇲🇿" },
-    { name: "Namibia", flag: "🇳🇦" },
-    { name: "Niger", flag: "🇳🇪" },
-    { name: "Nigeria", flag: "🇳🇬" },
-    { name: "Rwanda", flag: "🇷🇼" },
-    { name: "Senegal", flag: "🇸🇳" },
-    { name: "Seychelles", flag: "🇸🇨" },
-    { name: "Sierra Leone", flag: "🇸🇱" },
-    { name: "Somalia", flag: "🇸🇴" },
-    { name: "Afrika Selatan", flag: "🇿🇦" },
-    { name: "Sudan Selatan", flag: "🇸🇸" },
-    { name: "Sudan", flag: "🇸🇩" },
-    { name: "Tanzania", flag: "🇹🇿" },
-    { name: "Togo", flag: "🇹🇬" },
-    { name: "Tunisia", flag: "🇹🇳" },
-    { name: "Uganda", flag: "🇺🇬" },
-    { name: "Zambia", flag: "🇿🇲" },
-    { name: "Zimbabwe", flag: "🇿🇼" },
+    { name: "Fiji", countryCode: "fj" },
+    { name: "Kiribati", countryCode: "ki" },
+    { name: "Kepulauan Marshall", countryCode: "mh" },
+    { name: "Mikronesia", countryCode: "fm" },
+    { name: "Nauru", countryCode: "nr" },
+    { name: "Selandia Baru", countryCode: "nz" },
+    { name: "Palau", countryCode: "pw" },
+    { name: "India", countryCode: "in" },
+    { name: "Maladewa", countryCode: "mv" },
+    { name: "Nepal", countryCode: "np" },
+    { name: "Pakistan", countryCode: "pk" },
+    { name: "Sri Lanka", countryCode: "lk" },
+    { name: "Kazakhstan", countryCode: "kz" },
+    { name: "Kirgistan", countryCode: "kg" },
+    { name: "Irlandia", countryCode: "ie" },
+    { name: "Italia", countryCode: "it" },
+    { name: "Latvia", countryCode: "lv" },
+    { name: "Liechtenstein", countryCode: "li" },
+    { name: "Lithuania", countryCode: "lt" },
+    { name: "Luksemburg", countryCode: "lu" },
+    { name: "Malta", countryCode: "mt" },
+    { name: "Monako", countryCode: "mc" },
+    { name: "Republik Dominika", countryCode: "do" },
+    { name: "Grenada", countryCode: "gd" },
+    { name: "Haiti", countryCode: "ht" },
+    { name: "Jamaika", countryCode: "jm" },
+    { name: "Saint Kitts dan Nevis", countryCode: "kn" },
+    { name: "Saint Lucia", countryCode: "lc" },
+    { name: "Uni Emirat Arab", countryCode: "ae" },
+    { name: "Yaman", countryCode: "ye" },
+    { name: "Aljazair", countryCode: "dz" },
+    { name: "Angola", countryCode: "ao" },
+    { name: "Benin", countryCode: "bj" },
+    { name: "Botswana", countryCode: "bw" },
+    { name: "Burkina Faso", countryCode: "bf" },
+    { name: "Burundi", countryCode: "bi" },
+    { name: "Kamerun", countryCode: "cm" },
+    { name: "Tanjung Verde", countryCode: "cv" },
+    { name: "Chad", countryCode: "td" },
+    { name: "Komoro", countryCode: "km" },
+    { name: "Kongo", countryCode: "cg" },
+    { name: "Pantai Gading", countryCode: "ci" },
+    { name: "Mesir", countryCode: "eg" },
+    { name: "Guinea Khatulistiwa", countryCode: "gq" },
+    { name: "Eritrea", countryCode: "er" },
+    { name: "Eswatini", countryCode: "sz" },
+    { name: "Ethiopia", countryCode: "et" },
+    { name: "Gabon", countryCode: "ga" },
+    { name: "Gambia", countryCode: "gm" },
+    { name: "Ghana", countryCode: "gh" },
+    { name: "Guinea", countryCode: "gn" },
+    { name: "Kenya", countryCode: "ke" },
+    { name: "Lesotho", countryCode: "ls" },
+    { name: "Liberia", countryCode: "lr" },
+    { name: "Libya", countryCode: "ly" },
+    { name: "Madagaskar", countryCode: "mg" },
+    { name: "Malawi", countryCode: "mw" },
+    { name: "Mali", countryCode: "ml" },
+    { name: "Mauritania", countryCode: "mr" },
+    { name: "Mauritius", countryCode: "mu" },
+    { name: "Maroko", countryCode: "ma" },
+    { name: "Mozambik", countryCode: "mz" },
+    { name: "Namibia", countryCode: "na" },
+    { name: "Niger", countryCode: "ne" },
+    { name: "Nigeria", countryCode: "ng" },
+    { name: "Rwanda", countryCode: "rw" },
+    { name: "Senegal", countryCode: "sn" },
+    { name: "Seychelles", countryCode: "sc" },
+    { name: "Sierra Leone", countryCode: "sl" },
+    { name: "Somalia", countryCode: "so" },
+    { name: "Afrika Selatan", countryCode: "za" },
+    { name: "Sudan Selatan", countryCode: "ss" },
+    { name: "Sudan", countryCode: "sd" },
+    { name: "Tanzania", countryCode: "tz" },
+    { name: "Togo", countryCode: "tg" },
+    { name: "Tunisia", countryCode: "tn" },
+    { name: "Uganda", countryCode: "ug" },
+    { name: "Zambia", countryCode: "zm" },
+    { name: "Zimbabwe", countryCode: "zw" },
   ]
 
   return (
@@ -202,7 +204,7 @@ export default function SupportedCountriesSection() {
                   className="relative bg-white rounded-xl p-4 border border-gray-100 hover:border-orange-200 hover:shadow-md hover:-translate-y-0.5 cursor-pointer flex-shrink-0 w-48 transition-all duration-300"
                 >
                   <div className="flex items-center gap-3">
-                    <span className="text-2xl">{dest.flag}</span>
+                    <Flag countryCode={dest.countryCode} size="lg" />
                     <div>
                       <p className="font-dm-sans font-semibold text-navy text-sm">{dest.name}</p>
                       <p className="font-dm-sans text-xs text-gray-500">{dest.count}</p>
@@ -216,7 +218,7 @@ export default function SupportedCountriesSection() {
                   className="relative bg-white rounded-xl p-4 border border-gray-100 hover:border-orange-200 hover:shadow-md hover:-translate-y-0.5 cursor-pointer flex-shrink-0 w-48 transition-all duration-300"
                 >
                   <div className="flex items-center gap-3">
-                    <span className="text-2xl">{dest.flag}</span>
+                    <Flag countryCode={dest.countryCode} size="lg" />
                     <div>
                       <p className="font-dm-sans font-semibold text-navy text-sm">{dest.name}</p>
                       <p className="font-dm-sans text-xs text-gray-500">{dest.count}</p>
@@ -236,7 +238,7 @@ export default function SupportedCountriesSection() {
                   className="relative bg-white rounded-xl p-4 border border-gray-100 hover:border-orange-200 hover:shadow-md hover:-translate-y-0.5 cursor-pointer flex-shrink-0 w-48 transition-all duration-300"
                 >
                   <div className="flex items-center gap-3">
-                    <span className="text-2xl">{dest.flag}</span>
+                    <Flag countryCode={dest.countryCode} size="lg" />
                     <div>
                       <p className="font-dm-sans font-semibold text-navy text-sm">{dest.name}</p>
                       <p className="font-dm-sans text-xs text-gray-500">{dest.count}</p>
@@ -250,7 +252,7 @@ export default function SupportedCountriesSection() {
                   className="relative bg-white rounded-xl p-4 border border-gray-100 hover:border-orange-200 hover:shadow-md hover:-translate-y-0.5 cursor-pointer flex-shrink-0 w-48 transition-all duration-300"
                 >
                   <div className="flex items-center gap-3">
-                    <span className="text-2xl">{dest.flag}</span>
+                    <Flag countryCode={dest.countryCode} size="lg" />
                     <div>
                       <p className="font-dm-sans font-semibold text-navy text-sm">{dest.name}</p>
                       <p className="font-dm-sans text-xs text-gray-500">{dest.count}</p>

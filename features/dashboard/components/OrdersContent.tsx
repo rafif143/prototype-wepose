@@ -20,6 +20,7 @@ import {
   ChevronRightIcon
 } from "@heroicons/react/24/outline";
 import { TrackingTimeline } from "./TrackingTimeline";
+import { Flag } from '@/shared/ui/Flag';
 
 interface Order {
   id: string;
@@ -31,7 +32,6 @@ interface Order {
   submittedDate: string;
   completedDate?: string;
   totalAmount: number;
-  flag: string;
 }
 
 interface OrderDetailModalProps {
@@ -44,114 +44,104 @@ const mockOrders: Order[] = [
   {
     id: "WP-2024-001",
     country: "Jepang",
-    countryCode: "JP",
+    countryCode: "jp",
     visaType: "Tourist Visa",
     status: "review",
     statusLabel: "Dokumen Direview",
     submittedDate: "2024-03-15",
-    totalAmount: 1200000,
-    flag: "🇯🇵"
+    totalAmount: 1200000
   },
   {
     id: "WP-2024-002",
     country: "Korea Selatan", 
-    countryCode: "KR",
+    countryCode: "kr",
     visaType: "Business Visa",
     status: "processing",
     statusLabel: "Sedang Diproses",
     submittedDate: "2024-03-12",
-    totalAmount: 950000,
-    flag: "🇰🇷"
+    totalAmount: 950000
   },
   {
     id: "WP-2024-003",
     country: "Singapura",
-    countryCode: "SG", 
+    countryCode: "sg", 
     visaType: "Tourist Visa",
     status: "completed",
     statusLabel: "Selesai",
     submittedDate: "2024-02-20",
     completedDate: "2024-03-05",
-    totalAmount: 850000,
-    flag: "🇸🇬"
+    totalAmount: 850000
   },
   {
     id: "WP-2024-004",
     country: "Australia",
-    countryCode: "AU",
+    countryCode: "au",
     visaType: "Tourist Visa", 
     status: "rejected",
     statusLabel: "Ditolak",
     submittedDate: "2024-02-10",
-    totalAmount: 1500000,
-    flag: "🇦🇺"
+    totalAmount: 1500000
   },
   {
     id: "WP-2024-005",
     country: "Amerika Serikat",
-    countryCode: "US",
+    countryCode: "us",
     visaType: "Business Visa",
     status: "approved",
     statusLabel: "Disetujui",
     submittedDate: "2024-03-01",
-    totalAmount: 2200000,
-    flag: "🇺🇸"
+    totalAmount: 2200000
   },
   {
     id: "WP-2024-006",
     country: "Inggris",
-    countryCode: "GB",
+    countryCode: "gb",
     visaType: "Tourist Visa",
     status: "ready",
     statusLabel: "Siap Diambil",
     submittedDate: "2024-02-25",
-    totalAmount: 1800000,
-    flag: "🇬🇧"
+    totalAmount: 1800000
   },
   {
     id: "WP-2024-007",
     country: "Jerman",
-    countryCode: "DE",
+    countryCode: "de",
     visaType: "Schengen Visa",
     status: "processing",
     statusLabel: "Sedang Diproses",
     submittedDate: "2024-03-08",
-    totalAmount: 1100000,
-    flag: "🇩🇪"
+    totalAmount: 1100000
   },
   {
     id: "WP-2024-008",
     country: "Prancis",
-    countryCode: "FR",
+    countryCode: "fr",
     visaType: "Schengen Visa",
     status: "review",
     statusLabel: "Dokumen Direview",
     submittedDate: "2024-03-05",
-    totalAmount: 1150000,
-    flag: "🇫🇷"
+    totalAmount: 1150000
   },
   {
     id: "WP-2024-009",
     country: "Kanada",
-    countryCode: "CA",
+    countryCode: "ca",
     visaType: "Tourist Visa",
     status: "completed",
     statusLabel: "Selesai",
     submittedDate: "2024-01-15",
     completedDate: "2024-02-28",
-    totalAmount: 1900000,
-    flag: "🇨🇦"
+    totalAmount: 1900000
   },
   {
     id: "WP-2024-010",
     country: "Thailand",
-    countryCode: "TH",
+    countryCode: "th",
     visaType: "Tourist Visa",
     status: "approved",
     statusLabel: "Disetujui",
     submittedDate: "2024-03-10",
-    totalAmount: 650000,
-    flag: "🇹🇭"
+    totalAmount: 650000
   }
 ];
 
@@ -220,7 +210,7 @@ const OrderDetailModal = ({ isOpen, onClose, order }: OrderDetailModalProps) => 
         {/* Header */}
         <div className="mb-6">
           <div className="flex items-center gap-3 mb-2">
-            <span className="text-2xl">{order.flag}</span>
+            <Flag countryCode={order.countryCode} size="lg" />
             <h3 className="text-[18px] font-poppins font-semibold text-navy leading-tight">
               Detail Order - Visa {order.country}
             </h3>
@@ -236,7 +226,7 @@ const OrderDetailModal = ({ isOpen, onClose, order }: OrderDetailModalProps) => 
           <div className="bg-gray-50 rounded-xl p-4">
             <div className="flex items-start justify-between">
               <div className="flex items-center gap-3">
-                <span className="text-3xl">{order.flag}</span>
+                <Flag countryCode={order.countryCode} size="lg" />
                 <div>
                   <h4 className="text-[16px] font-poppins font-semibold text-navy mb-1">
                     Visa {order.country}
@@ -494,7 +484,7 @@ export function OrdersContent() {
         <div className="bg-white rounded-2xl shadow-md p-6">
           <div className="flex items-start justify-between mb-6">
             <div className="flex items-center gap-4">
-              <span className="text-3xl">{selectedOrder.flag}</span>
+              <Flag countryCode={selectedOrder.countryCode} size="lg" />
               <div>
                 <h1 className="font-poppins font-bold text-2xl text-navy">
                   Visa {selectedOrder.country}
@@ -668,7 +658,7 @@ export function OrdersContent() {
             >
               <div className="flex items-start justify-between mb-3">
                 <div className="flex items-center gap-3">
-                  <span className="text-2xl">{order.flag}</span>
+                  <Flag countryCode={order.countryCode} size="md" />
                   <div>
                     <h3 className="font-medium text-navy text-sm">Visa {order.country}</h3>
                     <p className="text-xs text-gray-500">{order.visaType}</p>
@@ -746,7 +736,7 @@ export function OrdersContent() {
                     </td>
                     <td className="py-4 px-6">
                       <div className="flex items-center gap-2">
-                        <span className="text-lg">{order.flag}</span>
+                        <Flag countryCode={order.countryCode} size="md" />
                         <span className="text-sm text-gray-700">{order.country}</span>
                       </div>
                     </td>

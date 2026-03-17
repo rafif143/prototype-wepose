@@ -78,7 +78,7 @@ export function QuizIntro({ onStart }: QuizIntroProps) {
             initial={{ scale: 0 }}
             animate={{ scale: 1 }}
             transition={{ type: "spring", bounce: 0.6, delay: 0.2 }}
-            className="flex justify-center mb-6"
+            className="flex justify-center mb-6 mt-6"
           >
             <div className="w-20 h-20 bg-gradient-to-br from-orange to-orange-dark rounded-2xl flex items-center justify-center shadow-xl shadow-orange/25">
               <LightBulbIcon className="w-10 h-10 text-white" />

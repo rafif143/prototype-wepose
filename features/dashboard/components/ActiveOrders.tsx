@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import { Clock, Eye } from "lucide-react";
 import Link from "next/link";
+import { Flag } from '@/shared/ui/Flag';
 
 interface Order {
   id: string;
@@ -11,7 +12,7 @@ interface Order {
   status: 'processing' | 'review' | 'approved' | 'ready';
   statusLabel: string;
   submittedDate: string;
-  flag: string;
+  countryCode: string;
 }
 
 const mockOrders: Order[] = [
@@ -22,7 +23,7 @@ const mockOrders: Order[] = [
     status: "review",
     statusLabel: "Dokumen Direview",
     submittedDate: "15 Mar 2024",
-    flag: "🇯🇵"
+    countryCode: "jp"
   },
   {
     id: "WP-2024-002", 
@@ -31,7 +32,7 @@ const mockOrders: Order[] = [
     status: "processing",
     statusLabel: "Sedang Diproses",
     submittedDate: "12 Mar 2024",
-    flag: "🇰🇷"
+    countryCode: "kr"
   }
 ];
 
@@ -74,7 +75,7 @@ export function ActiveOrders() {
           >
             <div className="flex items-start justify-between mb-3">
               <div className="flex items-center gap-3">
-                <span className="text-2xl">{order.flag}</span>
+                <Flag countryCode={order.countryCode} size="lg" />
                 <div>
                   <h3 className="font-poppins font-semibold text-base text-navy group-hover:text-orange transition-colors">
                     {order.country}

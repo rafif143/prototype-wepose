@@ -2,7 +2,7 @@ import { Metadata } from "next";
 import Navbar from "@/shared/layout/Navbar";
 import HeroSectionV2 from "@/features/landing-v2/components/HeroSectionV2";
 import AboutSectionV2 from "@/features/landing-v2/components/AboutSectionV2";
-import TrackVisaSection from "@/shared/landing/components/track-visa-section";
+// import TrackVisaSection from "@/shared/landing/components/track-visa-section"; // Hidden per client request
 import HowItWorksSectionV2 from "@/features/landing-v2/components/HowItWorksSectionV2";
 import PopularVisaSectionV2 from "@/features/landing-v2/components/PopularVisaSectionV2";
 import ExtraServicesSectionV2 from "@/features/landing-v2/components/ExtraServicesSectionV2";
@@ -47,7 +47,7 @@ export default function LandingV2() {
       <div id="about">
         <AboutSectionV2 />
       </div>
-      <TrackVisaSection />
+      {/* <TrackVisaSection /> */} {/* Hidden per client request */}
       <TestimonialsSection />
       <BlogSection />
       <div id="contact">

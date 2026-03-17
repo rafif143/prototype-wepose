@@ -6,6 +6,7 @@ import { ChevronLeftIcon } from "@heroicons/react/24/outline"
 import { BlogSidebar } from "./BlogSidebar"
 import { RelatedVisaDestinations } from "./RelatedVisaDestinations"
 import { RelatedPosts } from "./RelatedPosts"
+import { Flag } from '@/shared/ui/Flag'
 
 interface BlogPost {
   title: string
@@ -39,7 +40,7 @@ const mockVisaDestinations = [
   {
     id: "1",
     negaraTujuan: "GERMANY",
-    flag: "🇩🇪",
+    countryCode: "de",
     hargaDasar: "3250000",
     masaBerlaku: 5,
   },

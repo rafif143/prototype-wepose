@@ -1,6 +1,7 @@
 'use client';
 
 import { motion, AnimatePresence } from 'framer-motion';
+import { useRouter } from 'next/navigation';
 import {
   DocumentTextIcon,
   ArrowDownTrayIcon,
@@ -14,19 +15,21 @@ import { TemplateType, Language, SponsorFormData } from '@/features/tools/lib/sp
 import { templates } from '@/features/tools/lib/sponsor-letter/types';
 import { downloadPDF } from '@/features/tools/lib/sponsor-letter/pdf-generator';
 
+import { Flag } from '@/shared/ui/Flag';
+
 const getLanguageName = (language: Language) => {
   const languageNames = {
-    id: '🇮🇩 Indonesia',
-    en: '🇬🇧 English',
-    zh: '🇨🇳 中文',
-    ja: '🇯🇵 日本語',
-    th: '🇹🇭 ไทย',
-    ru: '🇷🇺 Русский',
-    de: '🇩🇪 Deutsch',
-    fr: '🇫🇷 Français',
-    ar: '🇸🇦 العربية',
+    id: { flag: 'id', name: 'Indonesia' },
+    en: { flag: 'gb', name: 'English' },
+    zh: { flag: 'cn', name: '中文' },
+    ja: { flag: 'jp', name: '日本語' },
+    th: { flag: 'th', name: 'ไทย' },
+    ru: { flag: 'ru', name: 'Русский' },
+    de: { flag: 'de', name: 'Deutsch' },
+    fr: { flag: 'fr', name: 'Français' },
+    ar: { flag: 'sa', name: 'العربية' },
   };
-  return languageNames[language] || '🇬🇧 English';
+  return languageNames[language] || languageNames.en;
 };
 
 interface GenerateStepProps {
@@ -54,7 +57,13 @@ export function GenerateStep({
   onBack,
   onReset,
 }: GenerateStepProps) {
+  const router = useRouter();
   const templateConfig = templates.find((t) => t.id === template);
+
+  const handleSaveToVault = () => {
+    // Redirect to authentication page
+    router.push('/auth');
+  };
 
   // Error State
   if (error) {
@@ -130,8 +139,9 @@ export function GenerateStep({
             </div>
             <div className="flex justify-between text-[14px]">
               <span className="text-gray-500">Bahasa:</span>
-              <span className="font-dm-sans font-medium text-navy">
-                {getLanguageName(language)}
+              <span className="font-dm-sans font-medium text-navy flex items-center gap-2">
+                <Flag countryCode={getLanguageName(language).flag} size="sm" />
+                {getLanguageName(language).name}
               </span>
             </div>
             <div className="flex justify-between text-[14px]">
@@ -259,8 +269,9 @@ export function GenerateStep({
               <p className="text-[14px] font-dm-sans font-medium">
                 {templateConfig?.name}
               </p>
-              <p className="text-[12px] text-white/80">
-                {getLanguageName(language)}
+              <p className="text-[12px] text-white/80 flex items-center gap-1">
+                <Flag countryCode={getLanguageName(language).flag} size="sm" />
+                {getLanguageName(language).name}
               </p>
             </div>
           </div>
@@ -274,7 +285,9 @@ export function GenerateStep({
             <ArrowDownTrayIcon className="w-5 h-5" />
             Download PDF
           </button>
-          <button className="flex items-center justify-center gap-2 px-6 py-3 rounded-button border border-gray-200 text-navy font-poppins font-semibold text-[15px] hover:border-orange hover:bg-orange-50 transition-all duration-200">
+          <button 
+            onClick={handleSaveToVault}
+            className="flex items-center justify-center gap-2 px-6 py-3 rounded-button border border-gray-200 text-navy font-poppins font-semibold text-[15px] hover:border-orange hover:bg-orange-50 transition-all duration-200">
             <BookmarkIcon className="w-5 h-5" />
             Simpan ke Vault
           </button>

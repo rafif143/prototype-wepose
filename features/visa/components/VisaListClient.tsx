@@ -5,6 +5,7 @@ import Link from "next/link"
 import Image from "next/image"
 import { motion } from "framer-motion"
 import { MagnifyingGlassIcon, ChevronLeftIcon, ChevronRightIcon, ClockIcon, CurrencyDollarIcon } from "@heroicons/react/24/outline"
+import { Flag } from '@/shared/ui/Flag'
 
 export default function VisaListClient() {
   const [searchQuery, setSearchQuery] = useState("")
@@ -24,7 +25,7 @@ export default function VisaListClient() {
       duration: "7-14 hari",
       validity: "90 hari",
       image: "https://images.unsplash.com/photo-1467269204594-9661b134dd2b?w=600&q=80",
-      flag: "🇩🇪",
+      countryCode: "de",
       isPromo: false
     },
     {
@@ -37,7 +38,7 @@ export default function VisaListClient() {
       duration: "7-14 hari",
       validity: "90 hari",
       image: "https://images.unsplash.com/photo-1502602898657-3e91760cbb34?w=600&q=80",
-      flag: "🇫🇷",
+      countryCode: "fr",
       isPromo: true
     },
     {
@@ -50,7 +51,7 @@ export default function VisaListClient() {
       duration: "7-14 hari",
       validity: "90 hari",
       image: "https://images.unsplash.com/photo-1523906834658-6e24ef2386f9?w=600&q=80",
-      flag: "🇮🇹",
+      countryCode: "it",
       isPromo: false
     },
     {
@@ -63,7 +64,7 @@ export default function VisaListClient() {
       duration: "7-14 hari",
       validity: "90 hari",
       image: "https://images.unsplash.com/photo-1534351590666-13e3e96b5017?w=600&q=80",
-      flag: "🇳🇱",
+      countryCode: "nl",
       isPromo: false
     },
     {
@@ -76,7 +77,7 @@ export default function VisaListClient() {
       duration: "7-14 hari",
       validity: "90 hari",
       image: "https://images.unsplash.com/photo-1543783207-ec64e4d95325?w=600&q=80",
-      flag: "🇪🇸",
+      countryCode: "es",
       isPromo: true
     },
     {
@@ -89,7 +90,7 @@ export default function VisaListClient() {
       duration: "7-14 hari",
       validity: "90 hari",
       image: "https://images.unsplash.com/photo-1531366936337-7c912a4589a7?w=600&q=80",
-      flag: "🇨🇭",
+      countryCode: "ch",
       isPromo: false
     },
     {
@@ -102,7 +103,7 @@ export default function VisaListClient() {
       duration: "15-21 hari",
       validity: "180 hari",
       image: "https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?w=600&q=80",
-      flag: "🇬🇧",
+      countryCode: "gb",
       isPromo: false
     },
     {
@@ -115,7 +116,7 @@ export default function VisaListClient() {
       duration: "5-7 hari",
       validity: "90 hari",
       image: "https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?w=600&q=80",
-      flag: "🇯🇵",
+      countryCode: "jp",
       isPromo: true
     },
     {
@@ -128,7 +129,7 @@ export default function VisaListClient() {
       duration: "5-7 hari",
       validity: "90 hari",
       image: "https://images.unsplash.com/photo-1517154421773-0529f29ea451?w=600&q=80",
-      flag: "🇰🇷",
+      countryCode: "kr",
       isPromo: true
     },
     {
@@ -141,7 +142,7 @@ export default function VisaListClient() {
       duration: "7-10 hari",
       validity: "30 hari",
       image: "https://images.unsplash.com/photo-1508804185872-d7badad00f7d?w=600&q=80",
-      flag: "🇨🇳",
+      countryCode: "cn",
       isPromo: false
     },
     {
@@ -154,7 +155,7 @@ export default function VisaListClient() {
       duration: "3-5 hari",
       validity: "30 hari",
       image: "https://images.unsplash.com/photo-1525625293386-3f8f99389edd?w=600&q=80",
-      flag: "🇸🇬",
+      countryCode: "sg",
       isPromo: false
     },
     {
@@ -167,7 +168,7 @@ export default function VisaListClient() {
       duration: "3-5 hari",
       validity: "60 hari",
       image: "https://images.unsplash.com/photo-1552465011-b4e21bf6e79a?w=600&q=80",
-      flag: "🇹🇭",
+      countryCode: "th",
       isPromo: true
     },
     {
@@ -180,7 +181,7 @@ export default function VisaListClient() {
       duration: "3-5 hari",
       validity: "30 hari",
       image: "https://images.unsplash.com/photo-1596422846543-75c6fc197f07?w=600&q=80",
-      flag: "🇲🇾",
+      countryCode: "my",
       isPromo: false
     },
     {
@@ -193,7 +194,7 @@ export default function VisaListClient() {
       duration: "30-60 hari",
       validity: "10 tahun",
       image: "https://images.unsplash.com/photo-1485738422979-f5c462d49f74?w=600&q=80",
-      flag: "🇺🇸",
+      countryCode: "us",
       isPromo: false
     },
     {
@@ -206,7 +207,7 @@ export default function VisaListClient() {
       duration: "15-30 hari",
       validity: "180 hari",
       image: "https://images.unsplash.com/photo-1503614472-8c93d56e92ce?w=600&q=80",
-      flag: "🇨🇦",
+      countryCode: "ca",
       isPromo: false
     },
     {
@@ -219,7 +220,7 @@ export default function VisaListClient() {
       duration: "10-15 hari",
       validity: "12 bulan",
       image: "https://images.unsplash.com/photo-1506973035872-a4ec16b8e8d9?w=600&q=80",
-      flag: "🇦🇺",
+      countryCode: "au",
       isPromo: true
     },
     {
@@ -232,7 +233,7 @@ export default function VisaListClient() {
       duration: "3-5 hari",
       validity: "60 hari",
       image: "https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=600&q=80",
-      flag: "🇦🇪",
+      countryCode: "ae",
       isPromo: false
     },
     {
@@ -245,7 +246,7 @@ export default function VisaListClient() {
       duration: "1-3 hari",
       validity: "180 hari",
       image: "https://images.unsplash.com/photo-1524231757912-21f4fe3a7200?w=600&q=80",
-      flag: "🇹🇷",
+      countryCode: "tr",
       isPromo: false
     }
   ]
@@ -406,7 +407,7 @@ export default function VisaListClient() {
                       
                       {/* Flag */}
                       <div className="absolute top-4 left-4">
-                        <span className="text-4xl">{visa.flag}</span>
+                        <Flag countryCode={visa.countryCode} size="lg" />
                       </div>
 
                       {/* Type Badge */}

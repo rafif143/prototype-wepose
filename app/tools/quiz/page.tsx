@@ -4,7 +4,6 @@ import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { ProgressBar } from '@/features/tools/components/quiz/ProgressBar';
 import { QuizScreen } from '@/features/tools/components/quiz/QuizScreen';
-import { QuizPaywall } from '@/features/tools/components/quiz/QuizPaywall';
 import { QuizResult } from '@/features/tools/components/quiz/QuizResult';
 import { DevModeResultModal } from '@/features/tools/components/quiz/DevModeResultModal';
 import { quizQuestions } from '@/features/tools/lib/quiz/questions';
@@ -19,7 +18,6 @@ export default function QuizPage() {
     hasStarted,
     currentQuestion,
     answers,
-    showPaywall,
     showResult,
     canGoBack,
     hasAnswered,
@@ -27,8 +25,6 @@ export default function QuizPage() {
     answerQuestion,
     goToNext,
     goToPrevious,
-    unlock,
-    closePaywall,
     restart,
   } = useQuizState();
 
@@ -45,8 +41,7 @@ export default function QuizPage() {
 
   const handlePurchase = () => {
     // In a real app, integrate with payment gateway
-    console.log('Purchase quiz access');
-    unlock();
+    console.log('Purchase premium tools access');
   };
 
   const handleBundleWithVisa = () => {
@@ -102,6 +97,8 @@ export default function QuizPage() {
           onRestart={handleRestart}
           onApply={handleApply}
           onSave={handleSave}
+          onPurchasePremium={handlePurchase}
+          onBundleWithVisa={handleBundleWithVisa}
         />
       </>
     );
@@ -136,14 +133,6 @@ export default function QuizPage() {
           canGoBack={canGoBack}
           questionNumber={currentQuestion + 1}
           totalQuestions={quizQuestions.length}
-        />
-
-        {/* Paywall Modal */}
-        <QuizPaywall
-          isOpen={showPaywall}
-          onClose={closePaywall}
-          onPurchase={handlePurchase}
-          onBundleWithVisa={handleBundleWithVisa}
         />
 
         {/* Dev Mode Result Modal */}

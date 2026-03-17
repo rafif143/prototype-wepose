@@ -3,10 +3,11 @@
 import React, { useEffect } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import { XMarkIcon } from "@heroicons/react/24/outline"
+import { Flag } from '@/shared/ui/Flag'
 
 interface Country {
   name: string
-  flag: string
+  countryCode: string
 }
 
 interface CountriesModalProps {
@@ -87,13 +88,13 @@ export default function CountriesModal({ isOpen, onClose, countries }: Countries
                       whileHover={{ scale: 1.05, y: -2 }}
                       className="flex items-center gap-2 px-3 py-2.5 rounded-lg bg-gray-50 hover:bg-orange-50 hover:border-orange border border-gray-200 transition-all duration-200 cursor-pointer group"
                     >
-                      <motion.span 
-                        className="text-[20px]"
+                      <motion.div
+                        className="w-6 h-6 flex items-center justify-center"
                         whileHover={{ scale: 1.2, rotate: 5 }}
                         transition={{ type: "spring", stiffness: 300 }}
                       >
-                        {country.flag}
-                      </motion.span>
+                        <Flag countryCode={country.countryCode} size="sm" />
+                      </motion.div>
                       <span className="font-dm-sans text-[13px] text-gray-700 group-hover:text-orange font-medium">
                         {country.name}
                       </span>

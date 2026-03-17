@@ -9,14 +9,17 @@ import Link from "next/link"
 export default function TestimonialsSectionV2() {
   const [currentIndex, setCurrentIndex] = useState(0)
 
-  const testimonials = [
+  import { Flag } from '@/shared/ui/Flag';
+
+const testimonials = [
     {
       name: "Sarah Wijaya",
       role: "Business Traveler",
       avatar: "/avatars/sarah.jpg",
       rating: 5,
       text: "Proses visa Schengen jadi sangat mudah dengan Wepose. Tim support sangat responsif dan membantu dari awal sampai visa approved. Highly recommended!",
-      country: "🇫🇷 Prancis"
+      country: "Prancis",
+      countryCode: "fr"
     },
     {
       name: "Ahmad Rizki",
@@ -24,7 +27,8 @@ export default function TestimonialsSectionV2() {
       avatar: "/avatars/ahmad.jpg", 
       rating: 5,
       text: "Visa student ke Jepang yang biasanya ribet, jadi simple banget. Dokumen requirements jelas, proses cepat, dan harga transparan. Thank you Wepose!",
-      country: "🇯🇵 Jepang"
+      country: "Jepang",
+      countryCode: "jp"
     },
     {
       name: "Maya Sari",
@@ -32,7 +36,8 @@ export default function TestimonialsSectionV2() {
       avatar: "/avatars/maya.jpg",
       rating: 5,
       text: "First time apply visa Australia, sempat worry karena banyak requirements. Tapi dengan guidance dari Wepose, semua jadi lancar dan visa approved dalam 2 minggu!",
-      country: "🇦🇺 Australia"
+      country: "Australia",
+      countryCode: "au"
     }
   ]
 
@@ -142,7 +147,8 @@ export default function TestimonialsSectionV2() {
                           <StarIcon key={i} className="w-4 h-4 text-yellow-400" />
                         ))}
                       </div>
-                      <span className="font-dm-sans text-sm text-orange font-semibold">
+                      <span className="font-dm-sans text-sm text-orange font-semibold flex items-center gap-2">
+                        <Flag countryCode={testimonials[currentIndex].countryCode} size="sm" />
                         {testimonials[currentIndex].country}
                       </span>
                     </div>
